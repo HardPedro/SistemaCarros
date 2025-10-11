@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <link rel="stylesheet" href="/css/lista_produtos.css">
+    <script src="/dmxAppConnect/dmxAppConnect.js"></script>
+    <base href="/">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lista de Produtos</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/bootstrap/5/darkly/bootstrap.min.css" />
+</head>
+
+<body is="dmx-app" id="lista_produtos">
+
+    <!-- ===== Barra Superior (grudada) ===== -->
+    <header class="topbar">Lista de Produtos</header>
+
+    <!-- ===== Conteúdo ===== -->
+    <main class="main text-light text-bg-dark mw-100 bg-opacity-25">
+        <div class="grid">
+            <!-- Lateral -->
+            <nav class="side">
+                <a href="#" class="action">
+                    <span class="ico">
+                        <!-- plus -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2">
+                            <path d="M12 5v14M5 12h14" />
+                        </svg>
+                    </span>
+                    Novo
+                </a>
+
+                <a href="#" class="action">
+                    <span class="ico">
+                        <!-- edit -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2">
+                            <path d="M3 21l3-1 11-11-2-2L4 18l-1 3z" />
+                            <path d="M14 6l2 2" />
+                        </svg>
+                    </span>
+                    Editar
+                </a>
+
+                <a href="#" class="action">
+                    <span class="ico">
+                        <!-- trash -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2">
+                            <path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v8M14 10v8" />
+                        </svg>
+                    </span>
+                    Apagar
+                </a>
+            </nav>
+
+            <!-- Conteúdo à direita -->
+            <section>
+                <div class="searchbar">
+                    <span class="search-ico" aria-hidden="true">
+                        <!-- lupa -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2">
+                            <circle cx="11" cy="11" r="6"></circle>
+                            <path d="M16 16l4 4"></path>
+                        </svg>
+                    </span>
+                    <input class="search" type="search" placeholder="Buscar produto..." />
+                </div>
+
+                <div class="board-wrap">
+                    <div class="board">
+                        <!-- Coloque aqui sua tabela/lista (Wappler/DMX Data Table, etc.) -->
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- ===== Barra Inferior (grudada) ===== -->
+    <footer class="footer">
+        <div class="left">Produtos cadastrados:</div>
+        <a href="#" class="btn-stock">
+            <span class="box">
+                <!-- caixa -->
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2">
+                    <path d="M21 8l-9-5-9 5 9 5 9-5z" />
+                    <path d="M12 13v9" />
+                    <path d="M3 8v9l9 5 9-5V8" />
+                </svg>
+            </span>
+            Estoque
+        </a>
+    </footer>
+
+    <script src="/bootstrap/5/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
