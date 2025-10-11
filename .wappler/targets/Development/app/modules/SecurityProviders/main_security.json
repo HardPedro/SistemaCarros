@@ -1,0 +1,24 @@
+{
+  "name": "main_security",
+  "module": "auth",
+  "action": "provider",
+  "options": {
+    "secret": "C9BA72niBXve8Lw",
+    "provider": "Database",
+    "connection": "sistema_carros",
+    "passwordVerify": true,
+    "users": {
+      "table": "cd_usuarios",
+      "identity": "id",
+      "username": "nome",
+      "password": "senha"
+    },
+    "permissions": {}
+  },
+  "meta": [
+    {
+      "name": "identity",
+      "type": "text"
+    }
+  ]
+}

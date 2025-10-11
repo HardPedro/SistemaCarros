@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <script src="/dmxAppConnect/dmxAppConnect.js"></script>
+    <link rel="stylesheet" href="/css/home.css">
+    <base href="/">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home – HARD CARROS</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" integrity="sha384-XGjxtQfXaH2tnPFa9x+ruJTuLE3Aa6LhHSWRr1XeTyhezb4abCG4ccI5AkVDxqC+" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <script src="/dmxAppConnect/dmxBrowser/dmxBrowser.js" defer></script>
+</head>
+
+<body is="dmx-app" id="home">
+    <div is="dmx-browser" id="browser1"></div>
+
+    <div class="app">
+        <!-- Coluna esquerda com foto -->
+        <img class="left" src="/assets/images/MENUBMW.png">
+        <span class="v-split" aria-hidden="true"></span>
+
+        <!-- Conteúdo -->
+        <section class="main bg-secondary">
+            <div class="menu-grid">
+
+                <!-- COLUNA 1 -->
+                <div class="group">
+                    <div class="group-title">
+                        <img class="icon" src="/icons/list.svg" alt="" width="30" height="30" style="filter:invert(1)">
+                        CADASTROS
+                    </div>
+
+                    <a href="#" class="item">
+                        <span class="icon-box"><img src="/icons/car.svg" alt=""></span> Carros
+                    </a>
+                    <a class="item" dmx-on:click="browser1.goto('/lista_produtos.html')" href="/lista_produtos.html">
+                        <span class="icon-box"><img src="/icons/tyre.svg" alt=""></span> Produtos
+                    </a>
+                    <a href="#" class="item">
+                        <span class="icon-box"><img src="/icons/user.svg" alt=""></span> Clientes
+                    </a>
+
+                    <div class="group-title" style="margin-top:18px">
+                        <img class="icon" src="/icons/bag.svg" alt="" width="28" height="28" style="filter:invert(1)">
+                        Vendas
+                    </div>
+                    <a href="#" class="item">
+                        <span class="icon-box"><img src="/icons/car.svg" alt=""></span> Carros
+                    </a>
+                    <a href="#" class="item">
+                        <span class="icon-box"><img src="/icons/pos.svg" alt=""></span> PDV
+                    </a>
+
+                    <div class="group-title" style="margin-top:18px">
+                        <img class="icon" src="/icons/calendar.svg" alt="" width="28" height="28" style="filter:invert(1)">
+                        Agenda
+                    </div>
+                    <a href="#" class="item">
+                        <span class="icon-box"><img src="/icons/checklist.svg" alt=""></span> To do list
+                    </a>
+                    <a href="#" class="item">
+                        <span class="icon-box"><img src="/icons/calendar.svg" alt=""></span> Calendário
+                    </a>
+                </div>
+
+                <!-- COLUNA 2 -->
+                <div class="group">
+                    <div class="group-title">
+                        <span class="coin">S</span><span class="pipe"></span> Financeiro
+                    </div>
+
+                    <a href="#" class="item">
+                        <span class="icon-box"><img src="/icons/mov.svg" alt=""></span> Movimentações
+                    </a>
+                    <a href="#" class="item">
+                        <span class="icon-box"><img src="/icons/receive.svg" alt=""></span> A Receber
+                    </a>
+                    <a href="#" class="item">
+                        <span class="icon-box"><img src="/icons/warn.svg" alt=""></span> Clientes Atrasados
+                    </a>
+                    <a href="#" class="item">
+                        <span class="icon-box style1"><img src="/icons/handmoney.svg" alt=""></span> Financiamentos Próprios
+                    </a>
+                    <a href="#" class="item">
+                        <span class="icon-box"><img src="/icons/folder.svg" alt=""></span> Histórico de Vendas
+                    </a>
+                    <a href="#" class="item">
+                        <span class="icon-box"><img src="/icons/hourglass.svg" alt=""></span> Aguardando Confirmação
+                    </a>
+
+                    <div class="group-title" style="margin-top:8px">
+                        <img class="icon" src="/icons/tools.svg" alt="" width="30" height="30" style="filter:invert(1)">
+                        Serviços
+                    </div>
+                    <a href="#" class="item">
+                        <span class="icon-box"><img src="/icons/tow.svg" alt=""></span> Guincho
+                    </a>
+                    <a href="#" class="item">
+                        <span class="icon-box"><img src="/icons/garage.svg" alt=""></span> Manutenções
+                    </a>
+                </div>
+
+                <!-- COLUNA 3 -->
+                <div class="group">
+                    <div class="group-title">
+                        <div class="dot9" aria-hidden="true">
+                            <span></span><span></span><span></span>
+                            <span></span><span></span><span></span>
+                            <span></span><span></span><span></span>
+                        </div>
+                        <span class="pipe"></span> Outros
+                    </div>
+
+                    <a href="#" class="item">
+                        <span class="icon-box"><img src="/icons/box.svg" alt=""></span> Estoque
+                    </a>
+                    <a href="#" class="item">
+                        <span class="icon-box"><img src="/icons/users.svg" alt=""></span> Usuários
+                    </a>
+                    <a href="#" class="item">
+                        <span class="icon-box"><img src="/icons/price.svg" alt=""></span> Tarifas Guincho
+                    </a>
+                    <a href="#" class="item">
+                        <span class="icon-box"><img src="/icons/gear.svg" alt=""></span> Configurações
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- Barra inferior -->
+            <div class="bottom text-body bg-opacity-50 h-auto">
+                <div class="badge">
+                    <span class="mini"><img src="/icons/user.svg" alt=""></span>
+                    <span>User Name</span>
+                </div>
+
+                <div class="badge">
+                    <span class="mini"><img src="/icons/date.svg" alt=""></span>
+                    <span>Date</span>
+                </div>
+
+                <div class="badge">
+                    <span class="mini cube"></span>
+                    <span>Status do estoque: Bom</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+
+</html>

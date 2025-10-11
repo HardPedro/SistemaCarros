@@ -1,0 +1,16 @@
+{
+  "name": "sistema_carros",
+  "module": "dbconnector",
+  "action": "connect",
+  "options": {
+    "client": "mysql2",
+    "connection": {
+      "host": "localhost",
+      "user": "adminphp",
+      "password": "S3nh@F0rte!",
+      "database": "sistema_carros"
+    },
+    "tz": "utc"
+  },
+  "fileName": "sistema_carros.json"
+}

@@ -1,0 +1,147 @@
+{
+  "meta": {
+    "options": {
+      "linkedFile": "/public/lista_produtos.html"
+    },
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      },
+      {
+        "type": "text",
+        "name": "filtro"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "query",
+      "module": "dbconnector",
+      "action": "select",
+      "options": {
+        "connection": "sistema_carros",
+        "sql": {
+          "type": "SELECT",
+          "columns": [
+            {
+              "table": "cd_prod",
+              "column": "id"
+            },
+            {
+              "table": "cd_prod",
+              "column": "nome"
+            },
+            {
+              "table": "cd_prod",
+              "column": "valor"
+            },
+            {
+              "table": "cd_prod",
+              "column": "categoria"
+            },
+            {
+              "table": "cd_prod",
+              "column": "fornecedor"
+            },
+            {
+              "table": "cd_prod",
+              "column": "estoque"
+            },
+            {
+              "table": "cd_prod",
+              "column": "estoque_minimo"
+            },
+            {
+              "table": "cd_prod",
+              "column": "valor_estoque"
+            }
+          ],
+          "params": [
+            {
+              "operator": "contains",
+              "type": "expression",
+              "name": ":P1",
+              "value": "{{$_GET.filtro}}",
+              "test": ""
+            }
+          ],
+          "table": {
+            "name": "cd_prod"
+          },
+          "primary": "id",
+          "joins": [],
+          "query": "select `id`, `nome`, `valor`, `categoria`, `fornecedor`, `estoque`, `estoque_minimo`, `valor_estoque` from `cd_prod` where `cd_prod`.`nome` like ?",
+          "wheres": {
+            "condition": "AND",
+            "rules": [
+              {
+                "id": "cd_prod.nome",
+                "field": "cd_prod.nome",
+                "type": "string",
+                "operator": "contains",
+                "value": "{{$_GET.filtro}}",
+                "data": {
+                  "table": "cd_prod",
+                  "column": "nome",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 100,
+                    "primary": false,
+                    "nullable": false,
+                    "name": "nome"
+                  }
+                },
+                "operation": "LIKE",
+                "table": "cd_prod"
+              }
+            ],
+            "conditional": null,
+            "valid": true
+          }
+        }
+      },
+      "output": true,
+      "meta": [
+        {
+          "type": "number",
+          "name": "id"
+        },
+        {
+          "type": "text",
+          "name": "nome"
+        },
+        {
+          "type": "number",
+          "name": "valor"
+        },
+        {
+          "type": "text",
+          "name": "categoria"
+        },
+        {
+          "type": "text",
+          "name": "fornecedor"
+        },
+        {
+          "type": "number",
+          "name": "estoque"
+        },
+        {
+          "type": "number",
+          "name": "estoque_minimo"
+        },
+        {
+          "type": "number",
+          "name": "valor_estoque"
+        }
+      ],
+      "outputType": "array"
+    }
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "meta": {
+    "options": {
+      "linkedFile": "/public/login.html",
+      "linkedForm": "teste"
+    },
+    "$_POST": [
+      {
+        "type": "text",
+        "fieldName": "usuario",
+        "options": {
+          "rules": {
+            "core:required": {
+              "param": "",
+              "message": "Insira seu usuario!"
+            }
+          }
+        },
+        "name": "usuario"
+      },
+      {
+        "type": "text",
+        "fieldName": "senha",
+        "options": {
+          "rules": {
+            "core:required": {
+              "param": ""
+            }
+          }
+        },
+        "name": "senha"
+      }
+    ]
+  },
+  "exec": {
+    "steps": [
+      {
+        "name": "query",
+        "module": "dbconnector",
+        "action": "single",
+        "options": {
+          "connection": "sistema_carros",
+          "sql": {
+            "type": "SELECT",
+            "columns": [],
+            "params": [
+              {
+                "operator": "equal",
+                "type": "expression",
+                "name": ":P1",
+                "value": "{{$_POST.usuario}}",
+                "test": ""
+              },
+              {
+                "operator": "equal",
+                "type": "expression",
+                "name": ":P2",
+                "value": "{{$_POST.senha}}",
+                "test": ""
+              }
+            ],
+            "table": {
+              "name": "cd_usuarios",
+              "alias": "usuarios"
+            },
+            "primary": "id",
+            "joins": [],
+            "query": "select * from `cd_usuarios` as `usuarios` where `usuarios`.`nome` = ? and `usuarios`.`senha` = ?",
+            "wheres": {
+              "condition": "AND",
+              "rules": [
+                {
+                  "id": "usuarios.nome",
+                  "field": "usuarios.nome",
+                  "type": "string",
+                  "operator": "equal",
+                  "value": "{{$_POST.usuario}}",
+                  "data": {
+                    "table": "usuarios",
+                    "column": "nome",
+                    "type": "text",
+                    "columnObj": {
+                      "type": "string",
+                      "maxLength": 50,
+                      "primary": false,
+                      "nullable": false,
+                      "name": "nome"
+                    }
+                  },
+                  "operation": "="
+                },
+                {
+                  "id": "usuarios.senha",
+                  "field": "usuarios.senha",
+                  "type": "string",
+                  "operator": "equal",
+                  "value": "{{$_POST.senha}}",
+                  "data": {
+                    "table": "usuarios",
+                    "column": "senha",
+                    "type": "text",
+                    "columnObj": {
+                      "type": "string",
+                      "maxLength": 4,
+                      "primary": false,
+                      "nullable": false,
+                      "name": "senha"
+                    }
+                  },
+                  "operation": "="
+                }
+              ],
+              "conditional": null,
+              "valid": true
+            }
+          }
+        },
+        "output": true,
+        "meta": [
+          {
+            "type": "text",
+            "name": "nome"
+          },
+          {
+            "type": "text",
+            "name": "senha"
+          },
+          {
+            "type": "text",
+            "name": "tipo"
+          },
+          {
+            "type": "number",
+            "name": "id"
+          }
+        ],
+        "outputType": "object"
+      },
+      {
+        "name": "",
+        "module": "core",
+        "action": "condition",
+        "options": {
+          "if": "{{query}}",
+          "then": {
+            "steps": {
+              "name": "",
+              "options": {
+                "comment": "login concluido"
+              }
+            }
+          },
+          "else": {
+            "steps": {
+              "name": "",
+              "module": "core",
+              "action": "response",
+              "options": {
+                "status": 401,
+                "data": "Não autorizado"
+              }
+            }
+          }
+        },
+        "outputType": "boolean"
+      },
+      {
+        "name": "",
+        "module": "core",
+        "action": "end",
+        "options": {}
+      }
+    ]
+  }
+}
