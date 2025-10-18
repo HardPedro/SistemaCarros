@@ -2,6 +2,7 @@
 <html lang="pt-br">
 
 <head>
+    <script src="/dmxAppConnect/dmxAppConnect.js"></script>
     <link rel="stylesheet" href="/css/cadastro_produtos.css">
     <base href="/">
     <meta charset="utf-8">
@@ -10,52 +11,66 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="/bootstrap/5/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/bootstrap-icons.min.css" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js" integrity="sha256-CutOzxCRucUsn6C6TcEYsauvvYilEniTXldPa6/wu0k=" crossorigin="anonymous"></script>
+    <script src="/dmxAppConnect/dmxBrowser/dmxBrowser.js" defer></script>
+    <link rel="stylesheet" href="/dmxAppConnect/dmxNotifications/dmxNotifications.css" />
+    <script src="/dmxAppConnect/dmxNotifications/dmxNotifications.js" defer></script>
+    <link rel="stylesheet" href="/dmxAppConnect/dmxDatePicker/daterangepicker.min.css" />
+    <script src="/dmxAppConnect/dmxDatePicker/daterangepicker.min.js" defer></script>
+    <link rel="stylesheet" href="/dmxAppConnect/dmxDatePicker/dmxDatePicker.css" />
+    <script src="/dmxAppConnect/dmxDatePicker/dmxDatePicker.js" defer></script>
+
+
+    <link rel="stylesheet" href="/dmxAppConnect/dmxDropzone/dmxDropzone.css" />
+    <script src="/dmxAppConnect/dmxDropzone/dmxDropzone.js" defer></script>
 </head>
 
-<body>
+<body is="dmx-app" id="cadastro_produtos">
+    <dmx-value id="imgUrl"></dmx-value>
+    <dmx-value id="img" dmx-bind:value="buscarImgBlob.data.query.imagem"></dmx-value>
+    <dmx-serverconnect id="buscarImgBlob" url="/api/listaProdutos/imgBlob" dmx-param:id_hidden="query.id"></dmx-serverconnect>
+    <dmx-serverconnect id="ObterProduto" url="/api/listaProdutos/obterProduto" dmx-param:id_pick="query.id"></dmx-serverconnect>
+    <dmx-notifications id="notifies1"></dmx-notifications>
+    <div is="dmx-browser" id="browser1"></div>
 
     <div class="wrapper">
 
         <!-- Títulos -->
         <div class="headline">
-            <h1>Nome Produto</h1>
-            <div class="price">Valor Produto</div>
+            <h1 dmx-text="'NOME: '+ObterProduto.data.query.nome" class="fw-bold">Nome Produto</h1>
+            <h1 class="price fw-bold h-auto" dmx-text="'VALOR: '+ObterProduto.data.query.valor">Valor Produto</h1>
         </div>
 
         <!-- GRID -->
         <div class="grid">
             <!-- Coluna esquerda: imagem + ações -->
             <aside>
-                <div class="image-card">
-                    <div class="image-box" id="preview">
-                        <div class="placeholder">
-                            <!-- ícone caixa -->
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2">
-                                <path d="M21 8l-9-5-9 5 9 5 9-5z" />
-                                <path d="M12 13v9" />
-                                <path d="M3 8v9l9 5 9-5V8" />
-                            </svg>
-                            <div>ADD IMAGE</div>
-                        </div>
-                    </div>
+
+
+                <form class="image-card" method="post" dmx-on:success="notifies1.success('imagem cadastrada!')" enctype="multipart/form-data" is="dmx-serverconnect-form" id="photo" action="/api/listaProdutos/imgUpload">
+
+
+
+
+
+
+                    <input id="id_img" name="id_img" type="hidden" class="form-control" dmx-bind:value="query.id">
+
+
+
+                    <img dmx-bind:src="img.value" height="500" class="img-fluid rounded">
+                    <input id="file1" name="file1" type="file" class="form-control mt-3 mb-3" is="dmx-dropzone" message="Arraste sua foto ou clique para selecionar"><dmx-form-data id="inputData1" name="inputData1" dmx-bind:data="file1.file.dataUrl"></dmx-form-data><button id="btn1" class="btn bg-success text-info shadow-lg btn-lg btn-outline-primary" type="submit" dmx-on:click="img.setValue(file1.file.dataUrl);imgUrl.setValue(file1.file.dataUrl);notifies1.success('imagem cadastrada!')">CADASTRAR</button>
+
 
                     <div class="image-controls">
-                        <div class="small-round" title="Anterior">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2">
-                                <path d="M15 18l-6-6 6-6" />
-                            </svg>
-                        </div>
-                        <button class="small-btn" type="button">Selecionar</button>
-                        <div class="small-round" title="Próxima">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2">
-                                <path d="M9 6l6 6-6 6" />
-                            </svg>
-                        </div>
                     </div>
-                </div>
+                </form>
 
                 <div class="actions">
-                    <a href="#" class="btn">
+                    <button class="btn h-25 bg-warning" dmx-on:click="cadastro.submit();browser1.goto('/lista_produtos.html')" dmx-show="!query.id">
                         <span class="ico">
                             <!-- plus -->
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2">
@@ -63,9 +78,9 @@
                             </svg>
                         </span>
                         Novo (F1)
-                    </a>
+                    </button>
 
-                    <a href="#" class="btn">
+                    <button class="btn h-25 bg-info" dmx-on:click="cadastro.submit();browser1.goto('/lista_produtos.html')" dmx-show="query.id">
                         <span class="ico">
                             <!-- edit -->
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2">
@@ -74,64 +89,54 @@
                             </svg>
                         </span>
                         Editar (F2)
-                    </a>
+                    </button>
 
-                    <a href="#" class="btn">
-                        <span class="ico">
-                            <!-- save (bookmark-style) -->
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2">
-                                <path d="M6 3h12v18l-6-4-6 4z" />
-                            </svg>
-                        </span>
-                        Salvar (F5)
-                    </a>
 
-                    <a href="#" class="btn red" title="Deletar">
-                        <span class="ico">
-                            <!-- trash -->
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2">
-                                <path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v8M14 10v8" />
-                            </svg>
-                        </span>
-                        Deletar
-                    </a>
                 </div>
             </aside>
 
             <!-- Coluna direita: formulário -->
-            <section class="form-panel">
-                <div class="form-grid">
+            <section class="form-panel h-auto">
+                <form class="form-grid" id="cadastro" dmx-on:success="notifies1.success('produto cadastrado com sucesso!');browser1.goto('/lista_produtos.html')" method="post" is="dmx-serverconnect-form" action="/api/listaProdutos/decisaoEditarCriar">
+
+
+
+
+
+
+                    <input id="id" name="id_hidden" type="hidden" class="form-control" dmx-bind:value="query.id">
 
                     <!-- Nome / Valor -->
                     <div class="label">Nome</div>
                     <div class="label">Valor</div>
 
-                    <input class="input" type="text" placeholder="Nome do produto">
-                    <input class="input" type="number" step="0.01" placeholder="0,00">
+                    <input class="input" type="text" placeholder="Nome do produto" name="nome" id="nome" dmx-bind:value="ObterProduto.data.query.nome">
+                    <input class="input" type="number" step="0.01" placeholder="0,00" name="valor" id="valor" dmx-bind:value="ObterProduto.data.query.valor">
 
                     <!-- Categoria / Fornecedor -->
                     <div class="label">Categoria</div>
                     <div class="label">Fornecedor</div>
 
-                    <input class="input" type="text" placeholder="Categoria">
-                    <input class="input" type="text" placeholder="Fornecedor">
+                    <input class="input" type="text" placeholder="Categoria" name="categoria" id="categoria" dmx-bind:value="ObterProduto.data.query.categoria">
+                    <input class="input" type="text" placeholder="Fornecedor" name="fornecedor" id="fornecedor" dmx-bind:value="ObterProduto.data.query.fornecedor">
 
                     <!-- Estoque / Estoque mínimo -->
                     <div class="label">Estoque</div>
                     <div class="label">Estoque mínimo</div>
 
-                    <input class="input" type="number" placeholder="0">
-                    <input class="input" type="number" placeholder="0">
+                    <input class="input" type="number" placeholder="0" name="estoque" id="estoque" dmx-bind:value="ObterProduto.data.query.estoque">
+                    <input class="input" type="number" placeholder="0" name="estoque_minimo" id="estoque_minimo" dmx-bind:value="ObterProduto.data.query.estoque_minimo">
 
                     <!-- Descrição (full) -->
                     <div class="label full">Descrição</div>
-                    <input class="input desc full" type="text" placeholder="Escreva uma breve descrição...">
+                    <input class="input desc full" type="text" placeholder="Escreva uma breve descrição..." name="descricao" id="descricao" dmx-bind:value="ObterProduto.data.query.descricao"><dmx-form-data id="inputData2" name="inputData2" dmx-bind:data="imgUrl.value"></dmx-form-data>
 
-                </div>
+                </form>
             </section>
         </div>
     </div>
 
+    <script src="/bootstrap/5/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

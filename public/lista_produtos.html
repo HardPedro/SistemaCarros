@@ -12,25 +12,44 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="/bootstrap/5/darkly/bootstrap.min.css" />
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js" integrity="sha256-CutOzxCRucUsn6C6TcEYsauvvYilEniTXldPa6/wu0k=" crossorigin="anonymous"></script>
-    <script src="/dmxAppConnect/dmxBrowser/dmxBrowser.js" defer></script>
     <link rel="stylesheet" href="/dmxAppConnect/dmxBootstrap5TableGenerator/dmxBootstrap5TableGenerator.css" />
-    <link rel="stylesheet" href="/dmxAppConnect/dmxDatePicker/daterangepicker.min.css" />
-    <script src="/dmxAppConnect/dmxDatePicker/daterangepicker.min.js" defer></script>
-    <link rel="stylesheet" href="/dmxAppConnect/dmxDatePicker/dmxDatePicker.css" />
-    <script src="/dmxAppConnect/dmxDatePicker/dmxDatePicker.js" defer></script>
-
-
+    <script src="/dmxAppConnect/dmxDatastore/dmxDatastore.js" defer></script>
+    <script src="/dmxAppConnect/dmxFormatter/dmxFormatter.js" defer></script>
+    <script src="/dmxAppConnect/dmxBrowser/dmxBrowser.js" defer></script>
+    <script src="/dmxAppConnect/dmxStateManagement/dmxStateManagement.js" defer></script>
+    <script src="/dmxAppConnect/dmxSmoothScroll/dmxSmoothScroll.js" defer></script>
+    <link rel="stylesheet" href="/dmxAppConnect/dmxNotifications/dmxNotifications.css" />
+    <script src="/dmxAppConnect/dmxNotifications/dmxNotifications.js" defer></script>
+    <script src="/dmxAppConnect/dmxBootstrap5Modal/dmxBootstrap5Modal.js" defer></script>
 </head>
 
-<body is="dmx-app" id="lista_produtos">
-    <dmx-serverconnect id="scListaProdutos" url="/api/listaProdutos/listarProdutos" dmx-param:filtro="pesquisa_tabela.value">
+<body is="dmx-app" id="lista_produtos" dmx-on:load="ListarProdutos.load({})" dmx-on:wheel.prevent="run([{condition:{outputType:'boolean',if:`estadoTabela.value&lt;(ListarProdutos.data.query.length - 1)`,then:{steps:{condition:{outputType:'boolean',if:`$event.deltaY&gt;0`,then:{steps:{run:{outputType:'text',action:`estadoTabela.setValue((estadoTabela.value + 1))`}}}}}}}},{condition:{outputType:'boolean',if:`estadoTabela.value&gt;0`,then:{steps:{condition:{outputType:'boolean',if:`$event.deltaY&lt;0`,then:{steps:{run:{outputType:'text',action:`estadoTabela.setValue((estadoTabela.value - 1))`}}}}}}}}])">
+    <div class="modal" id="modal1" is="dmx-bs5-modal" tabindex="-1">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bolder text-danger">Confirmar Exclusão</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-body">Tem certeza que deseja apagar este produto? Esta ação não pode ser desfeita.</p>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="Cancel" dmx-on:click="modal1.hide()">Cancelar</button>
+                    <button type="button" class="btn btn-danger" id="Confirm" dmx-on:click="ApagarProduto.load({produto_id: ListarProdutos.data.query[estadoTabela.value].id})">Sim, apagar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <dmx-notifications id="notifies1"></dmx-notifications>
+    <dmx-smooth-scroll id="scrolltable" easing="easeInQuad" speed="10"></dmx-smooth-scroll>
 
-    </dmx-serverconnect>
+
+    <dmx-value id="estadoTabela" dmx-bind:value="0" dmx-on:updated="scrolltable.goto('#linha_'+value)"></dmx-value>
     <div is="dmx-browser" id="browser1"></div>
+    <dmx-serverconnect id="ListarProdutos" url="/api/listaProdutos/listarProdutos" dmx-param:filtro="inputPesquisa.value" noload="true" dmx-on:success="estadoTabela.setValue(0)"></dmx-serverconnect>
 
     <!-- ===== Barra Superior (grudada) ===== -->
+    <dmx-serverconnect id="ApagarProduto" url="/api/listaProdutos/apagarProduto" noload="true" dmx-on:success="ListarProdutos.load({});modal1.hide()"></dmx-serverconnect>
     <header class="topbar">Lista de Produtos</header>
 
     <!-- ===== Conteúdo ===== -->
@@ -38,7 +57,7 @@
         <div class="grid">
             <!-- Lateral -->
             <nav class="side">
-                <a class="action" dmx-on:click="browser1.goto('/cadastro_produtos.html')" href="/cadastro_produtos.html">
+                <button href="#" class="action" dmx-on:click="browser1.goto('/cadastro_produtos.html')">
                     <span class="ico">
                         <!-- plus -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2">
@@ -46,9 +65,9 @@
                         </svg>
                     </span>
                     Novo
-                </a>
+                </button>
 
-                <a href="#" class="action">
+                <button href="#" class="action" dmx-on:click="browser1.goto('/cadastro_produtos.html?id='+ListarProdutos.data.query[estadoTabela.value].id)">
                     <span class="ico">
                         <!-- edit -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2">
@@ -57,9 +76,9 @@
                         </svg>
                     </span>
                     Editar
-                </a>
+                </button>
 
-                <a href="#" class="action">
+                <button href="#" class="action" dmx-on:click="modal1.show()" onclick="">
                     <span class="ico">
                         <!-- trash -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2">
@@ -67,13 +86,11 @@
                         </svg>
                     </span>
                     Apagar
-                </a>
+                </button>
             </nav>
 
             <!-- Conteúdo à direita -->
             <section>
-
-
                 <div class="searchbar">
                     <span class="search-ico" aria-hidden="true">
                         <!-- lupa -->
@@ -82,47 +99,52 @@
                             <path d="M16 16l4 4"></path>
                         </svg>
                     </span>
-                    <input class="search" type="search" placeholder="Buscar produto..." id="pesquisa_tabela" dmx-on:changed="scListaProdutos.load({})">
+                    <input class="search" type="search" placeholder="Buscar produto..." id="inputPesquisa" dmx-on:changed="ListarProdutos.load({filtro: value})">
                 </div>
 
-                <div class="container tabela-scroll mt-3">
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Nome</th>
-                                    <th>Valor</th>
-                                    <th>Categoria</th>
-                                    <th>Fornecedor</th>
-                                    <th>Estoque</th>
-                                    <th>Estoque minimo</th>
-                                    <th>Valor estoque</th>
-                                </tr>
-                            </thead>
-                            <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="scListaProdutos.data.query" id="tableRepeat1">
-                                <tr>
-                                    <td dmx-text="id"></td>
-                                    <td>{{nome}}</td>
-                                    <td>{{valor}}</td>
-                                    <td>{{categoria}}</td>
-                                    <td>{{fornecedor}}</td>
-                                    <td>{{estoque}}</td>
-                                    <td>{{estoque_minimo+valor_estoque}}</td>
-                                    <td>{{valor_estoque}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+
+                <div class="container mt-3" id="scrollContainer">
+                    <!-- Coloque aqui sua tabela/lista (Wappler/DMX Data Table, etc.) -->
+                    <div class="tabela-scroll" id="produtos">
+                        <div class="table-responsive">
+                            <table class="table table-dark table-bordered border-info">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Nome</th>
+                                        <th>Valor</th>
+                                        <th>Categoria</th>
+                                        <th>Fornecedor</th>
+                                        <th>Estoque</th>
+                                        <th>Estoque minimo</th>
+                                        <th>Valor estoque</th>
+                                    </tr>
+                                </thead>
+                                <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="ListarProdutos.data.query" id="tableRepeat1">
+                                    <tr dmx-class:table-primary="$index==estadoTabela.value" dmx-bind:id="'linha_'+$index">
+                                        <td dmx-text="id"></td>
+                                        <td dmx-text="nome"></td>
+                                        <td dmx-text="valor"></td>
+                                        <td dmx-text="categoria"></td>
+                                        <td dmx-text="fornecedor"></td>
+                                        <td dmx-text="estoque"></td>
+                                        <td dmx-text="estoque_minimo"></td>
+                                        <td dmx-text="valor_estoque"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-
                 </div>
+
+
             </section>
         </div>
     </main>
 
     <!-- ===== Barra Inferior (grudada) ===== -->
     <footer class="footer">
-        <div class="left">Produtos cadastrados:</div>
+        <div class="container fw-bolder lh-base h-auto" dmx-text="'Produtos cadastrados: '+ListarProdutos.data.query.length">Produtos cadastrados:</div>
         <a href="#" class="btn-stock">
             <span class="box">
                 <!-- caixa -->

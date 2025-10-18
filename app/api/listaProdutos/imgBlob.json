@@ -1,0 +1,79 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "id_hidden"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "query",
+      "module": "dbconnector",
+      "action": "single",
+      "options": {
+        "connection": "sistema_carros",
+        "sql": {
+          "type": "SELECT",
+          "columns": [
+            {
+              "table": "cd_prod",
+              "column": "imagem"
+            }
+          ],
+          "params": [
+            {
+              "operator": "equal",
+              "type": "expression",
+              "name": ":P1",
+              "value": "{{$_GET.id_hidden}}",
+              "test": ""
+            }
+          ],
+          "table": {
+            "name": "cd_prod"
+          },
+          "primary": "id",
+          "joins": [],
+          "wheres": {
+            "condition": "AND",
+            "rules": [
+              {
+                "id": "cd_prod.id",
+                "field": "cd_prod.id",
+                "type": "double",
+                "operator": "equal",
+                "value": "{{$_GET.id_hidden}}",
+                "data": {
+                  "table": "cd_prod",
+                  "column": "id",
+                  "type": "number",
+                  "columnObj": {
+                    "type": "increments",
+                    "primary": true,
+                    "nullable": false,
+                    "name": "id"
+                  }
+                },
+                "operation": "=",
+                "table": "cd_prod"
+              }
+            ],
+            "conditional": null,
+            "valid": true
+          },
+          "query": "select `imagem` from `cd_prod` where `cd_prod`.`id` = ?"
+        }
+      },
+      "output": true,
+      "meta": [
+        {
+          "type": "text",
+          "name": "imagem"
+        }
+      ],
+      "outputType": "object"
+    }
+  }
+}

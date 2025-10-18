@@ -10,7 +10,10 @@
       "password": "S3nh@F0rte!",
       "database": "sistema_carros"
     },
-    "tz": "utc"
+    "tz": "utc",
+    "meta": {}
   },
-  "fileName": "sistema_carros.json"
+  "fileName": "sistema_carros.json",
+  "actionFilePath": "file:///home/pedroh/Documents/JINCARS/app/modules/connections/sistema_carros.json",
+  "serverType": "node"
 }

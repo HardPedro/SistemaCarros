@@ -113,19 +113,19 @@
           "system_versioned": false
         }
       },
-      "resto": {
-        "db": {
-          "engine": "InnoDB",
-          "schema": "sistema_carros",
-          "collation": "utf8mb4_general_ci",
-          "system_versioned": false
-        }
-      },
       "shitadori": {
         "db": {
           "engine": "InnoDB",
           "schema": "sistema_carros",
           "collation": "utf8mb4_0900_ai_ci",
+          "system_versioned": false
+        }
+      },
+      "resto": {
+        "db": {
+          "engine": "InnoDB",
+          "schema": "sistema_carros",
+          "collation": "utf8mb4_general_ci",
           "system_versioned": false
         }
       },
@@ -167,83 +167,6 @@
           "schema": "sistema_carros",
           "collation": "utf8mb4_general_ci",
           "system_versioned": false
-        }
-      },
-      "cd_prod": {
-        "db": {
-          "engine": "InnoDB",
-          "schema": "sistema_carros",
-          "collation": "utf8mb4_general_ci",
-          "system_versioned": false
-        },
-        "columns": {
-          "id": {
-            "db": {
-              "type": "increments",
-              "primary": true,
-              "nullable": false
-            }
-          },
-          "nome": {
-            "db": {
-              "type": "string",
-              "maxLength": 100,
-              "primary": false,
-              "nullable": false
-            }
-          },
-          "valor": {
-            "db": {
-              "type": "integer",
-              "primary": false,
-              "nullable": false
-            }
-          },
-          "categoria": {
-            "db": {
-              "type": "string",
-              "maxLength": 100,
-              "primary": false,
-              "nullable": false
-            }
-          },
-          "fornecedor": {
-            "db": {
-              "type": "string",
-              "maxLength": 100,
-              "primary": false,
-              "nullable": false
-            }
-          },
-          "descricao": {
-            "db": {
-              "type": "string",
-              "maxLength": 200,
-              "primary": false,
-              "nullable": false
-            }
-          },
-          "estoque": {
-            "db": {
-              "type": "integer",
-              "primary": false,
-              "nullable": false
-            }
-          },
-          "estoque_minimo": {
-            "db": {
-              "type": "integer",
-              "primary": false,
-              "nullable": false
-            }
-          },
-          "valor_estoque": {
-            "db": {
-              "type": "integer",
-              "primary": false,
-              "nullable": false
-            }
-          }
         }
       },
       "cd_tarifas": {
@@ -389,6 +312,91 @@
           "schema": "sistema_carros",
           "collation": "utf8mb4_general_ci",
           "system_versioned": false
+        }
+      },
+      "cd_prod": {
+        "db": {
+          "engine": "InnoDB",
+          "schema": "sistema_carros",
+          "collation": "utf8mb4_general_ci",
+          "system_versioned": false
+        },
+        "columns": {
+          "id": {
+            "db": {
+              "type": "increments",
+              "primary": true,
+              "nullable": false
+            }
+          },
+          "nome": {
+            "db": {
+              "type": "string",
+              "maxLength": 100,
+              "primary": false,
+              "nullable": false
+            }
+          },
+          "valor": {
+            "db": {
+              "type": "integer",
+              "primary": false,
+              "nullable": false
+            }
+          },
+          "categoria": {
+            "db": {
+              "type": "string",
+              "maxLength": 100,
+              "primary": false,
+              "nullable": false
+            }
+          },
+          "fornecedor": {
+            "db": {
+              "type": "string",
+              "maxLength": 100,
+              "primary": false,
+              "nullable": false
+            }
+          },
+          "descricao": {
+            "db": {
+              "type": "string",
+              "maxLength": 200,
+              "primary": false,
+              "nullable": false
+            }
+          },
+          "estoque": {
+            "db": {
+              "type": "integer",
+              "primary": false,
+              "nullable": false
+            }
+          },
+          "estoque_minimo": {
+            "db": {
+              "type": "integer",
+              "primary": false,
+              "nullable": false
+            }
+          },
+          "valor_estoque": {
+            "db": {
+              "type": "integer",
+              "primary": false,
+              "nullable": false
+            }
+          },
+          "imagem": {
+            "db": {
+              "type": "text",
+              "maxLength": 65535,
+              "primary": false,
+              "nullable": true
+            }
+          }
         }
       }
     },

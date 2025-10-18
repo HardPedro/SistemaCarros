@@ -1,0 +1,108 @@
+{
+  "meta": {
+    "options": {
+      "linkedFile": "/public/cadastro_produtos.html"
+    },
+    "$_GET": [
+      {
+        "type": "number",
+        "name": "id_pick"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "query",
+      "module": "dbconnector",
+      "action": "single",
+      "options": {
+        "connection": "sistema_carros",
+        "sql": {
+          "type": "SELECT",
+          "columns": [],
+          "params": [
+            {
+              "operator": "equal",
+              "type": "expression",
+              "name": ":P1",
+              "value": "{{$_GET.id_pick}}",
+              "test": ""
+            }
+          ],
+          "table": {
+            "name": "cd_prod"
+          },
+          "primary": "id",
+          "joins": [],
+          "wheres": {
+            "condition": "AND",
+            "rules": [
+              {
+                "id": "cd_prod.id",
+                "field": "cd_prod.id",
+                "type": "double",
+                "operator": "equal",
+                "value": "{{$_GET.id_pick}}",
+                "data": {
+                  "table": "cd_prod",
+                  "column": "id",
+                  "type": "number",
+                  "columnObj": {
+                    "type": "increments",
+                    "primary": true,
+                    "nullable": false,
+                    "name": "id"
+                  }
+                },
+                "operation": "="
+              }
+            ],
+            "conditional": null,
+            "valid": true
+          },
+          "query": "select * from `cd_prod` where `cd_prod`.`id` = ?"
+        }
+      },
+      "output": true,
+      "meta": [
+        {
+          "type": "number",
+          "name": "id"
+        },
+        {
+          "type": "text",
+          "name": "nome"
+        },
+        {
+          "type": "number",
+          "name": "valor"
+        },
+        {
+          "type": "text",
+          "name": "categoria"
+        },
+        {
+          "type": "text",
+          "name": "fornecedor"
+        },
+        {
+          "type": "text",
+          "name": "descricao"
+        },
+        {
+          "type": "number",
+          "name": "estoque"
+        },
+        {
+          "type": "number",
+          "name": "estoque_minimo"
+        },
+        {
+          "type": "number",
+          "name": "valor_estoque"
+        }
+      ],
+      "outputType": "object"
+    }
+  }
+}

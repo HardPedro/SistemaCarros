@@ -97,8 +97,7 @@
                     "name": "nome"
                   }
                 },
-                "operation": "LIKE",
-                "table": "cd_prod"
+                "operation": "LIKE"
               }
             ],
             "conditional": null,
