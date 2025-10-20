@@ -39,6 +39,23 @@
           "schema": "sistema_carros",
           "collation": "utf8mb4_general_ci",
           "system_versioned": false
+        },
+        "columns": {
+          "id": {
+            "db": {
+              "type": "increments",
+              "primary": true,
+              "nullable": false
+            }
+          },
+          "nome": {
+            "db": {
+              "type": "string",
+              "maxLength": 50,
+              "primary": false,
+              "nullable": false
+            }
+          }
         }
       },
       "cd_fabricante": {
@@ -167,6 +184,47 @@
           "schema": "sistema_carros",
           "collation": "utf8mb4_general_ci",
           "system_versioned": false
+        },
+        "columns": {
+          "nome": {
+            "db": {
+              "type": "string",
+              "maxLength": 100,
+              "primary": false,
+              "nullable": false
+            }
+          },
+          "telefone": {
+            "db": {
+              "type": "string",
+              "maxLength": 16,
+              "primary": false,
+              "nullable": false
+            }
+          },
+          "endereco": {
+            "db": {
+              "type": "string",
+              "maxLength": 300,
+              "primary": false,
+              "nullable": false
+            }
+          },
+          "email": {
+            "db": {
+              "type": "string",
+              "maxLength": 50,
+              "primary": false,
+              "nullable": false
+            }
+          },
+          "id": {
+            "db": {
+              "type": "increments",
+              "primary": true,
+              "nullable": false
+            }
+          }
         }
       },
       "cd_tarifas": {

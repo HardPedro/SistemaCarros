@@ -29,9 +29,10 @@
 </head>
 
 <body is="dmx-app" id="cadastro_produtos">
+
     <dmx-value id="imgUrl"></dmx-value>
     <dmx-value id="img" dmx-bind:value="buscarImgBlob.data.query.imagem"></dmx-value>
-    <dmx-serverconnect id="buscarImgBlob" url="/api/listaProdutos/imgBlob" dmx-param:id_hidden="query.id"></dmx-serverconnect>
+    <dmx-serverconnect id="listarCategorias"></dmx-serverconnect><dmx-serverconnect id="buscarImgBlob" url="/api/listaProdutos/imgBlob" dmx-param:id_hidden="query.id"></dmx-serverconnect>
     <dmx-serverconnect id="ObterProduto" url="/api/listaProdutos/obterProduto" dmx-param:id_pick="query.id"></dmx-serverconnect>
     <dmx-notifications id="notifies1"></dmx-notifications>
     <div is="dmx-browser" id="browser1"></div>

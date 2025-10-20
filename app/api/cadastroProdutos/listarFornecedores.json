@@ -1,0 +1,80 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "query",
+      "module": "dbconnector",
+      "action": "select",
+      "options": {
+        "connection": "sistema_carros",
+        "sql": {
+          "type": "SELECT",
+          "columns": [
+            {
+              "table": "cd_fornecedor",
+              "column": "id"
+            },
+            {
+              "table": "cd_fornecedor",
+              "column": "nome"
+            },
+            {
+              "table": "cd_fornecedor",
+              "column": "telefone"
+            },
+            {
+              "table": "cd_fornecedor",
+              "column": "endereco"
+            },
+            {
+              "table": "cd_fornecedor",
+              "column": "email"
+            }
+          ],
+          "params": [],
+          "table": {
+            "name": "cd_fornecedor"
+          },
+          "primary": "id",
+          "joins": [],
+          "query": "select `id`, `nome`, `telefone`, `endereco`, `email` from `cd_fornecedor`"
+        }
+      },
+      "output": true,
+      "meta": [
+        {
+          "type": "number",
+          "name": "id"
+        },
+        {
+          "type": "text",
+          "name": "nome"
+        },
+        {
+          "type": "text",
+          "name": "telefone"
+        },
+        {
+          "type": "text",
+          "name": "endereco"
+        },
+        {
+          "type": "text",
+          "name": "email"
+        }
+      ],
+      "outputType": "array"
+    }
+  }
+}

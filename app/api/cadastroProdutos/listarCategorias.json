@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "query",
+      "module": "dbconnector",
+      "action": "select",
+      "options": {
+        "connection": "sistema_carros",
+        "sql": {
+          "type": "SELECT",
+          "columns": [
+            {
+              "table": "cd_categoria",
+              "column": "id"
+            },
+            {
+              "table": "cd_categoria",
+              "column": "nome"
+            }
+          ],
+          "params": [],
+          "table": {
+            "name": "cd_categoria"
+          },
+          "primary": "id",
+          "joins": [],
+          "query": "select `id`, `nome` from `cd_categoria`"
+        }
+      },
+      "output": true,
+      "meta": [
+        {
+          "type": "number",
+          "name": "id"
+        },
+        {
+          "type": "text",
+          "name": "nome"
+        }
+      ],
+      "outputType": "array"
+    }
+  }
+}
