@@ -1,0 +1,143 @@
+{
+  "meta": {
+    "options": {
+      "linkedFile": "/public/lista_clientes.html"
+    },
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      },
+      {
+        "type": "text",
+        "name": "filtro"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "query",
+      "module": "dbconnector",
+      "action": "select",
+      "options": {
+        "connection": "sistema_carros",
+        "sql": {
+          "type": "SELECT",
+          "columns": [
+            {
+              "table": "cd_clientes",
+              "column": "id"
+            },
+            {
+              "table": "cd_clientes",
+              "column": "nome"
+            },
+            {
+              "table": "cd_clientes",
+              "column": "tel"
+            },
+            {
+              "table": "cd_clientes",
+              "column": "endereco"
+            }
+          ],
+          "params": [
+            {
+              "operator": "contains",
+              "type": "expression",
+              "name": ":P1",
+              "value": "{{$_GET.filtro}}",
+              "test": ""
+            },
+            {
+              "operator": "contains",
+              "type": "expression",
+              "name": ":P2",
+              "value": "{{$_GET.filtro}}",
+              "test": ""
+            }
+          ],
+          "table": {
+            "name": "cd_clientes"
+          },
+          "primary": "id",
+          "joins": [],
+          "query": "select `id`, `nome`, `tel`, `endereco` from `cd_clientes` where `cd_clientes`.`nome` like ? or `cd_clientes`.`tel` like ?",
+          "orders": [],
+          "wheres": {
+            "condition": "OR",
+            "rules": [
+              {
+                "id": "cd_clientes.nome",
+                "field": "cd_clientes.nome",
+                "type": "string",
+                "operator": "contains",
+                "value": "{{$_GET.filtro}}",
+                "data": {
+                  "table": "cd_clientes",
+                  "column": "nome",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 100,
+                    "primary": false,
+                    "nullable": false,
+                    "name": "nome"
+                  }
+                },
+                "operation": "LIKE"
+              },
+              {
+                "id": "cd_clientes.tel",
+                "field": "cd_clientes.tel",
+                "type": "string",
+                "operator": "contains",
+                "value": "{{$_GET.filtro}}",
+                "data": {
+                  "table": "cd_clientes",
+                  "column": "tel",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 30,
+                    "primary": false,
+                    "nullable": false,
+                    "name": "tel"
+                  }
+                },
+                "operation": "LIKE"
+              }
+            ],
+            "conditional": null,
+            "valid": true
+          }
+        }
+      },
+      "output": true,
+      "meta": [
+        {
+          "type": "number",
+          "name": "id"
+        },
+        {
+          "type": "text",
+          "name": "nome"
+        },
+        {
+          "type": "text",
+          "name": "tel"
+        },
+        {
+          "type": "text",
+          "name": "endereco"
+        }
+      ],
+      "outputType": "array",
+      "collapsed": true
+    }
+  }
+}
