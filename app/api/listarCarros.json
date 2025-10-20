@@ -1,0 +1,289 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      },
+      {
+        "type": "text",
+        "name": "filtro"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "query",
+      "module": "dbconnector",
+      "action": "select",
+      "options": {
+        "connection": "sistema_carros",
+        "sql": {
+          "type": "SELECT",
+          "columns": [
+            {
+              "table": "cd_carros",
+              "column": "id"
+            },
+            {
+              "table": "cd_carros",
+              "column": "marca"
+            },
+            {
+              "table": "cd_carros",
+              "column": "model"
+            },
+            {
+              "table": "cd_carros",
+              "column": "cor"
+            },
+            {
+              "table": "cd_carros",
+              "column": "chassis"
+            },
+            {
+              "table": "cd_carros",
+              "column": "AnoJap"
+            },
+            {
+              "table": "cd_carros",
+              "column": "ano_year"
+            },
+            {
+              "table": "cd_carros",
+              "column": "shaken_jap"
+            },
+            {
+              "table": "cd_carros",
+              "column": "shaken_ano"
+            },
+            {
+              "table": "cd_carros",
+              "column": "custo"
+            },
+            {
+              "table": "cd_carros",
+              "column": "venda"
+            },
+            {
+              "table": "cd_carros",
+              "column": "status"
+            }
+          ],
+          "params": [
+            {
+              "operator": "begins_with",
+              "type": "expression",
+              "name": ":P1",
+              "value": "{{$_GET.filtro}}",
+              "test": ""
+            },
+            {
+              "operator": "begins_with",
+              "type": "expression",
+              "name": ":P2",
+              "value": "{{$_GET.filtro}}",
+              "test": ""
+            },
+            {
+              "operator": "begins_with",
+              "type": "expression",
+              "name": ":P3",
+              "value": "{{$_GET.filtro}}",
+              "test": ""
+            },
+            {
+              "operator": "begins_with",
+              "type": "expression",
+              "name": ":P4",
+              "value": "{{$_GET.filtro}}",
+              "test": ""
+            },
+            {
+              "operator": "begins_with",
+              "type": "expression",
+              "name": ":P5",
+              "value": "{{$_GET.filtro}}",
+              "test": ""
+            }
+          ],
+          "table": {
+            "name": "cd_carros"
+          },
+          "primary": "id",
+          "joins": [],
+          "query": "select `id`, `marca`, `model`, `cor`, `chassis`, `AnoJap`, `ano_year`, `shaken_jap`, `shaken_ano`, `custo`, `venda`, `status` from `cd_carros` where `cd_carros`.`marca` like ? or `cd_carros`.`model` like ? or `cd_carros`.`cor` like ? or `cd_carros`.`chassis` like ? or `cd_carros`.`status` like ?",
+          "wheres": {
+            "condition": "OR",
+            "rules": [
+              {
+                "id": "cd_carros.marca",
+                "field": "cd_carros.marca",
+                "type": "string",
+                "operator": "begins_with",
+                "value": "{{$_GET.filtro}}",
+                "data": {
+                  "table": "cd_carros",
+                  "column": "marca",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 100,
+                    "primary": false,
+                    "nullable": false,
+                    "name": "marca"
+                  }
+                },
+                "operation": "LIKE",
+                "table": "cd_carros"
+              },
+              {
+                "id": "cd_carros.model",
+                "field": "cd_carros.model",
+                "type": "string",
+                "operator": "begins_with",
+                "value": "{{$_GET.filtro}}",
+                "data": {
+                  "table": "cd_carros",
+                  "column": "model",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 100,
+                    "primary": false,
+                    "nullable": false,
+                    "name": "model"
+                  }
+                },
+                "operation": "LIKE",
+                "table": "cd_carros"
+              },
+              {
+                "id": "cd_carros.cor",
+                "field": "cd_carros.cor",
+                "type": "string",
+                "operator": "begins_with",
+                "value": "{{$_GET.filtro}}",
+                "data": {
+                  "table": "cd_carros",
+                  "column": "cor",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 20,
+                    "primary": false,
+                    "nullable": false,
+                    "name": "cor"
+                  }
+                },
+                "operation": "LIKE",
+                "table": "cd_carros"
+              },
+              {
+                "id": "cd_carros.chassis",
+                "field": "cd_carros.chassis",
+                "type": "string",
+                "operator": "begins_with",
+                "value": "{{$_GET.filtro}}",
+                "data": {
+                  "table": "cd_carros",
+                  "column": "chassis",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 70,
+                    "primary": false,
+                    "nullable": false,
+                    "name": "chassis"
+                  }
+                },
+                "operation": "LIKE",
+                "table": "cd_carros"
+              },
+              {
+                "id": "cd_carros.status",
+                "field": "cd_carros.status",
+                "type": "string",
+                "operator": "begins_with",
+                "value": "{{$_GET.filtro}}",
+                "data": {
+                  "table": "cd_carros",
+                  "column": "status",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 15,
+                    "primary": false,
+                    "nullable": false,
+                    "name": "status"
+                  }
+                },
+                "operation": "LIKE",
+                "table": "cd_carros"
+              }
+            ],
+            "conditional": null,
+            "valid": true
+          }
+        }
+      },
+      "output": true,
+      "meta": [
+        {
+          "type": "number",
+          "name": "id"
+        },
+        {
+          "type": "text",
+          "name": "marca"
+        },
+        {
+          "type": "text",
+          "name": "model"
+        },
+        {
+          "type": "text",
+          "name": "cor"
+        },
+        {
+          "type": "text",
+          "name": "chassis"
+        },
+        {
+          "type": "number",
+          "name": "AnoJap"
+        },
+        {
+          "type": "number",
+          "name": "ano_year"
+        },
+        {
+          "type": "text",
+          "name": "shaken_jap"
+        },
+        {
+          "type": "number",
+          "name": "shaken_ano"
+        },
+        {
+          "type": "number",
+          "name": "custo"
+        },
+        {
+          "type": "number",
+          "name": "venda"
+        },
+        {
+          "type": "text",
+          "name": "status"
+        }
+      ],
+      "outputType": "array",
+      "collapsed": true
+    }
+  }
+}
