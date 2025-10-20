@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <base href="/">
+    <link rel="stylesheet" href="/css/cadastro_clientes.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Cadastro de Clientes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="clientes.css" />
+</head>
+
+<body>
+
+    <div class="page">
+
+        <h1 class="page-title">NOME CLIENTE</h1>
+
+        <section class="content">
+
+            <!-- LADO ESQUERDO --------------------------------------------------->
+            <aside class="profile-card">
+                <div class="photo">
+                    <div class="photo-frame">
+                        <div class="avatar"></div>
+                        <span class="add-image">ADD IMAGE</span>
+                    </div>
+
+                    <div class="photo-controls">
+                        <button class="square" aria-label="Anterior">◀</button>
+                        <button class="square" aria-label="Próximo">▶</button>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button class="action ghost"><span>＋</span> NOVO (F1)</button>
+                    <button class="action ghost"><span>✎</span> EDITAR (F2)</button>
+                    <button class="action ghost"><span>🔖</span> SALVAR (F5)</button>
+                </div>
+
+                <button class="delete"><span>🗑</span> DELETAR</button>
+            </aside>
+
+            <!-- LADO DIREITO — QUADRO ESCURO + TABS ---------------------------->
+            <section class="card">
+
+                <!-- “TPageControl” CSS-only: radios + labels como abas -->
+                <input type="radio" name="tab" id="tab-dados" checked>
+                <input type="radio" name="tab" id="tab-parc">
+
+                <div class="tabs">
+                    <label class="tab" for="tab-dados">DADOS CLIENTE</label>
+                    <label class="tab" for="tab-parc">PARCELAMENTO</label>
+                </div>
+
+                <div class="card-body">
+
+                    <!-- ABA 1: DADOS CLIENTE --------------------------------------->
+                    <div class="tabpage" data-tab="tab-dados">
+                        <form class="form grid">
+
+                            <div class="field span-2">
+                                <label>NOME CLIENTE</label>
+                                <input type="text" placeholder="Ex.: João da Silva">
+                            </div>
+
+                            <div class="field span-2">
+                                <label>ENDEREÇO</label>
+                                <input type="text" placeholder="Rua, número, bairro, cidade">
+                            </div>
+
+                            <div class="field">
+                                <label>CEP</label>
+                                <input type="text" inputmode="numeric" placeholder="00000-000">
+                            </div>
+                            <div class="field">
+                                <label>CELULAR</label>
+                                <input type="tel" placeholder="(00) 00000-0000">
+                            </div>
+                            <div class="field">
+                                <label>RESIDENCIAL</label>
+                                <input type="tel" placeholder="(00) 0000-0000">
+                            </div>
+                            <div class="field">
+                                <label>FAX</label>
+                                <input type="tel" placeholder="(00) 0000-0000">
+                            </div>
+
+                            <div class="field">
+                                <label>EMAIL</label>
+                                <input type="email" placeholder="email@exemplo.com">
+                            </div>
+                            <div class="field">
+                                <label>STATUS CIVIL</label>
+                                <input type="text" placeholder="Solteiro, Casado...">
+                            </div>
+                            <div class="field">
+                                <label>QTD MEMBROS FAMÍLIA</label>
+                                <input type="number" min="0" placeholder="0">
+                            </div>
+
+                            <hr class="divider span-4">
+
+                            <h3 class="section-title span-4">• DOCUMENTOS DO CLIENTE</h3>
+
+                            <div class="field">
+                                <label>ZAIRYU CARD</label>
+                                <input type="text">
+                            </div>
+                            <div class="field">
+                                <label>PASSAPORTE</label>
+                                <input type="text">
+                            </div>
+                            <div class="field">
+                                <label>CART. HABILIT</label>
+                                <input type="text">
+                            </div>
+                            <div class="field">
+                                <label>EMPRESA</label>
+                                <input type="text">
+                            </div>
+
+                            <div class="field">
+                                <label>TEL EMPRESA</label>
+                                <input type="tel">
+                            </div>
+                            <div class="field">
+                                <label>TIPO VISTO</label>
+                                <input type="text">
+                            </div>
+                            <div class="field">
+                                <label>VENC. VISTO</label>
+                                <input type="date">
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- ABA 2: PARCELAMENTO ---------------------------------------->
+                    <div class="tabpage" data-tab="tab-parc">
+                        <form class="form grid">
+                            <div class="field">
+                                <label>VALOR TOTAL</label>
+                                <input type="number" step="0.01" placeholder="0,00">
+                            </div>
+                            <div class="field">
+                                <label>ENTRADA</label>
+                                <input type="number" step="0.01" placeholder="0,00">
+                            </div>
+                            <div class="field">
+                                <label>Nº PARCELAS</label>
+                                <input type="number" min="1" placeholder="12">
+                            </div>
+                            <div class="field">
+                                <label>VENCIMENTO (DIA)</label>
+                                <input type="number" min="1" max="31" placeholder="10">
+                            </div>
+
+                            <div class="field span-2">
+                                <label>OBSERVAÇÕES</label>
+                                <textarea rows="4" placeholder="Condições, juros, acordos..."></textarea>
+                            </div>
+
+                            <div class="parcelas-table span-4">
+                                <div class="table-head">
+                                    <span>#</span><span>VENCIMENTO</span><span>VALOR</span><span>STATUS</span>
+                                </div>
+                                <!-- linhas exemplo -->
+                                <div class="table-row"><span>1</span><span>10/11/2025</span><span>¥ 20.000</span><span>ABERTA</span></div>
+                                <div class="table-row"><span>2</span><span>10/12/2025</span><span>¥ 20.000</span><span>ABERTA</span></div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </section>
+
+        </section>
+    </div>
+
+</body>
+
+</html>
