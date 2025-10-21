@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <script src="/dmxAppConnect/dmxAppConnect.js"></script>
+    <base href="/">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cadastro de Veículos</title>
+    <link rel="stylesheet" href="/css/cadastro_carros.css">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@600;800;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
+</head>
+
+<body is="dmx-app" id="cadastro_carros">
+
+    <style>
+        /* grid igual ao seu two-cols, mas com botões */
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(190px, 1fr));
+            gap: 10px 14px;
+        }
+
+        .options-grid .opt {
+            display: contents;
+        }
+
+        /* permite o botão ocupar a célula toda */
+
+        .opt-btn {
+            height: 62px;
+            width: 85%;
+            border: 3px solid #cfd2d5;
+            border-radius: 12px;
+            padding: 12px 12px;
+            font: 800 14px/1 "Montserrat", system-ui;
+            text-transform: uppercase;
+            color: #ffffff;
+            background: #44484d;
+            /* OFF */
+            cursor: pointer;
+            transition: transform .08s ease, background .15s ease, border-color .15s ease, box-shadow .15s ease;
+        }
+
+        .opt-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .opt-btn:active {
+            transform: translateY(0);
+        }
+
+        /* estado ON (selecionado) */
+        .opt-btn.active {
+            background: #2e53a3ff;
+            /* verde ON */
+            border-color: #ffffffff;
+            box-shadow: 0 0 0 3px rgba(39, 176, 255, 0.25);
+        }
+
+
+        .servicos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(190px, 1fr));
+            gap: 10px 14px;
+        }
+
+        /* Deixa o botão ocupar a célula inteira do grid */
+        .servicos-grid .servui-option {
+            display: contents;
+        }
+
+        /* Botão de serviço */
+        .servui-btn {
+            height: 62px;
+            width: 85%;
+            border: 3px solid #cfd2d5;
+            border-radius: 12px;
+            padding: 10px 12px;
+            font: 800 14px/1 "Montserrat", system-ui;
+            text-transform: uppercase;
+            color: #fff;
+            background: #44484d;
+            /* estado OFF */
+            cursor: pointer;
+            transition: transform .08s ease,
+                background .15s ease,
+                border-color .15s ease,
+                box-shadow .15s ease;
+        }
+
+        .servui-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        /* Estado ON (selecionado) */
+        .servui-btn.active {
+            background: #b4130eff;
+            /* verde */
+            border-color: #ffffffff;
+            box-shadow: 0 0 0 3px rgba(236, 13, 13, 0.25);
+        }
+
+        /* Variante de alerta, se quiser marcar um botão específico com data-variant="danger" */
+        .servui-btn.active[data-variant="danger"] {
+            background: #ef4444;
+            border-color: #c53030;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, .25);
+        }
+
+        /* variantes rápidas por data-variant, se quiser outra cor por item */
+        /* .opt-btn[data-variant="danger"].active{ background:#ef4444; border-color:#c53030; box-shadow:0 0 0 3px rgba(239,68,68,.25);} */
+    </style>
+
+    <div class="page">
+
+        <div class="esquerda">
+            <!-- LADO ESQUERDO -->
+            <aside class="left-pane">
+                <figure class="photo-card">
+                    <img src="imgs/car-placeholder.png" alt="Foto do veículo">
+                    <figcaption>Foto do veículo</figcaption>
+                </figure>
+
+                <div class="car-title">
+                    <strong>CAR NAME (BMW)</strong>
+                    <span>ANO 24 HEISEI</span>
+                </div>
+
+                <div class="price-box"><span class="price">3.500.000¥</span></div>
+
+                <div class="actions">
+                    <button class="ghost">＋ NOVO (F1)</button>
+                    <button class="ghost">✎ EDITAR (F2)</button>
+                    <button class="ghost">▮ SALVAR (F5)</button>
+                    <button class="danger">🗑 DELETAR</button>
+                </div>
+            </aside>
+
+        </div>
+
+
+        <div class="centro">
+            <!-- CENTRO: TPageControl -->
+            <main class="center-pane">
+                <nav class="tabs" role="tablist" aria-label="Seções do veículo">
+                    <button class="item tab-btn active" role="tab" aria-selected="true" data-tab-target="#tab-dados">Dados Veículos</button>
+                    <button class="item tab-btn" role="tab" aria-selected="false" data-tab-target="#tab-opcionais">Opcionais Veículo</button>
+                    <button class="item tab-btn" role="tab" aria-selected="false" data-tab-target="#tab-servicos">Serviços Realizados</button>
+                    <button class="item tab-btn" role="tab" aria-selected="false" data-tab-target="#tab-historico">Histórico Placas</button>
+                </nav>
+
+                <section class="tab-panels">
+                    <!-- ABA 1 -->
+                    <div class="tab-panel active" id="tab-dados" role="tabpanel">
+                        <form class="grid-form" autocomplete="off">
+                            <label>Fabricante<input type="text"></label>
+                            <label>Modelo<input type="text"></label>
+                            <label>Cor<input type="text"></label>
+
+                            <label>Ano de Fabricação<input type="text"></label>
+                            <label>Km Rodados<input type="text"></label>
+                            <label>Cilindrada<input type="text"></label>
+
+                            <label>Tipo Motor<input type="text"></label>
+                            <label>Chassis<input type="text"></label>
+                            <label>Número Modelo<input type="text"></label>
+
+                            <label>Tração<input type="text"></label>
+                            <label>Transmissão<input type="text"></label>
+                            <label>Combustível<input type="text"></label>
+
+                            <label>Qtd Portas<input type="number" min="0"></label>
+                            <label>Qtd Pessoas<input type="number" min="0"></label>
+                            <label>Tipo Veículo<input type="text"></label>
+
+                            <label>Peso<input type="text"></label>
+                            <label>Cap. de Carga<input type="text"></label>
+                            <label>Shaken<input type="text"></label>
+
+                            <label>Preço de Custo<input type="text"></label>
+                            <label>Preço de Venda<input type="text"></label>
+                            <label>Procedência<input type="text"></label>
+
+                            <label class="full">Outros
+                                <textarea rows="5"></textarea>
+                            </label>
+                        </form>
+                    </div>
+
+                    <!-- ABA 2 -->
+                    <div class="tab-panel" id="tab-opcionais" role="tabpanel" aria-hidden="true">
+                        <div class="pad two-cols options-grid" id="opcionais">
+                            <!-- cada botão tem um checkbox hidden pareado (mesmo valor) -->
+                            <div class="opt">
+                                <button type="button" class="opt-btn" data-value="ABS">ABS</button>
+                                <input type="checkbox" name="opcionais[]" value="ABS" hidden>
+                            </div>
+                            <div class="opt">
+                                <button type="button" class="opt-btn" data-value="Bancos elétricos">Bancos elétricos</button>
+                                <input type="checkbox" name="opcionais[]" value="Bancos elétricos" hidden>
+                            </div>
+                            <div class="opt"><button type="button" class="opt-btn" data-value="ESC">ESC</button><input type="checkbox" name="opcionais[]" value="ESC" hidden></div>
+                            <div class="opt"><button type="button" class="opt-btn" data-value="Key-Less">Key-Less</button><input type="checkbox" name="opcionais[]" value="Key-Less" hidden></div>
+                            <div class="opt"><button type="button" class="opt-btn" data-value="Porta de correr">Porta de correr</button><input type="checkbox" name="opcionais[]" value="Porta de correr" hidden></div>
+                            <div class="opt"><button type="button" class="opt-btn" data-value="Veículo especial">Veículo especial</button><input type="checkbox" name="opcionais[]" value="Veículo especial" hidden></div>
+                            <div class="opt"><button type="button" class="opt-btn" data-value="Alarme">Alarme</button><input type="checkbox" name="opcionais[]" value="Alarme" hidden></div>
+                            <div class="opt"><button type="button" class="opt-btn" data-value="Bancos de couro">Bancos de couro</button><input type="checkbox" name="opcionais[]" value="Bancos de couro" hidden></div>
+                            <div class="opt"><button type="button" class="opt-btn" data-value="ETC">ETC</button><input type="checkbox" name="opcionais[]" value="ETC" hidden></div>
+                            <div class="opt"><button type="button" class="opt-btn" data-value="Kit Aero">Kit Aero</button><input type="checkbox" name="opcionais[]" value="Kit Aero" hidden></div>
+                            <div class="opt"><button type="button" class="opt-btn" data-value="Rebaixado">Rebaixado</button><input type="checkbox" name="opcionais[]" value="Rebaixado" hidden></div>
+                            <div class="opt"><button type="button" class="opt-btn" data-value="Vidros elétricos">Vidros elétricos</button><input type="checkbox" name="opcionais[]" value="Vidros elétricos" hidden></div>
+                            <div class="opt"><button type="button" class="opt-btn" data-value="AirBag">AirBag</button><input type="checkbox" name="opcionais[]" value="AirBag" hidden></div>
+                            <div class="opt"><button type="button" class="opt-btn" data-value="Carro Novo">Carro Novo</button><input type="checkbox" name="opcionais[]" value="Carro Novo" hidden></div>
+                            <div class="opt"><button type="button" class="opt-btn" data-value="Teto Solar">Teto Solar</button><input type="checkbox" name="opcionais[]" value="Teto Solar" hidden></div>
+                            <div class="opt"><button type="button" class="opt-btn" data-value="Manual do Proprietário">Manual do Proprietário</button><input type="checkbox" name="opcionais[]" value="Manual do Proprietário" hidden></div>
+                            <div class="opt"><button type="button" class="opt-btn" data-value="Rodas de alumínio">Rodas de alumínio</button><input type="checkbox" name="opcionais[]" value="Rodas de alumínio" hidden></div>
+                            <div class="opt"><button type="button" class="opt-btn" data-value="3 Fileiras de Bancos">3 Fileiras de Bancos</button><input type="checkbox" name="opcionais[]" value="3 Fileiras de Bancos" hidden></div>
+                            <div class="opt"><button type="button" class="opt-btn" data-value="Corredor">Corredor</button><input type="checkbox" name="opcionais[]" value="Corredor" hidden></div>
+                            <div class="opt"><button type="button" class="opt-btn" data-value="Faróis Xenom">Faróis Xenom</button><input type="checkbox" name="opcionais[]" value="Faróis Xenom" hidden></div>
+                            <div class="opt"><button type="button" class="opt-btn" data-value="Monitor Traseiro">Monitor Traseiro</button><input type="checkbox" name="opcionais[]" value="Monitor Traseiro" hidden></div>
+                            <div class="opt"><button type="button" class="opt-btn" data-value="Trava Automática">Trava Automática</button><input type="checkbox" name="opcionais[]" value="Trava Automática" hidden></div>
+                            <div class="opt"><button type="button" class="opt-btn" data-value="4WD">4WD</button><input type="checkbox" name="opcionais[]" value="4WD" hidden></div>
+                            <div class="opt"><button type="button" class="opt-btn" data-value="CD-MD">CD-MD</button><input type="checkbox" name="opcionais[]" value="CD-MD" hidden></div>
+                            <div class="opt"><button type="button" class="opt-btn" data-value="Histórico de Tenken">Histórico de Tenken</button><input type="checkbox" name="opcionais[]" value="Histórico de Tenken" hidden></div>
+                            <div class="opt"><button type="button" class="opt-btn" data-value="Não fumante">Não fumante</button><input type="checkbox" name="opcionais[]" value="Não fumante" hidden></div>
+                            <div class="opt"><button type="button" class="opt-btn" data-value="Turbo">Turbo</button><input type="checkbox" name="opcionais[]" value="Turbo" hidden></div>
+                            <div class="opt"><button type="button" class="opt-btn" data-value="Câmera frontal">Câmera frontal</button><input type="checkbox" name="opcionais[]" value="Câmera frontal" hidden></div>
+                            <div class="opt"><button type="button" class="opt-btn" data-value="Banco Sofá">Banco Sofá</button><input type="checkbox" name="opcionais[]" value="Banco Sofá" hidden></div>
+                            <div class="opt"><button type="button" class="opt-btn" data-value="Direção Hidráulica">Direção Hidráulica</button><input type="checkbox" name="opcionais[]" value="Direção Hidráulica" hidden></div>
+                            <div class="opt"><button type="button" class="opt-btn" data-value="Importados">Importados</button><input type="checkbox" name="opcionais[]" value="Importados" hidden></div>
+                            <div class="opt"><button type="button" class="opt-btn" data-value="Navi-TV">Navi-TV</button><input type="checkbox" name="opcionais[]" value="Navi-TV" hidden></div>
+                            <div class="opt"><button type="button" class="opt-btn" data-value="Único Dono">Único Dono</button><input type="checkbox" name="opcionais[]" value="Único Dono" hidden></div>
+                            <div class="opt"><button type="button" class="opt-btn" data-value="Câmera Traseira">Câmera Traseira</button><input type="checkbox" name="opcionais[]" value="Câmera Traseira" hidden></div>
+                            <div class="opt"><button type="button" class="opt-btn" data-value="Ar Condicionado">Ar Condicionado</button><input type="checkbox" name="opcionais[]" value="Ar Condicionado" hidden></div>
+                            <div class="opt"><button type="button" class="opt-btn" data-value="Ar Condicionado Traseiro">Ar Condicionado Traseiro</button><input type="checkbox" name="opcionais[]" value="Ar Condicionado Traseiro" hidden></div>
+                        </div>
+
+                    </div>
+
+                    <!-- ABA 3 -->
+                    <div class="tab-panel" id="tab-servicos" role="tabpanel" aria-hidden="true">
+                        <div class="pad two-cols servicos-grid" id="servicos">
+                            <!-- Cada bloco: botão visível + checkbox hidden que envia no form -->
+                            <div class="servui-option"><button type="button" class="servui-btn" data-value="ABS">Higienização</button><input type="checkbox" name="opcionais[]" value="ABS" hidden></div>
+                            <div class="servui-option"><button type="button" class="servui-btn" data-value="Bancos elétricos">Polimento</button><input type="checkbox" name="opcionais[]" value="Bancos elétricos" hidden></div>
+                            <div class="servui-option"><button type="button" class="servui-btn" data-value="ESC">Cristalização</button><input type="checkbox" name="opcionais[]" value="ESC" hidden></div>
+                            <div class="servui-option"><button type="button" class="servui-btn" data-value="Key-Less">Limpeza do ar condicionado</button><input type="checkbox" name="opcionais[]" value="Key-Less" hidden></div>
+                            <div class="servui-option"><button type="button" class="servui-btn" data-value="Porta de correr">Troca de filtro do ar</button><input type="checkbox" name="opcionais[]" value="Porta de correr" hidden></div>
+                            <div class="servui-option"><button type="button" class="servui-btn" data-value="Veículo especial">Troca de óleo</button><input type="checkbox" name="opcionais[]" value="Veículo especial" hidden></div>
+                            <div class="servui-option"><button type="button" class="servui-btn" data-value="Alarme">Troca de filtro de óleo</button><input type="checkbox" name="opcionais[]" value="Alarme" hidden></div>
+                            <div class="servui-option"><button type="button" class="servui-btn" data-value="Bancos de couro">Troca de filtro do combustível</button><input type="checkbox" name="opcionais[]" value="Bancos de couro" hidden></div>
+                            <div class="servui-option"><button type="button" class="servui-btn" data-value="ETC">Alinhamento dos pneus</button><input type="checkbox" name="opcionais[]" value="ETC" hidden></div>
+                            <div class="servui-option"><button type="button" class="servui-btn" data-value="Kit Aero">Troca de pneus</button><input type="checkbox" name="opcionais[]" value="Kit Aero" hidden></div>
+                            <div class="servui-option"><button type="button" class="servui-btn" data-value="Rebaixado">Troca da buzina</button><input type="checkbox" name="opcionais[]" value="Rebaixado" hidden></div>
+                            <div class="servui-option"><button type="button" class="servui-btn" data-value="Vidros elétricos">Troca dos cintos de segurança</button><input type="checkbox" name="opcionais[]" value="Vidros elétricos" hidden></div>
+                            <div class="servui-option"><button type="button" class="servui-btn" data-value="AirBag">Troca de embreagem</button><input type="checkbox" name="opcionais[]" value="AirBag" hidden></div>
+                            <div class="servui-option"><button type="button" class="servui-btn" data-value="Carro Novo">Troca de fluido da direção hidráulica</button><input type="checkbox" name="opcionais[]" value="Carro Novo" hidden></div>
+                            <div class="servui-option"><button type="button" class="servui-btn" data-value="Teto Solar">Troca de fluido de freio</button><input type="checkbox" name="opcionais[]" value="Teto Solar" hidden></div>
+                            <div class="servui-option"><button type="button" class="servui-btn" data-value="Manual do Proprietário">Troca de limpadores de parabrisa</button><input type="checkbox" name="opcionais[]" value="Manual do Proprietário" hidden></div>
+                            <div class="servui-option"><button type="button" class="servui-btn" data-value="Rodas de alumínio">Troca de bateria</button><input type="checkbox" name="opcionais[]" value="Rodas de alumínio" hidden></div>
+                            <div class="servui-option"><button type="button" class="servui-btn" data-value="3 Fileiras de Bancos">Troca do sistema de freios</button><input type="checkbox" name="opcionais[]" value="3 Fileiras de Bancos" hidden></div>
+                            <div class="servui-option"><button type="button" class="servui-btn" data-value="Corredor">Troca do sistema de suspenção</button><input type="checkbox" name="opcionais[]" value="Corredor" hidden></div>
+                            <div class="servui-option"><button type="button" class="servui-btn" data-value="Faróis Xenom">Troca de velas</button><input type="checkbox" name="opcionais[]" value="Faróis Xenom" hidden></div>
+                            <div class="servui-option"><button type="button" class="servui-btn" data-value="Monitor Traseiro">Troca do líquido de arrefecimento</button><input type="checkbox" name="opcionais[]" value="Monitor Traseiro" hidden></div>
+                            <div class="servui-option"><button type="button" class="servui-btn" data-value="Trava Automática">Troca de fluido das transmissões</button><input type="checkbox" name="opcionais[]" value="Trava Automática" hidden></div>
+                            <div class="servui-option"><button type="button" class="servui-btn" data-value="4WD">Troca do filtro de cabine</button><input type="checkbox" name="opcionais[]" value="4WD" hidden></div>
+                            <div class="servui-option"><button type="button" class="servui-btn" data-value="CD-MD">Troca de correia poly-v</button><input type="checkbox" name="opcionais[]" value="CD-MD" hidden></div>
+                            <div class="servui-option"><button type="button" class="servui-btn" data-value="Histórico de Tenken">Troca de correia dentada</button><input type="checkbox" name="opcionais[]" value="Histórico de Tenken" hidden></div>
+                            <div class="servui-option"><button type="button" class="servui-btn" data-value="Não fumante">Correia do compressor do ar condicionado</button><input type="checkbox" name="opcionais[]" value="Não fumante" hidden></div>
+                            <div class="servui-option"><button type="button" class="servui-btn" data-value="Turbo">Troca de correia do alternador</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ABA 4 -->
+                    <div class="tab-panel" id="tab-historico" role="tabpanel" aria-hidden="true">
+                        <div class="jp-plate-wrap">
+                            <!-- Botão visual da placa: clique alterna branca/amarela -->
+                            <button type="button" class="jp-plate" id="jpPlate" aria-pressed="false" title="Clique para alternar: Futsuusha ↔ Keijidōsha">
+                                <span class="plate-region" id="outRegion">東京</span>
+                                <span class="plate-class" id="outClass">300</span>
+                                <span class="plate-mark" id="outMark">あ</span>
+                                <span class="plate-number" id="outNumber"><span>12</span>-<span>34</span></span>
+                                <span class="plate-type-badge" id="plateTypeBadge">普通車</span>
+                            </button>
+
+                            <!-- Controles -->
+                            <div class="jp-plate-controls">
+                                <div class="row">
+                                    <label>Região
+                                        <input id="inRegion" type="text" placeholder="ex.: 東京">
+                                    </label>
+                                    <label>Classe
+                                        <input id="inClass" type="text" placeholder="ex.: 300">
+                                    </label>
+                                    <label>Hiragana
+                                        <input id="inMark" type="text" placeholder="ex.: あ" maxlength="1">
+                                    </label>
+                                    <label>Número
+                                        <input id="inNumber" type="text" placeholder="ex.: 1234" pattern="\\d{4}" maxlength="4">
+                                    </label>
+                                </div>
+
+                                <div class="actions">
+                                    <button type="button" class="item2" id="btnApply">Aplicar na placa</button>
+                                    <button type="button" class="item2" id="btnAddHistory">Adicionar ao histórico</button>
+                                </div>
+                            </div>
+
+                            <!-- Histórico -->
+                            <div class="jp-plate-history">
+                                <div class="head">
+                                    <strong>Histórico de placas</strong>
+                                </div>
+                                <ul id="plateHistory" class="list"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+        </div>
+
+        <div class="direita">
+            <!-- DIREITA: diagrama com pontos -->
+            <aside class="right-pane">
+                <div class="car-diagram">
+                    <img src="/assets/images/diagram-car-top.png" alt="Diagrama do carro">
+                    <!-- Ajuste as posições (%) conforme sua arte -->
+                    <button class="dot" style="--x:50%; --y:15%"></button>
+                    <button class="dot" style="--x:16%; --y:24%"></button>
+                    <button class="dot" style="--x:84%; --y:24%"></button>
+                    <button class="dot" style="--x:16%; --y:40%"></button>
+                    <button class="dot" style="--x:84%; --y:40%"></button>
+                    <button class="dot" style="--x:16%; --y:56%"></button>
+                    <button class="dot" style="--x:84%; --y:56%"></button>
+                    <button class="dot" style="--x:16%; --y:72%"></button>
+                    <button class="dot" style="--x:84%; --y:72%"></button>
+                    <button class="dot" style="--x:50%; --y:33%"></button>
+                    <button class="dot" style="--x:50%; --y:71%"></button>
+                    <button class="dot" style="--x:50%; --y:85%"></button>
+                </div>
+            </aside>
+
+        </div>
+
+    </div>
+
+    <!-- JS: tabs + dots -->
+    <script>
+        // Alternância de abas
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const panels = document.querySelectorAll('.tab-panel');
+
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tgt = document.querySelector(btn.dataset.tabTarget);
+        // header
+        tabButtons.forEach(b => {
+          const active = b === btn;
+          b.classList.toggle('active', active);
+          b.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+        // panels
+        panels.forEach(p => {
+          const active = (p === tgt);
+          p.classList.toggle('active', active);
+          p.toggleAttribute('aria-hidden', !active);
+        });
+      });
+    });
+
+    // Pontos: verde <-> vermelho
+    document.querySelectorAll('.car-diagram .dot').forEach(dot => {
+      dot.addEventListener('click', () => {
+        dot.classList.toggle('alert');
+      });
+    });
+
+ document.querySelectorAll('#opcionais .opt').forEach(w => {
+    const btn = w.querySelector('.opt-btn');
+    const chk = w.querySelector('input[type="checkbox"]');
+
+    // estado inicial (se quiser pré-selecionados, marque o hidden no HTML)
+    if (chk.checked) btn.classList.add('active');
+    btn.setAttribute('aria-pressed', chk.checked ? 'true' : 'false');
+
+    btn.addEventListener('click', () => {
+      const on = !chk.checked;
+      chk.checked = on;                       // mantém envio no form
+      btn.classList.toggle('active', on);     // muda cor
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+  });
+    
+(function initServicos(){
+  const wrap = document.getElementById('servicos');
+  if (!wrap) return;
+
+  // Tenta descobrir o "name" padrão dos checkboxes existentes (ex.: 'opcionais[]')
+  const sample = wrap.querySelector('input[type="checkbox"]');
+  const defaultName = sample ? sample.getAttribute('name') : 'servicos[]';
+
+  wrap.querySelectorAll('.servui-option').forEach(opt => {
+    const btn = opt.querySelector('.servui-btn');
+    if (!btn) return;
+
+    // Pega (ou cria) o checkbox hidden pareado
+    let chk = opt.querySelector('input[type="checkbox"]');
+    if (!chk) {
+      chk = document.createElement('input');
+      chk.type = 'checkbox';
+      chk.hidden = true;
+      chk.name = defaultName;                 // mantém o mesmo name do bloco
+      chk.value = btn.dataset.value || btn.textContent.trim();
+      opt.appendChild(chk);
+    } else {
+      // Garante value coerente
+      if (!chk.value) chk.value = btn.dataset.value || btn.textContent.trim();
+    }
+
+    // Estado inicial
+    if (chk.checked) btn.classList.add('active');
+    btn.setAttribute('aria-pressed', chk.checked ? 'true' : 'false');
+
+    // Clique: alterna visual + hidden
+    btn.addEventListener('click', () => {
+      const on = !chk.checked;
+      chk.checked = on;
+      btn.classList.toggle('active', on);
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+  });
+})();
+
+(function placaJaponesa(){
+  const plate   = document.getElementById('jpPlate');
+  const badge   = document.getElementById('plateTypeBadge');
+
+  const inRegion = document.getElementById('inRegion');
+  const inClass  = document.getElementById('inClass');
+  const inMark   = document.getElementById('inMark');
+  const inNumber = document.getElementById('inNumber');
+
+  const outRegion = document.getElementById('outRegion');
+  const outClass  = document.getElementById('outClass');
+  const outMark   = document.getElementById('outMark');
+  const outNumber = document.getElementById('outNumber');
+
+  const btnApply = document.getElementById('btnApply');
+  const btnAdd   = document.getElementById('btnAddHistory');
+  const list     = document.getElementById('plateHistory');
+
+  // 1) Alternar Futsuusha (branca) <-> Keijidōsha (amarela)
+  plate.addEventListener('click', (e) => {
+    // evita conflito se o usuário clicar em inputs/botões dentro do wrap (não é o caso aqui)
+    if (e.target.closest('.jp-plate-controls')) return;
+
+    const isKei = plate.classList.toggle('is-kei');
+    plate.setAttribute('aria-pressed', isKei ? 'true' : 'false');
+    badge.textContent = isKei ? '軽自動車' : '普通車';
+  });
+
+  // 2) Aplicar na placa (pega os campos e joga no visual)
+  btnApply.addEventListener('click', () => {
+    const region = (inRegion.value || outRegion.textContent).trim();
+    const klass  = (inClass.value  || outClass.textContent).trim();
+    const mark   = (inMark.value   || outMark.textContent).trim();
+    const num    = (inNumber.value || outNumber.textContent.replace('-', '')).trim();
+
+    // formata número como "12-34" (2-2) se tiver 4 dígitos
+    let numFmt = outNumber.innerHTML;
+    if (/^\d{4}$/.test(num)) {
+      numFmt = `<span>${num.slice(0,2)}</span>-<span>${num.slice(2)}</span>`;
+    }
+
+    outRegion.textContent = region || '東京';
+    outClass.textContent  = klass  || '300';
+    outMark.textContent   = mark   || 'あ';
+    outNumber.innerHTML   = numFmt;
+
+    // feedback sutil
+    plate.animate([{filter:'brightness(1.2)'},{filter:'brightness(1)'}], {duration:180, easing:'ease-out'});
+  });
+
+  // 3) Adicionar ao histórico
+  btnAdd.addEventListener('click', () => {
+    const isKei = plate.classList.contains('is-kei');
+    const txt   = `${outRegion.textContent} ${outClass.textContent} ${outMark.textContent} ${outNumber.textContent.replace(/<[^>]*>/g,'')} — ${isKei ? 'Keijidōsha (amarela)' : 'Futsuusha (branca)'}`;
+
+    const li = document.createElement('li');
+    li.textContent = txt;
+    list.prepend(li); // mais recente no topo
+
+    // animaçãozinha
+    li.animate([{opacity:0, transform:'translateY(-4px)'},{opacity:1, transform:'translateY(0)'}], {duration:160, easing:'ease-out'});
+  });
+})();
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+</body>
+
+</html>
