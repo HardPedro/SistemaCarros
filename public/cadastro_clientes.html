@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 
 <head>
+    <script src="/dmxAppConnect/dmxAppConnect.js"></script>
     <base href="/">
     <link rel="stylesheet" href="/css/cadastro_clientes.css">
     <meta charset="utf-8" />
@@ -9,41 +10,56 @@
     <title>Cadastro de Clientes</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="clientes.css" />
+    <link rel="stylesheet" href="/css/bootstrap-icons.min.css" />
+    <script src="/dmxAppConnect/dmxDatastore/dmxDatastore.js" defer></script>
+    <script src="/dmxAppConnect/dmxStateManagement/dmxStateManagement.js" defer></script>
+    <link rel="stylesheet" href="/dmxAppConnect/dmxNotifications/dmxNotifications.css" />
+    <script src="/dmxAppConnect/dmxNotifications/dmxNotifications.js" defer></script>
+    <script src="/dmxAppConnect/dmxBrowser/dmxBrowser.js" defer></script>
+    <link rel="stylesheet" href="/dmxAppConnect/dmxValidator/dmxValidator.css" />
+    <script src="/dmxAppConnect/dmxValidator/dmxValidator.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <script src="/dmxAppConnect/dmxBootstrap5Offcanvas/dmxBootstrap5Offcanvas.js" defer></script>
+    <script src="/dmxAppConnect/dmxBootstrap5Popovers/dmxBootstrap5Popovers.js" defer></script>
+    <script src="/dmxAppConnect/dmxBootstrap5Modal/dmxBootstrap5Modal.js" defer></script>
 </head>
 
-<body>
+<body is="dmx-app" id="cadastro_clientes">
+
+    <div is="dmx-browser" id="browser1"></div>
+    <dmx-notifications id="notifies1"></dmx-notifications>
+    <dmx-serverconnect id="obterCliente" url="/api/cadastroClientes/obterCliente" dmx-param:id="query.id"></dmx-serverconnect>
+    <dmx-query-manager id="query1"></dmx-query-manager>
 
     <div class="page">
 
-        <h1 class="page-title">NOME CLIENTE</h1>
+        <h1 class="page-title" dmx-text="'NOME DO CLIENTE: '+obterCliente.data.query.nome">NOME CLIENTE</h1>
 
         <section class="content">
 
             <!-- LADO ESQUERDO --------------------------------------------------->
             <aside class="profile-card">
+                <dmx-value id="imgSourceCliente" dmx-bind:value="obterCliente.data.query.imagemCliente"></dmx-value>
                 <div class="photo">
-                    <div class="photo-frame">
-                        <div class="avatar"></div>
-                        <span class="add-image">ADD IMAGE</span>
-                    </div>
+                    <img class="photo-frame" dmx-bind:src="imgSourceCliente.value">
 
                     <div class="photo-controls">
                         <button class="square" aria-label="Anterior">◀</button>
-                        <button class="square" aria-label="Próximo">▶</button>
+                        <button class="square" aria-label="Próximo" dmx-on:click="">▶</button>
                     </div>
                 </div>
 
                 <div class="actions">
-                    <button class="action ghost"><span>＋</span> NOVO (F1)</button>
+                    <button class="action ghost" dmx-on:click="dadosCliente.submit()" dmx-hide="query.id"><span>＋</span> NOVO (F1)</button>
                     <button class="action ghost"><span>✎</span> EDITAR (F2)</button>
-                    <button class="action ghost"><span>🔖</span> SALVAR (F5)</button>
+                    <button class="action ghost" dmx-on:click="dadosCliente.submit()" dmx-show="query.id"><span>🔖</span> SALVAR (F5)</button>
                 </div>
 
                 <button class="delete"><span>🗑</span> DELETAR</button>
             </aside>
 
             <!-- LADO DIREITO — QUADRO ESCURO + TABS ---------------------------->
-            <section class="card">
+            <section class="card bg-dark">
 
                 <!-- “TPageControl” CSS-only: radios + labels como abas -->
                 <input type="radio" name="tab" id="tab-dados" checked>
@@ -58,46 +74,108 @@
 
                     <!-- ABA 1: DADOS CLIENTE --------------------------------------->
                     <div class="tabpage" data-tab="tab-dados">
-                        <form class="form grid">
+                        <form class="form grid" id="dadosCliente" method="post" is="dmx-serverconnect-form" action="/api/cadastroClientes/decisaoEditarCriarClientes" dmx-on:success="notifies1.success('cadastro concluído!');browser1.goto('/lista_clientes.html')">
+                            <div class="modal" id="modal1" is="dmx-bs5-modal" tabindex="-1">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-secondary">
+                                            <h5 class="modal-title">Imagem do documento Zairyu</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body bg-dark">
+                                            <dmx-value id="imgSourceZairyu" dmx-bind:value="obterCliente.data.query.imagemZairyu"></dmx-value>
+
+
+                                            <img dmx-bind:src="imgSourceZairyu.value" class="img-fluid rounded">
+                                            <input id="file1" name="file1" type="file" class="form-control mt-2"><input id="text1" name="zairyuDataURL" type="hidden" class="form-control" dmx-bind:value="file1.file.dataUrl"><button id="btn1" class="btn mt-2 btn-outline-primary btn-sm" dmx-on:click="imgSourceZairyu.setValue(file1.file.dataUrl)">upload<i class="bi-arrow-up"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-footer bg-secondary"><button type="button" class="btn btn-primary" dmx-on:click="modal1.hide()">Finalizar</button></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal" id="modal2" is="dmx-bs5-modal" tabindex="-1">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-secondary">
+                                            <h5 class="modal-title">Imagem do documento Passaporte</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body bg-dark">
+                                            <dmx-value id="imgSourcePassaporte" dmx-bind:value="obterCliente.data.query.imagemPassaporte"></dmx-value>
+
+
+                                            <img dmx-bind:src="imgSourcePassaporte.value" class="img-fluid rounded">
+                                            <input id="file2" name="file2" type="file" class="form-control mt-2"><input id="text2" name="passaporteDataURL" type="hidden" class="form-control" dmx-bind:value="file2.file.dataUrl"><button id="btn2" class="btn mt-2 btn-outline-primary btn-sm" dmx-on:click="imgSourcePassaporte.setValue(file2.file.dataUrl)">upload<i class="bi-arrow-up"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-footer bg-secondary"><button type="button" class="btn btn-primary" dmx-on:click="modal2.hide()">Finalizar</button></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal" id="modal3" is="dmx-bs5-modal" tabindex="-1">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-secondary">
+                                            <h5 class="modal-title">Imagem do documento Habilitação</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body bg-dark">
+                                            <dmx-value id="imgSourceHabilitacao" dmx-bind:value="obterCliente.data.query.imagemHabilitacao"></dmx-value>
+
+
+                                            <img dmx-bind:src="imgSourceHabilitacao.value" class="rounded img-fluid">
+                                            <input id="file3" name="file3" type="file" class="form-control mt-2"><input id="text3" name="habiliatacaoDataURL" type="hidden" class="form-control" dmx-bind:value="file3.file.dataUrl"><button id="btn3" class="btn mt-2 btn-outline-primary btn-sm" dmx-on:click="imgSourceHabilitacao.setValue(file3.file.dataUrl)">upload<i class="bi-arrow-up"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-footer bg-secondary"><button type="button" class="btn btn-primary" dmx-on:click="modal3.hide()">Finalizar</button></div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
 
                             <div class="field span-2">
                                 <label>NOME CLIENTE</label>
-                                <input type="text" placeholder="Ex.: João da Silva">
+                                <input type="text" placeholder="Ex.: João da Silva" dmx-bind:value="obterCliente.data.query.nome" id="nome" name="nome" required="" data-msg-required="Este campo é obrigatório">
+
                             </div>
 
                             <div class="field span-2">
                                 <label>ENDEREÇO</label>
-                                <input type="text" placeholder="Rua, número, bairro, cidade">
+                                <input type="text" placeholder="Rua, número, bairro, cidade" dmx-bind:value="obterCliente.data.query.endereco" id="endereco" name="endereco" required="" data-msg-required="Este campo é obrigatório">
                             </div>
 
                             <div class="field">
                                 <label>CEP</label>
-                                <input type="text" inputmode="numeric" placeholder="00000-000">
+                                <input type="text" inputmode="numeric" placeholder="00000-000" dmx-bind:value="obterCliente.data.query.cod" id="cep" name="cep">
                             </div>
                             <div class="field">
                                 <label>CELULAR</label>
-                                <input type="tel" placeholder="(00) 00000-0000">
+                                <input type="tel" placeholder="(00) 00000-0000" dmx-bind:value="obterCliente.data.query.tel" id="celular" name="celular" required="" data-msg-required="Este campo é obrigatório">
                             </div>
                             <div class="field">
                                 <label>RESIDENCIAL</label>
-                                <input type="tel" placeholder="(00) 0000-0000">
+                                <input type="tel" placeholder="(00) 0000-0000" dmx-bind:value="obterCliente.data.query.tel" id="residencial" name="residencial">
                             </div>
                             <div class="field">
                                 <label>FAX</label>
-                                <input type="tel" placeholder="(00) 0000-0000">
+                                <input type="tel" placeholder="(00) 0000-0000" dmx-bind:value="obterCliente.data.query.fax" id="fax" name="fax">
                             </div>
 
                             <div class="field">
                                 <label>EMAIL</label>
-                                <input type="email" placeholder="email@exemplo.com">
+                                <input type="email" placeholder="email@exemplo.com" dmx-bind:value="obterCliente.data.query.email" id="email" name="email">
                             </div>
                             <div class="field">
                                 <label>STATUS CIVIL</label>
-                                <input type="text" placeholder="Solteiro, Casado...">
+                                <input type="text" placeholder="Solteiro, Casado..." dmx-bind:value="obterCliente.data.query.status_civil" id="estadocivil" name="estadocivil">
                             </div>
                             <div class="field">
                                 <label>QTD MEMBROS FAMÍLIA</label>
-                                <input type="number" min="0" placeholder="0">
+                                <input type="number" placeholder="0" dmx-bind:value="obterCliente.data.query.membros" id="membros" name="membros">
                             </div>
 
                             <hr class="divider span-4">
@@ -105,43 +183,58 @@
                             <h3 class="section-title span-4">• DOCUMENTOS DO CLIENTE</h3>
 
                             <div class="field">
-                                <label>ZAIRYU CARD</label>
-                                <input type="text">
+                                <label>ZAIRYU CARD
+                                    <input type="text" dmx-bind:value="obterCliente.data.query.zairyu" id="zairyu" name="zairyu"><button id="btnZairyu" class="btn lh-1 text-warning bg-dark" dmx-on:click="modal1.show()">
+                                        <i class="bi-card-image"></i>
+                                    </button></label>
+
                             </div>
                             <div class="field">
-                                <label>PASSAPORTE</label>
-                                <input type="text">
+                                <label>PASSAPORTE
+                                    <input type="text" dmx-bind:value="obterCliente.data.query.passaporte" id="passaporte" name="passaporte"><button id="btnPassaporte" class="btn lh-1 text-warning bg-dark" dmx-on:click="modal2.show()">
+                                        <i class="bi-card-image"></i>
+                                    </button></label>
+
                             </div>
                             <div class="field">
-                                <label>CART. HABILIT</label>
-                                <input type="text">
+                                <label>CART. HABILIT<input type="text" dmx-bind:value="obterCliente.data.query.hab" id="habilitacao" name="habilitacao"><button id="btnHabilitacao" class="btn lh-1 text-warning bg-dark" dmx-on:click="modal3.show()">
+                                        <i class="bi-card-image"></i>
+                                    </button></label>
+
                             </div>
                             <div class="field">
-                                <label>EMPRESA</label>
-                                <input type="text">
+
+                                <label>EMPRESA</label><input type="text" dmx-bind:value="obterCliente.data.query.empresa" id="empresa" name="empresa">
                             </div>
 
                             <div class="field">
-                                <label>TEL EMPRESA</label>
-                                <input type="tel">
+                                <label>TEL EMPRESA</label><input type="tel" dmx-bind:value="obterCliente.data.query.telEmpresa" id="telEmpresa" name="telEmpresa">
+
                             </div>
                             <div class="field">
                                 <label>TIPO VISTO</label>
-                                <input type="text">
+                                <input type="text" dmx-bind:value="obterCliente.data.query['Tipo Visto']" id="tipovisto" name="tipovisto">
                             </div>
                             <div class="field">
                                 <label>VENC. VISTO</label>
-                                <input type="date">
+
+                                <input type="date" dmx-bind:value="obterCliente.data.query.venc" id="vencVisto" name="vencVisto">
+                            </div>
+                            <div class="field">
+                                <label>ENVIE UMA FOTO DO CLIENTE:</label>
+
+                                <input id="file4" name="file4" type="file" class="form-control"><button id="btn4" class="btn btn-outline-primary w-auto" dmx-on:click="imgSourceCliente.setValue(file4.file.dataUrl)">upload<i class="bi-arrow-up"></i>
+                                </button><input id="text4" name="clienteDataURL" type="hidden" class="form-control" dmx-bind:value="file4.file.dataUrl"><input type="hidden" placeholder="Ex.: João da Silva" dmx-bind:value="query.id" id="id_hidden" name="id_hidden">
                             </div>
                         </form>
                     </div>
 
                     <!-- ABA 2: PARCELAMENTO ---------------------------------------->
                     <div class="tabpage" data-tab="tab-parc">
-                        <form class="form grid">
+                        <form class="form grid" method="post">
                             <div class="field">
                                 <label>VALOR TOTAL</label>
-                                <input type="number" step="0.01" placeholder="0,00">
+                                <input type="number" step="0.01" placeholder="0,00" dmx-bind:value="">
                             </div>
                             <div class="field">
                                 <label>ENTRADA</label>
@@ -178,6 +271,7 @@
         </section>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
 </html>

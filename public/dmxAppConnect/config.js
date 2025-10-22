@@ -62,5 +62,66 @@ dmx.config({
       "meta": null,
       "outputType": "object"
     }
+  },
+  "cadastro_clientes": {
+    "datastore1": [
+      {
+        "type": "number",
+        "name": "id_pick"
+      }
+    ],
+    "query": [
+      {
+        "type": "number",
+        "options": {
+          "value": "id"
+        },
+        "name": "id"
+      }
+    ],
+    "inputDataZ": {
+      "meta": null,
+      "outputType": "text"
+    },
+    "inputDataP": {
+      "meta": null,
+      "outputType": "text"
+    },
+    "inputDataZ1": {
+      "meta": null,
+      "outputType": "text"
+    },
+    "inputDataZ2": {
+      "meta": null,
+      "outputType": "text"
+    },
+    "zairyu": {
+      "meta": null,
+      "outputType": "text"
+    },
+    "passaporte": {
+      "meta": null,
+      "outputType": "text"
+    },
+    "habilitacao": {
+      "meta": null,
+      "outputType": "text"
+    },
+    "imgSource": {
+      "meta": null,
+      "outputType": "text"
+    },
+    "imgSourcePassaporte": {
+      "meta": null,
+      "outputType": "text"
+    },
+    "imgSourceHabilitacao": {
+      "meta": null,
+      "outputType": "text"
+    },
+    "imgSourceCliente": {
+      "meta": null,
+      "outputType": "text"
+    }
   }
 });

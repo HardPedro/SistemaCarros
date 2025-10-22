@@ -1,0 +1,838 @@
+{
+  "meta": {
+    "options": {
+      "linkedFile": "/public/cadastro_clientes.html",
+      "linkedForm": "dadosCliente"
+    },
+    "$_POST": [
+      {
+        "type": "text",
+        "fieldName": "nome",
+        "options": {
+          "rules": {
+            "core:required": {
+              "param": "",
+              "message": "Este campo é obrigatório"
+            }
+          }
+        },
+        "name": "nome"
+      },
+      {
+        "type": "text",
+        "fieldName": "endereco",
+        "options": {
+          "rules": {
+            "core:required": {
+              "param": "",
+              "message": "Este campo é obrigatório"
+            }
+          }
+        },
+        "name": "endereco"
+      },
+      {
+        "type": "text",
+        "fieldName": "cep",
+        "name": "cep"
+      },
+      {
+        "type": "text",
+        "fieldName": "celular",
+        "options": {
+          "rules": {
+            "core:required": {
+              "param": "",
+              "message": "Este campo é obrigatório"
+            }
+          }
+        },
+        "name": "celular"
+      },
+      {
+        "type": "text",
+        "fieldName": "residencial",
+        "name": "residencial"
+      },
+      {
+        "type": "text",
+        "fieldName": "fax",
+        "name": "fax"
+      },
+      {
+        "type": "text",
+        "fieldName": "email",
+        "options": {
+          "rules": {
+            "core:email": {}
+          }
+        },
+        "name": "email"
+      },
+      {
+        "type": "text",
+        "fieldName": "estadocivil",
+        "name": "estadocivil"
+      },
+      {
+        "type": "number",
+        "fieldName": "membros",
+        "options": {
+          "rules": {
+            "core:number": {}
+          }
+        },
+        "name": "membros"
+      },
+      {
+        "type": "text",
+        "fieldName": "zairyu",
+        "name": "zairyu"
+      },
+      {
+        "type": "text",
+        "fieldName": "passaporte",
+        "name": "passaporte"
+      },
+      {
+        "type": "text",
+        "fieldName": "habilitacao",
+        "name": "habilitacao"
+      },
+      {
+        "type": "text",
+        "fieldName": "empresa",
+        "name": "empresa"
+      },
+      {
+        "type": "text",
+        "fieldName": "telEmpresa",
+        "name": "telEmpresa"
+      },
+      {
+        "type": "text",
+        "fieldName": "tipovisto",
+        "name": "tipovisto"
+      },
+      {
+        "type": "date",
+        "fieldName": "vencVisto",
+        "options": {
+          "rules": {
+            "core:date": {}
+          }
+        },
+        "name": "vencVisto"
+      },
+      {
+        "type": "text",
+        "fieldName": "id_hidden",
+        "name": "id_hidden"
+      },
+      {
+        "type": "number",
+        "name": "id"
+      },
+      {
+        "type": "text",
+        "name": "empty"
+      },
+      {
+        "type": "file",
+        "fieldName": "file1",
+        "name": "file1",
+        "sub": [
+          {
+            "name": "name",
+            "type": "text"
+          },
+          {
+            "name": "type",
+            "type": "text"
+          },
+          {
+            "name": "size",
+            "type": "number"
+          },
+          {
+            "name": "error",
+            "type": "text"
+          }
+        ],
+        "outputType": "file"
+      },
+      {
+        "type": "text",
+        "fieldName": "zairyuDataURL",
+        "name": "zairyuDataURL"
+      },
+      {
+        "type": "file",
+        "fieldName": "file2",
+        "name": "file2",
+        "sub": [
+          {
+            "name": "name",
+            "type": "text"
+          },
+          {
+            "name": "type",
+            "type": "text"
+          },
+          {
+            "name": "size",
+            "type": "number"
+          },
+          {
+            "name": "error",
+            "type": "text"
+          }
+        ],
+        "outputType": "file"
+      },
+      {
+        "type": "text",
+        "fieldName": "passaporteDataURL",
+        "name": "passaporteDataURL"
+      },
+      {
+        "type": "file",
+        "fieldName": "file3",
+        "name": "file3",
+        "sub": [
+          {
+            "name": "name",
+            "type": "text"
+          },
+          {
+            "name": "type",
+            "type": "text"
+          },
+          {
+            "name": "size",
+            "type": "number"
+          },
+          {
+            "name": "error",
+            "type": "text"
+          }
+        ],
+        "outputType": "file"
+      },
+      {
+        "type": "text",
+        "fieldName": "habiliatacaoDataURL",
+        "name": "habiliatacaoDataURL"
+      },
+      {
+        "type": "file",
+        "fieldName": "file4",
+        "name": "file4",
+        "sub": [
+          {
+            "name": "name",
+            "type": "text"
+          },
+          {
+            "name": "type",
+            "type": "text"
+          },
+          {
+            "name": "size",
+            "type": "number"
+          },
+          {
+            "name": "error",
+            "type": "text"
+          }
+        ],
+        "outputType": "file"
+      },
+      {
+        "type": "text",
+        "fieldName": "clienteDataURL",
+        "name": "clienteDataURL"
+      }
+    ]
+  },
+  "exec": {
+    "steps": [
+      {
+        "name": "",
+        "module": "core",
+        "action": "condition",
+        "options": {
+          "if": "{{$_POST.id_hidden}}",
+          "then": {
+            "steps": {
+              "name": "update",
+              "module": "dbupdater",
+              "action": "update",
+              "options": {
+                "connection": "sistema_carros",
+                "sql": {
+                  "type": "update",
+                  "values": [
+                    {
+                      "table": "cd_clientes",
+                      "column": "nome",
+                      "type": "text",
+                      "value": "{{$_POST.nome}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "endereco",
+                      "type": "text",
+                      "value": "{{$_POST.endereco}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "tel",
+                      "type": "text",
+                      "value": "{{$_POST.celular}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "cod",
+                      "type": "text",
+                      "value": "{{$_POST.cep}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "fax",
+                      "type": "text",
+                      "value": "{{$_POST.fax}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "email",
+                      "type": "text",
+                      "value": "{{$_POST.email}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "empresa",
+                      "type": "text",
+                      "value": "{{$_POST.empresa}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "telEmpresa",
+                      "type": "text",
+                      "value": "{{$_POST.telEmpresa}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "Tipo Visto",
+                      "type": "text",
+                      "value": "{{$_POST.tipovisto}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "venc",
+                      "type": "text",
+                      "value": "{{$_POST.vencVisto}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "zairyu",
+                      "type": "text",
+                      "value": "{{$_POST.zairyu}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "passaporte",
+                      "type": "text",
+                      "value": "{{$_POST.passaporte}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "hab",
+                      "type": "text",
+                      "value": "{{$_POST.habilitacao}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "status_civil",
+                      "type": "text",
+                      "value": "{{$_POST.estadocivil}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "membros",
+                      "type": "text",
+                      "value": "{{$_POST.membros}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "imagemZairyu",
+                      "type": "text",
+                      "value": "{{$_POST.zairyuDataURL}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "imagemPassaporte",
+                      "type": "text",
+                      "value": "{{$_POST.passaporteDataURL}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "imagemHabilitacao",
+                      "type": "text",
+                      "value": "{{$_POST.habiliatacaoDataURL}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "imagemCliente",
+                      "type": "text",
+                      "value": "{{$_POST.clienteDataURL}}"
+                    }
+                  ],
+                  "table": "cd_clientes",
+                  "wheres": {
+                    "condition": "AND",
+                    "rules": [
+                      {
+                        "id": "id",
+                        "field": "id",
+                        "type": "double",
+                        "operator": "equal",
+                        "value": "{{$_POST.id_hidden}}",
+                        "data": {
+                          "column": "id"
+                        },
+                        "operation": "="
+                      }
+                    ],
+                    "conditional": null,
+                    "valid": true
+                  },
+                  "returning": "id",
+                  "query": "update `cd_clientes` set `nome` = ?, `endereco` = ?, `tel` = ?, `cod` = ?, `fax` = ?, `email` = ?, `empresa` = ?, `telEmpresa` = ?, `Tipo Visto` = ?, `venc` = ?, `zairyu` = ?, `passaporte` = ?, `hab` = ?, `status_civil` = ?, `membros` = ?, `imagemZairyu` = ?, `imagemPassaporte` = ?, `imagemHabilitacao` = ?, `imagemCliente` = ? where `id` = ?",
+                  "params": [
+                    {
+                      "name": ":P1",
+                      "type": "expression",
+                      "value": "{{$_POST.nome}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P2",
+                      "type": "expression",
+                      "value": "{{$_POST.endereco}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P3",
+                      "type": "expression",
+                      "value": "{{$_POST.celular}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P4",
+                      "type": "expression",
+                      "value": "{{$_POST.cep}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P5",
+                      "type": "expression",
+                      "value": "{{$_POST.fax}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P6",
+                      "type": "expression",
+                      "value": "{{$_POST.email}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P7",
+                      "type": "expression",
+                      "value": "{{$_POST.empresa}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P8",
+                      "type": "expression",
+                      "value": "{{$_POST.telEmpresa}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P9",
+                      "type": "expression",
+                      "value": "{{$_POST.tipovisto}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P10",
+                      "type": "expression",
+                      "value": "{{$_POST.vencVisto}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P11",
+                      "type": "expression",
+                      "value": "{{$_POST.zairyu}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P12",
+                      "type": "expression",
+                      "value": "{{$_POST.passaporte}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P13",
+                      "type": "expression",
+                      "value": "{{$_POST.habilitacao}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P14",
+                      "type": "expression",
+                      "value": "{{$_POST.estadocivil}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P15",
+                      "type": "expression",
+                      "value": "{{$_POST.membros}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P16",
+                      "type": "expression",
+                      "value": "{{$_POST.zairyuDataURL}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P17",
+                      "type": "expression",
+                      "value": "{{$_POST.passaporteDataURL}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P18",
+                      "type": "expression",
+                      "value": "{{$_POST.habiliatacaoDataURL}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P19",
+                      "type": "expression",
+                      "value": "{{$_POST.clienteDataURL}}",
+                      "test": ""
+                    },
+                    {
+                      "operator": "equal",
+                      "type": "expression",
+                      "name": ":P20",
+                      "value": "{{$_POST.id_hidden}}",
+                      "test": ""
+                    }
+                  ]
+                }
+              },
+              "meta": [
+                {
+                  "name": "affected",
+                  "type": "number"
+                }
+              ]
+            }
+          },
+          "else": {
+            "steps": {
+              "name": "insert",
+              "module": "dbupdater",
+              "action": "insert",
+              "options": {
+                "connection": "sistema_carros",
+                "sql": {
+                  "type": "insert",
+                  "values": [
+                    {
+                      "table": "cd_clientes",
+                      "column": "nome",
+                      "type": "text",
+                      "value": "{{$_POST.nome}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "endereco",
+                      "type": "text",
+                      "value": "{{$_POST.endereco}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "tel",
+                      "type": "text",
+                      "value": "{{$_POST.celular}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "cod",
+                      "type": "text",
+                      "value": "{{$_POST.cep}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "fax",
+                      "type": "text",
+                      "value": "{{$_POST.fax}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "email",
+                      "type": "text",
+                      "value": "{{$_POST.email}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "empresa",
+                      "type": "text",
+                      "value": "{{$_POST.empresa}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "telEmpresa",
+                      "type": "text",
+                      "value": "{{$_POST.telEmpresa}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "Tipo Visto",
+                      "type": "text",
+                      "value": "{{$_POST.tipovisto}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "venc",
+                      "type": "text",
+                      "value": "{{$_POST.vencVisto}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "zairyu",
+                      "type": "text",
+                      "value": "{{$_POST.zairyu}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "passaporte",
+                      "type": "text",
+                      "value": "{{$_POST.passaporte}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "hab",
+                      "type": "text",
+                      "value": "{{$_POST.habilitacao}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "status_civil",
+                      "type": "text",
+                      "value": "{{$_POST.estadocivil}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "membros",
+                      "type": "text",
+                      "value": "{{$_POST.membros}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "telFixo",
+                      "type": "text",
+                      "value": "{{0}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "foto",
+                      "type": "file",
+                      "value": "{{0}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "imagemZairyu",
+                      "type": "text",
+                      "value": "{{$_POST.zairyuDataURL}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "imagemPassaporte",
+                      "type": "text",
+                      "value": "{{$_POST.passaporteDataURL}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "imagemHabilitacao",
+                      "type": "text",
+                      "value": "{{$_POST.habiliatacaoDataURL}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "imagemCliente",
+                      "type": "text",
+                      "value": "{{$_POST.clienteDataURL}}"
+                    }
+                  ],
+                  "table": "cd_clientes",
+                  "returning": "id",
+                  "query": "insert into `cd_clientes` (`Tipo Visto`, `cod`, `email`, `empresa`, `endereco`, `fax`, `foto`, `hab`, `imagemCliente`, `imagemHabilitacao`, `imagemPassaporte`, `imagemZairyu`, `membros`, `nome`, `passaporte`, `status_civil`, `tel`, `telEmpresa`, `telFixo`, `venc`, `zairyu`) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                  "params": [
+                    {
+                      "name": ":P1",
+                      "type": "expression",
+                      "value": "{{$_POST.nome}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P2",
+                      "type": "expression",
+                      "value": "{{$_POST.endereco}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P3",
+                      "type": "expression",
+                      "value": "{{$_POST.celular}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P4",
+                      "type": "expression",
+                      "value": "{{$_POST.cep}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P5",
+                      "type": "expression",
+                      "value": "{{$_POST.fax}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P6",
+                      "type": "expression",
+                      "value": "{{$_POST.email}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P7",
+                      "type": "expression",
+                      "value": "{{$_POST.empresa}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P8",
+                      "type": "expression",
+                      "value": "{{$_POST.telEmpresa}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P9",
+                      "type": "expression",
+                      "value": "{{$_POST.tipovisto}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P10",
+                      "type": "expression",
+                      "value": "{{$_POST.vencVisto}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P11",
+                      "type": "expression",
+                      "value": "{{$_POST.zairyu}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P12",
+                      "type": "expression",
+                      "value": "{{$_POST.passaporte}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P13",
+                      "type": "expression",
+                      "value": "{{$_POST.habilitacao}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P14",
+                      "type": "expression",
+                      "value": "{{$_POST.estadocivil}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P15",
+                      "type": "expression",
+                      "value": "{{$_POST.membros}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P16",
+                      "type": "expression",
+                      "value": "{{0}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P17",
+                      "type": "expression",
+                      "value": "{{0}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P18",
+                      "type": "expression",
+                      "value": "{{$_POST.zairyuDataURL}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P19",
+                      "type": "expression",
+                      "value": "{{$_POST.passaporteDataURL}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P20",
+                      "type": "expression",
+                      "value": "{{$_POST.habiliatacaoDataURL}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P21",
+                      "type": "expression",
+                      "value": "{{$_POST.clienteDataURL}}",
+                      "test": ""
+                    }
+                  ]
+                }
+              },
+              "meta": [
+                {
+                  "name": "identity",
+                  "type": "text"
+                },
+                {
+                  "name": "affected",
+                  "type": "number"
+                }
+              ]
+            }
+          }
+        },
+        "outputType": "boolean"
+      },
+      {
+        "name": "",
+        "module": "core",
+        "action": "end",
+        "options": {}
+      }
+    ]
+  }
+}

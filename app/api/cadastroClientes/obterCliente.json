@@ -1,0 +1,239 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "number",
+        "name": "id"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "query",
+      "module": "dbconnector",
+      "action": "single",
+      "options": {
+        "connection": "sistema_carros",
+        "sql": {
+          "type": "SELECT",
+          "columns": [
+            {
+              "table": "cd_clientes",
+              "column": "nome"
+            },
+            {
+              "table": "cd_clientes",
+              "column": "endereco"
+            },
+            {
+              "table": "cd_clientes",
+              "column": "tel"
+            },
+            {
+              "table": "cd_clientes",
+              "column": "cod"
+            },
+            {
+              "table": "cd_clientes",
+              "column": "telFixo"
+            },
+            {
+              "table": "cd_clientes",
+              "column": "fax"
+            },
+            {
+              "table": "cd_clientes",
+              "column": "email"
+            },
+            {
+              "table": "cd_clientes",
+              "column": "empresa"
+            },
+            {
+              "table": "cd_clientes",
+              "column": "telEmpresa"
+            },
+            {
+              "table": "cd_clientes",
+              "column": "Tipo Visto"
+            },
+            {
+              "table": "cd_clientes",
+              "column": "venc"
+            },
+            {
+              "table": "cd_clientes",
+              "column": "zairyu"
+            },
+            {
+              "table": "cd_clientes",
+              "column": "passaporte"
+            },
+            {
+              "table": "cd_clientes",
+              "column": "hab"
+            },
+            {
+              "table": "cd_clientes",
+              "column": "foto"
+            },
+            {
+              "table": "cd_clientes",
+              "column": "status_civil"
+            },
+            {
+              "table": "cd_clientes",
+              "column": "membros"
+            },
+            {
+              "table": "cd_clientes",
+              "column": "imagemZairyu"
+            },
+            {
+              "table": "cd_clientes",
+              "column": "imagemPassaporte"
+            },
+            {
+              "table": "cd_clientes",
+              "column": "imagemHabilitacao"
+            },
+            {
+              "table": "cd_clientes",
+              "column": "imagemCliente"
+            }
+          ],
+          "params": [
+            {
+              "operator": "equal",
+              "type": "expression",
+              "name": ":P1",
+              "value": "{{$_GET.id}}",
+              "test": ""
+            }
+          ],
+          "table": {
+            "name": "cd_clientes"
+          },
+          "primary": "id",
+          "joins": [],
+          "wheres": {
+            "condition": "AND",
+            "rules": [
+              {
+                "id": "cd_clientes.id",
+                "field": "cd_clientes.id",
+                "type": "double",
+                "operator": "equal",
+                "value": "{{$_GET.id}}",
+                "data": {
+                  "table": "cd_clientes",
+                  "column": "id",
+                  "type": "number",
+                  "columnObj": {
+                    "type": "increments",
+                    "primary": true,
+                    "nullable": false,
+                    "name": "id"
+                  }
+                },
+                "operation": "=",
+                "table": "cd_clientes"
+              }
+            ],
+            "conditional": null,
+            "valid": true
+          },
+          "query": "select `nome`, `endereco`, `tel`, `cod`, `telFixo`, `fax`, `email`, `empresa`, `telEmpresa`, `Tipo Visto`, `venc`, `zairyu`, `passaporte`, `hab`, `foto`, `status_civil`, `membros`, `imagemZairyu`, `imagemPassaporte`, `imagemHabilitacao`, `imagemCliente` from `cd_clientes` where `cd_clientes`.`id` = ?"
+        }
+      },
+      "output": true,
+      "meta": [
+        {
+          "type": "text",
+          "name": "nome"
+        },
+        {
+          "type": "text",
+          "name": "endereco"
+        },
+        {
+          "type": "text",
+          "name": "tel"
+        },
+        {
+          "type": "text",
+          "name": "cod"
+        },
+        {
+          "type": "text",
+          "name": "telFixo"
+        },
+        {
+          "type": "text",
+          "name": "fax"
+        },
+        {
+          "type": "text",
+          "name": "email"
+        },
+        {
+          "type": "text",
+          "name": "empresa"
+        },
+        {
+          "type": "text",
+          "name": "telEmpresa"
+        },
+        {
+          "type": "text",
+          "name": "Tipo Visto"
+        },
+        {
+          "type": "text",
+          "name": "venc"
+        },
+        {
+          "type": "text",
+          "name": "zairyu"
+        },
+        {
+          "type": "text",
+          "name": "passaporte"
+        },
+        {
+          "type": "text",
+          "name": "hab"
+        },
+        {
+          "type": "file",
+          "name": "foto"
+        },
+        {
+          "type": "text",
+          "name": "status_civil"
+        },
+        {
+          "type": "text",
+          "name": "membros"
+        },
+        {
+          "type": "text",
+          "name": "imagemZairyu"
+        },
+        {
+          "type": "text",
+          "name": "imagemPassaporte"
+        },
+        {
+          "type": "text",
+          "name": "imagemHabilitacao"
+        },
+        {
+          "type": "text",
+          "name": "imagemCliente"
+        }
+      ],
+      "outputType": "object"
+    }
+  }
+}

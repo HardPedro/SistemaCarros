@@ -24,6 +24,7 @@
 </head>
 
 <body is="dmx-app" id="lista_produtos" dmx-on:load="listarCliente.load({})" dmx-on:wheel.prevent="run([{condition:{outputType:'boolean',if:`estadoTabela.value&lt;(listarCliente.data.query.length - 1)`,then:{steps:{condition:{outputType:'boolean',if:`$event.deltaY&gt;0`,then:{steps:{run:{outputType:'text',action:`estadoTabela.setValue((estadoTabela.value + 1))`}}}}}}}},{condition:{outputType:'boolean',if:`estadoTabela.value&gt;0`,then:{steps:{condition:{outputType:'boolean',if:`$event.deltaY&lt;0`,then:{steps:{run:{outputType:'text',action:`estadoTabela.setValue((estadoTabela.value - 1))`}}}}}}}}])">
+    <dmx-serverconnect id="apagarCliente" url="/api/listaClientes/apagarCliente" dmx-param:id="" dmx-on:success="listarCliente.load({})"></dmx-serverconnect>
     <dmx-serverconnect id="listarCliente" url="/api/listaClientes/listarClientes" dmx-param:filtro="inputPesquisa.value"></dmx-serverconnect>
     <div class="modal" id="modal1" is="dmx-bs5-modal" tabindex="-1">
         <div class="modal-dialog" role="document">
@@ -33,10 +34,10 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p class="text-body">Tem certeza que deseja apagar este produto? Esta ação não pode ser desfeita.</p>
+                    <p class="text-body">Tem certeza que deseja apagar este cliente? Esta ação não pode ser desfeita.</p>
                 </div>
                 <div class="modal-footer"><button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="Cancel" dmx-on:click="modal1.hide()">Cancelar</button>
-                    <button type="button" class="btn btn-danger" id="Confirm" dmx-on:click="ApagarProduto.load({produto_id: ListarProdutos.data.query[estadoTabela.value].id})">Sim, apagar</button>
+                    <button type="button" class="btn btn-danger" id="Confirm" dmx-on:click="apagarCliente.load({id: listarCliente.data.query[estadoTabela.value].id});modal1.hide()">Sim, apagar</button>
                 </div>
             </div>
         </div>
@@ -56,7 +57,7 @@
         <div class="grid">
             <!-- Lateral -->
             <nav class="side">
-                <button href="#" class="action" dmx-on:click="browser1.goto('/cadastro_produtos.html')">
+                <button href="#" class="action" dmx-on:click="browser1.goto('/cadastro_clientes.html')">
                     <span class="ico">
                         <!-- plus -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2">
@@ -66,7 +67,7 @@
                     Novo
                 </button>
 
-                <button href="#" class="action" dmx-on:click="browser1.goto('/cadastro_produtos.html?id='+ListarProdutos.data.query[estadoTabela.value].id)">
+                <button href="#" class="action" dmx-on:click="browser1.goto('/cadastro_clientes.html?id='+listarCliente.data.query[estadoTabela.value].id)">
                     <span class="ico">
                         <!-- edit -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2">

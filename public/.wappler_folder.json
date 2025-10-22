@@ -6,5 +6,9 @@
   "loginteste.html": {
     "layoutPage": "main",
     "description": ""
+  },
+  "cadastro_clientess.html": {
+    "layoutPage": "main",
+    "description": ""
   }
 }

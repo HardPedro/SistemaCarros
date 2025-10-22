@@ -30,10 +30,11 @@
 
 <body is="dmx-app" id="cadastro_produtos">
 
+
     <dmx-value id="imgUrl"></dmx-value>
     <dmx-value id="img" dmx-bind:value="buscarImgBlob.data.query.imagem"></dmx-value>
-    <dmx-serverconnect id="listarCategorias"></dmx-serverconnect><dmx-serverconnect id="buscarImgBlob" url="/api/listaProdutos/imgBlob" dmx-param:id_hidden="query.id"></dmx-serverconnect>
-    <dmx-serverconnect id="ObterProduto" url="/api/listaProdutos/obterProduto" dmx-param:id_pick="query.id"></dmx-serverconnect>
+    <dmx-serverconnect id="listarFornecedores" url="/api/cadastroProdutos/listarFornecedores"></dmx-serverconnect><dmx-serverconnect id="listarCategorias" url="/api/cadastroProdutos/listarCategorias"></dmx-serverconnect><dmx-serverconnect id="buscarImgBlob" url="/api/cadastroProdutos/imgBlob" dmx-param:id_hidden="query.id"></dmx-serverconnect>
+    <dmx-serverconnect id="ObterProduto" url="/api/cadastroProdutos/obterProduto" dmx-param:id_pick="query.id"></dmx-serverconnect>
     <dmx-notifications id="notifies1"></dmx-notifications>
     <div is="dmx-browser" id="browser1"></div>
 
@@ -105,6 +106,8 @@
 
 
 
+
+
                     <input id="id" name="id_hidden" type="hidden" class="form-control" dmx-bind:value="query.id">
 
                     <!-- Nome / Valor -->
@@ -118,8 +121,9 @@
                     <div class="label">Categoria</div>
                     <div class="label">Fornecedor</div>
 
-                    <input class="input" type="text" placeholder="Categoria" name="categoria" id="categoria" dmx-bind:value="ObterProduto.data.query.categoria">
-                    <input class="input" type="text" placeholder="Fornecedor" name="fornecedor" id="fornecedor" dmx-bind:value="ObterProduto.data.query.fornecedor">
+                    <select id="categoria" class="form-select" dmx-bind:options="listarCategorias.data.query" optiontext="nome" dmx-bind:value="ObterProduto.data.query.categoria" name="categoria" optionvalue="nome">
+                    </select><select id="fornecedor" class="form-select" dmx-bind:options="listarFornecedores.data.query" optiontext="nome" dmx-bind:value="ObterProduto.data.query.fornecedor" name="fornecedor" optionvalue="nome">
+                    </select>
 
                     <!-- Estoque / Estoque mínimo -->
                     <div class="label">Estoque</div>

@@ -33,31 +33,6 @@
           "system_versioned": false
         }
       },
-      "cd_categoria": {
-        "db": {
-          "engine": "InnoDB",
-          "schema": "sistema_carros",
-          "collation": "utf8mb4_general_ci",
-          "system_versioned": false
-        },
-        "columns": {
-          "id": {
-            "db": {
-              "type": "increments",
-              "primary": true,
-              "nullable": false
-            }
-          },
-          "nome": {
-            "db": {
-              "type": "string",
-              "maxLength": 50,
-              "primary": false,
-              "nullable": false
-            }
-          }
-        }
-      },
       "cd_fabricante": {
         "db": {
           "engine": "InnoDB",
@@ -130,19 +105,19 @@
           "system_versioned": false
         }
       },
-      "shitadori": {
-        "db": {
-          "engine": "InnoDB",
-          "schema": "sistema_carros",
-          "collation": "utf8mb4_0900_ai_ci",
-          "system_versioned": false
-        }
-      },
       "resto": {
         "db": {
           "engine": "InnoDB",
           "schema": "sistema_carros",
           "collation": "utf8mb4_general_ci",
+          "system_versioned": false
+        }
+      },
+      "shitadori": {
+        "db": {
+          "engine": "InnoDB",
+          "schema": "sistema_carros",
+          "collation": "utf8mb4_0900_ai_ci",
           "system_versioned": false
         }
       },
@@ -155,14 +130,6 @@
         }
       },
       "cd_carros": {
-        "db": {
-          "engine": "InnoDB",
-          "schema": "sistema_carros",
-          "collation": "utf8mb4_general_ci",
-          "system_versioned": false
-        }
-      },
-      "cd_clientes": {
         "db": {
           "engine": "InnoDB",
           "schema": "sistema_carros",
@@ -453,6 +420,216 @@
               "maxLength": 65535,
               "primary": false,
               "nullable": true
+            }
+          }
+        }
+      },
+      "cd_categoria": {
+        "db": {
+          "engine": "InnoDB",
+          "schema": "sistema_carros",
+          "collation": "utf8mb4_general_ci",
+          "system_versioned": false
+        },
+        "columns": {
+          "id": {
+            "db": {
+              "type": "increments",
+              "primary": true,
+              "nullable": false
+            }
+          },
+          "nome": {
+            "db": {
+              "type": "string",
+              "maxLength": 50,
+              "primary": false,
+              "nullable": false
+            }
+          }
+        }
+      },
+      "cd_clientes": {
+        "db": {
+          "engine": "InnoDB",
+          "schema": "sistema_carros",
+          "collation": "utf8mb4_general_ci",
+          "system_versioned": false
+        },
+        "columns": {
+          "id": {
+            "db": {
+              "type": "increments",
+              "primary": true,
+              "nullable": false
+            }
+          },
+          "nome": {
+            "db": {
+              "type": "string",
+              "maxLength": 100,
+              "primary": false,
+              "nullable": false
+            }
+          },
+          "endereco": {
+            "db": {
+              "type": "string",
+              "maxLength": 500,
+              "primary": false,
+              "nullable": false
+            }
+          },
+          "tel": {
+            "db": {
+              "type": "string",
+              "maxLength": 30,
+              "primary": false,
+              "nullable": false
+            }
+          },
+          "cod": {
+            "db": {
+              "type": "string",
+              "maxLength": 10,
+              "primary": false,
+              "nullable": false
+            }
+          },
+          "telFixo": {
+            "db": {
+              "type": "string",
+              "maxLength": 20,
+              "primary": false,
+              "nullable": false
+            }
+          },
+          "fax": {
+            "db": {
+              "type": "string",
+              "maxLength": 30,
+              "primary": false,
+              "nullable": false
+            }
+          },
+          "email": {
+            "db": {
+              "type": "string",
+              "maxLength": 100,
+              "primary": false,
+              "nullable": false
+            }
+          },
+          "empresa": {
+            "db": {
+              "type": "string",
+              "maxLength": 100,
+              "primary": false,
+              "nullable": false
+            }
+          },
+          "telEmpresa": {
+            "db": {
+              "type": "string",
+              "maxLength": 35,
+              "primary": false,
+              "nullable": false
+            }
+          },
+          "Tipo Visto": {
+            "db": {
+              "type": "string",
+              "maxLength": 50,
+              "primary": false,
+              "nullable": false
+            }
+          },
+          "venc": {
+            "db": {
+              "type": "string",
+              "maxLength": 10,
+              "primary": false,
+              "nullable": false
+            }
+          },
+          "zairyu": {
+            "db": {
+              "type": "string",
+              "maxLength": 70,
+              "primary": false,
+              "nullable": false
+            }
+          },
+          "passaporte": {
+            "db": {
+              "type": "string",
+              "maxLength": 70,
+              "primary": false,
+              "nullable": false
+            }
+          },
+          "hab": {
+            "db": {
+              "type": "string",
+              "maxLength": 70,
+              "primary": false,
+              "nullable": false
+            }
+          },
+          "foto": {
+            "db": {
+              "type": "binary",
+              "maxLength": 4294967295,
+              "primary": false,
+              "nullable": false
+            }
+          },
+          "status_civil": {
+            "db": {
+              "type": "string",
+              "maxLength": 70,
+              "primary": false,
+              "nullable": false
+            }
+          },
+          "membros": {
+            "db": {
+              "type": "string",
+              "maxLength": 70,
+              "primary": false,
+              "nullable": false
+            }
+          },
+          "imagemZairyu": {
+            "db": {
+              "type": "text",
+              "maxLength": 4294967295,
+              "primary": false,
+              "nullable": false
+            }
+          },
+          "imagemPassaporte": {
+            "db": {
+              "type": "text",
+              "maxLength": 4294967295,
+              "primary": false,
+              "nullable": false
+            }
+          },
+          "imagemHabilitacao": {
+            "db": {
+              "type": "text",
+              "maxLength": 4294967295,
+              "primary": false,
+              "nullable": false
+            }
+          },
+          "imagemCliente": {
+            "db": {
+              "type": "text",
+              "maxLength": 4294967295,
+              "primary": false,
+              "nullable": false
             }
           }
         }
