@@ -1,0 +1,124 @@
+{
+  "meta": {
+    "options": {
+      "linkedFile": "/public/lista_fornecedores.html"
+    },
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      },
+      {
+        "type": "text",
+        "name": "filtro"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "query",
+      "module": "dbconnector",
+      "action": "select",
+      "options": {
+        "connection": "sistema_carros",
+        "sql": {
+          "type": "SELECT",
+          "columns": [
+            {
+              "table": "cd_fornecedor",
+              "column": "id"
+            },
+            {
+              "table": "cd_fornecedor",
+              "column": "nome"
+            },
+            {
+              "table": "cd_fornecedor",
+              "column": "telefone"
+            },
+            {
+              "table": "cd_fornecedor",
+              "column": "email"
+            },
+            {
+              "table": "cd_fornecedor",
+              "column": "endereco"
+            }
+          ],
+          "params": [
+            {
+              "operator": "begins_with",
+              "type": "expression",
+              "name": ":P1",
+              "value": "{{$_GET.filtro}}",
+              "test": ""
+            }
+          ],
+          "table": {
+            "name": "cd_fornecedor"
+          },
+          "primary": "id",
+          "joins": [],
+          "wheres": {
+            "condition": "AND",
+            "rules": [
+              {
+                "id": "cd_fornecedor.nome",
+                "field": "cd_fornecedor.nome",
+                "type": "string",
+                "operator": "begins_with",
+                "value": "{{$_GET.filtro}}",
+                "data": {
+                  "table": "cd_fornecedor",
+                  "column": "nome",
+                  "type": "text",
+                  "columnObj": {
+                    "type": "string",
+                    "maxLength": 100,
+                    "primary": false,
+                    "nullable": false,
+                    "name": "nome"
+                  }
+                },
+                "operation": "LIKE",
+                "table": "cd_fornecedor"
+              }
+            ],
+            "conditional": null,
+            "valid": true
+          },
+          "query": "select `id`, `nome`, `telefone`, `email`, `endereco` from `cd_fornecedor` where `cd_fornecedor`.`nome` like ?"
+        }
+      },
+      "output": true,
+      "meta": [
+        {
+          "type": "number",
+          "name": "id"
+        },
+        {
+          "type": "text",
+          "name": "nome"
+        },
+        {
+          "type": "text",
+          "name": "telefone"
+        },
+        {
+          "type": "text",
+          "name": "email"
+        },
+        {
+          "type": "text",
+          "name": "endereco"
+        }
+      ],
+      "outputType": "array",
+      "collapsed": true
+    }
+  }
+}
