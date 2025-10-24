@@ -123,5 +123,13 @@ dmx.config({
       "meta": null,
       "outputType": "text"
     }
+  },
+  "cadastro_carros": {
+    "query": [
+      {
+        "type": "number",
+        "name": "id"
+      }
+    ]
   }
 });

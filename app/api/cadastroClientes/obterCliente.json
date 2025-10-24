@@ -75,10 +75,6 @@
             },
             {
               "table": "cd_clientes",
-              "column": "foto"
-            },
-            {
-              "table": "cd_clientes",
               "column": "status_civil"
             },
             {
@@ -143,7 +139,7 @@
             "conditional": null,
             "valid": true
           },
-          "query": "select `nome`, `endereco`, `tel`, `cod`, `telFixo`, `fax`, `email`, `empresa`, `telEmpresa`, `Tipo Visto`, `venc`, `zairyu`, `passaporte`, `hab`, `foto`, `status_civil`, `membros`, `imagemZairyu`, `imagemPassaporte`, `imagemHabilitacao`, `imagemCliente` from `cd_clientes` where `cd_clientes`.`id` = ?"
+          "query": "select `nome`, `endereco`, `tel`, `cod`, `telFixo`, `fax`, `email`, `empresa`, `telEmpresa`, `Tipo Visto`, `venc`, `zairyu`, `passaporte`, `hab`, `status_civil`, `membros`, `imagemZairyu`, `imagemPassaporte`, `imagemHabilitacao`, `imagemCliente` from `cd_clientes` where `cd_clientes`.`id` = ?"
         }
       },
       "output": true,
@@ -203,10 +199,6 @@
         {
           "type": "text",
           "name": "hab"
-        },
-        {
-          "type": "file",
-          "name": "foto"
         },
         {
           "type": "text",

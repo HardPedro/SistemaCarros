@@ -364,11 +364,45 @@ button.item2 {
   display:grid; gap:6px; color:#fff; font:800 18px/1 "Montserrat";
   text-transform:uppercase; letter-spacing:.4px;
 }
-.grid-form input, .grid-form textarea{
+.grid-form input, .grid-form textarea, .grid-form select{
   background:#dedede; border:none; border-radius:8px; padding:10px 12px;
   font:600 15px/1.2 "Inter";
 }
+.grid-form select{
+  appearance:none;
+  -webkit-appearance:none;
+  -moz-appearance:none;
+}
 .grid-form .full{ grid-column: 1 / -1; }
+.grid-form .ghost-cell{display:none;}
+
+.composite-input-group{
+  display:flex;
+  gap:8px;
+  align-items:stretch;
+}
+.composite-input-group > *{
+  flex:1;
+  min-width:0;
+}
+.composite-input-group select,
+.composite-input-group input{
+  width:100%;
+}
+.composite-inline{
+  gap:4px;
+}
+.composite-inline > *{
+  border-radius:0;
+}
+.composite-inline > *:first-child{
+  border-top-left-radius:8px;
+  border-bottom-left-radius:8px;
+}
+.composite-inline > *:last-child{
+  border-top-right-radius:8px;
+  border-bottom-right-radius:8px;
+}
 
 
 
@@ -583,4 +617,25 @@ button.item2 {
 @media (max-width: 640px){
   .tabs{ grid-template-columns: 1fr; }
   .grid-form{ grid-template-columns: 1fr; }
+}
+.shaken-input-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 0;
+}
+
+.shaken-input-group > * {
+    border-radius: 0;
+    border-right: 1px solid #9ca3af;
+}
+
+.shaken-input-group > *:first-child {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.shaken-input-group > *:last-child {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-right: 0;
 }

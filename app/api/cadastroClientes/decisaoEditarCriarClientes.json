@@ -143,20 +143,20 @@
         "name": "file1",
         "sub": [
           {
-            "name": "name",
-            "type": "text"
+            "type": "text",
+            "name": "name"
           },
           {
-            "name": "type",
-            "type": "text"
+            "type": "text",
+            "name": "type"
           },
           {
-            "name": "size",
-            "type": "number"
+            "type": "number",
+            "name": "size"
           },
           {
-            "name": "error",
-            "type": "text"
+            "type": "text",
+            "name": "error"
           }
         ],
         "outputType": "file"
@@ -172,20 +172,20 @@
         "name": "file2",
         "sub": [
           {
-            "name": "name",
-            "type": "text"
+            "type": "text",
+            "name": "name"
           },
           {
-            "name": "type",
-            "type": "text"
+            "type": "text",
+            "name": "type"
           },
           {
-            "name": "size",
-            "type": "number"
+            "type": "number",
+            "name": "size"
           },
           {
-            "name": "error",
-            "type": "text"
+            "type": "text",
+            "name": "error"
           }
         ],
         "outputType": "file"
@@ -201,20 +201,20 @@
         "name": "file3",
         "sub": [
           {
-            "name": "name",
-            "type": "text"
+            "type": "text",
+            "name": "name"
           },
           {
-            "name": "type",
-            "type": "text"
+            "type": "text",
+            "name": "type"
           },
           {
-            "name": "size",
-            "type": "number"
+            "type": "number",
+            "name": "size"
           },
           {
-            "name": "error",
-            "type": "text"
+            "type": "text",
+            "name": "error"
           }
         ],
         "outputType": "file"
@@ -230,20 +230,20 @@
         "name": "file4",
         "sub": [
           {
-            "name": "name",
-            "type": "text"
+            "type": "text",
+            "name": "name"
           },
           {
-            "name": "type",
-            "type": "text"
+            "type": "text",
+            "name": "type"
           },
           {
-            "name": "size",
-            "type": "number"
+            "type": "number",
+            "name": "size"
           },
           {
-            "name": "error",
-            "type": "text"
+            "type": "text",
+            "name": "error"
           }
         ],
         "outputType": "file"
@@ -386,6 +386,12 @@
                       "column": "imagemCliente",
                       "type": "text",
                       "value": "{{$_POST.clienteDataURL}}"
+                    },
+                    {
+                      "table": "cd_clientes",
+                      "column": "telFixo",
+                      "type": "text",
+                      "value": "{{$_POST.residencial}}"
                     }
                   ],
                   "table": "cd_clientes",
@@ -408,7 +414,7 @@
                     "valid": true
                   },
                   "returning": "id",
-                  "query": "update `cd_clientes` set `nome` = ?, `endereco` = ?, `tel` = ?, `cod` = ?, `fax` = ?, `email` = ?, `empresa` = ?, `telEmpresa` = ?, `Tipo Visto` = ?, `venc` = ?, `zairyu` = ?, `passaporte` = ?, `hab` = ?, `status_civil` = ?, `membros` = ?, `imagemZairyu` = ?, `imagemPassaporte` = ?, `imagemHabilitacao` = ?, `imagemCliente` = ? where `id` = ?",
+                  "query": "update `cd_clientes` set `nome` = ?, `endereco` = ?, `tel` = ?, `cod` = ?, `fax` = ?, `email` = ?, `empresa` = ?, `telEmpresa` = ?, `Tipo Visto` = ?, `venc` = ?, `zairyu` = ?, `passaporte` = ?, `hab` = ?, `status_civil` = ?, `membros` = ?, `imagemZairyu` = ?, `imagemPassaporte` = ?, `imagemHabilitacao` = ?, `imagemCliente` = ?, `telFixo` = ? where `id` = ?",
                   "params": [
                     {
                       "name": ":P1",
@@ -525,9 +531,15 @@
                       "test": ""
                     },
                     {
+                      "name": ":P20",
+                      "type": "expression",
+                      "value": "{{$_POST.residencial}}",
+                      "test": ""
+                    },
+                    {
                       "operator": "equal",
                       "type": "expression",
-                      "name": ":P20",
+                      "name": ":P21",
                       "value": "{{$_POST.id_hidden}}",
                       "test": ""
                     }
@@ -646,13 +658,7 @@
                       "table": "cd_clientes",
                       "column": "telFixo",
                       "type": "text",
-                      "value": "{{0}}"
-                    },
-                    {
-                      "table": "cd_clientes",
-                      "column": "foto",
-                      "type": "file",
-                      "value": "{{0}}"
+                      "value": "{{$_POST.residencial}}"
                     },
                     {
                       "table": "cd_clientes",
@@ -681,7 +687,7 @@
                   ],
                   "table": "cd_clientes",
                   "returning": "id",
-                  "query": "insert into `cd_clientes` (`Tipo Visto`, `cod`, `email`, `empresa`, `endereco`, `fax`, `foto`, `hab`, `imagemCliente`, `imagemHabilitacao`, `imagemPassaporte`, `imagemZairyu`, `membros`, `nome`, `passaporte`, `status_civil`, `tel`, `telEmpresa`, `telFixo`, `venc`, `zairyu`) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                  "query": "insert into `cd_clientes` (`Tipo Visto`, `cod`, `email`, `empresa`, `endereco`, `fax`, `hab`, `imagemCliente`, `imagemHabilitacao`, `imagemPassaporte`, `imagemZairyu`, `membros`, `nome`, `passaporte`, `status_civil`, `tel`, `telEmpresa`, `telFixo`, `venc`, `zairyu`) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                   "params": [
                     {
                       "name": ":P1",
@@ -776,35 +782,29 @@
                     {
                       "name": ":P16",
                       "type": "expression",
-                      "value": "{{0}}",
+                      "value": "{{$_POST.residencial}}",
                       "test": ""
                     },
                     {
                       "name": ":P17",
                       "type": "expression",
-                      "value": "{{0}}",
+                      "value": "{{$_POST.zairyuDataURL}}",
                       "test": ""
                     },
                     {
                       "name": ":P18",
                       "type": "expression",
-                      "value": "{{$_POST.zairyuDataURL}}",
+                      "value": "{{$_POST.passaporteDataURL}}",
                       "test": ""
                     },
                     {
                       "name": ":P19",
                       "type": "expression",
-                      "value": "{{$_POST.passaporteDataURL}}",
-                      "test": ""
-                    },
-                    {
-                      "name": ":P20",
-                      "type": "expression",
                       "value": "{{$_POST.habiliatacaoDataURL}}",
                       "test": ""
                     },
                     {
-                      "name": ":P21",
+                      "name": ":P20",
                       "type": "expression",
                       "value": "{{$_POST.clienteDataURL}}",
                       "test": ""
