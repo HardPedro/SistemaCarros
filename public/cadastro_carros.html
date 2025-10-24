@@ -21,6 +21,7 @@
 </head>
 
 <body is="dmx-app" id="cadastro_carros">
+    <dmx-value id="var1"></dmx-value>
     <div is="dmx-browser" id="browser1"></div>
     <dmx-notifications id="notifies1" align="center"></dmx-notifications>
     <dmx-serverconnect id="obterCarro" url="/api/cadastroCarros/obterCarro" dmx-param:id_carro="query.id"></dmx-serverconnect>
@@ -144,7 +145,7 @@
 
                 <div class="actions">
                     <button class="ghost" dmx-on:click="dadosVeiculo.submit()">＋ NOVO (F1)</button>
-                    <button class="ghost">✎ EDITAR (F2)</button>
+                    <button class="ghost" dmx-on:click="notifies1.success(obterCarro.data.query[0].opcionais)">✎ EDITAR (F2)</button>
                     <button class="ghost" dmx-on:click="dadosVeiculo.submit()">▮ SALVAR (F5)</button>
                     <button class="danger">🗑 DELETAR</button>
                 </div>
@@ -345,8 +346,8 @@
                         <div class="pad two-cols options-grid" id="opcionais">
                             <!-- cada botão tem um checkbox hidden pareado (mesmo valor) -->
                             <div class="opt">
-                                <button type="button" class="opt-btn" data-value="ABS" id="ABS">ABS</button>
-                                <input type="checkbox" id="opcionalABS" name="opcionais[]" value="1" data-label="ABS" hidden="" dmx-bind:checked="value.contains(obterCarro.data.query[0].opcionais)">
+                                <button type="button" class="opt-btn" data-value="ABS" id="ABS" dmx-hide="obterCarro.data.query[0].opcionais.contains(opcionalABS.value)">ABS</button>
+                                <input type="checkbox" id="opcionalABS" name="opcionais[]" value="1" data-label="ABS" hidden="" dmx-bind:checked="obterCarro.data.query[0].opcionais.contains(value)">
                             </div>
                             <div class="opt">
                                 <button type="button" class="opt-btn" data-value="Bancos elétricos" id="bancosEletricos">Bancos elétricos</button>
