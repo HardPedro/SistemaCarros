@@ -130,6 +130,29 @@ dmx.config({
         "type": "number",
         "name": "id"
       }
-    ]
+    ],
+    "var1": {
+      "outputType": "array"
+    },
+    "servicosArray": {
+      "meta": null,
+      "outputType": "text"
+    },
+    "imgSource": {
+      "meta": null,
+      "outputType": "text"
+    },
+    "imgSourcePrincipal": {
+      "meta": [],
+      "outputType": "text"
+    },
+    "imgSourceGaleria": {
+      "meta": [],
+      "outputType": "array"
+    },
+    "masonry1": {
+      "meta": null,
+      "outputType": "array"
+    }
   }
 });

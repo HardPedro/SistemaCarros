@@ -18,10 +18,21 @@
     <script src="/dmxAppConnect/dmxNotifications/dmxNotifications.js" defer></script>
     <script src="/dmxAppConnect/dmxBrowser/dmxBrowser.js" defer></script>
     <script src="/dmxAppConnect/dmxFormatter/dmxFormatter.js" defer></script>
+    <script src="/dmxAppConnect/dmxBootstrap4Modal/dmxBootstrap4Modal.js" defer></script>
+    <link rel="stylesheet" href="/dmxAppConnect/dmxDropzone/dmxDropzone.css" />
+    <script src="/dmxAppConnect/dmxDropzone/dmxDropzone.js" defer></script>
+    <link rel="stylesheet" href="/dmxAppConnect/dmxValidator/dmxValidator.css" />
+    <script src="/dmxAppConnect/dmxValidator/dmxValidator.js" defer></script>
+    <script src="/dmxAppConnect/dmxSwiper/dmxSwiper.js" defer></script>
+    <link rel="stylesheet" href="/dmxAppConnect/dmxSwiper/swiper.min.css" />
+    <script src="/dmxAppConnect/dmxSwiper/swiper.min.js" defer></script>
+    <script src="/dmxAppConnect/dmxMasonry/dmxMasonry.js" defer></script>
 </head>
 
 <body is="dmx-app" id="cadastro_carros">
-    <dmx-value id="var1"></dmx-value>
+    <dmx-value id="imgSourcePrincipal" dmx-bind:value="obterCarro.data.query[0].imgPrincipal"></dmx-value>
+    <dmx-value id="servicosArray" dmx-bind:value="obterCarro.data.query[0].servicos.split(',')"></dmx-value>
+    <dmx-value id="opcionaisArray" dmx-bind:value="obterCarro.data.query[0].opcionais.split(',')"></dmx-value>
     <div is="dmx-browser" id="browser1"></div>
     <dmx-notifications id="notifies1" align="center"></dmx-notifications>
     <dmx-serverconnect id="obterCarro" url="/api/cadastroCarros/obterCarro" dmx-param:id_carro="query.id"></dmx-serverconnect>
@@ -127,14 +138,36 @@
     </style>
 
     <form class="page" id="dadosVeiculo" is="dmx-serverconnect-form" method="post" action="/api/cadastroCarros/decisaoEditarCriarCarros" autocomplete="off" dmx-on:success="notifies1.success('cadastro concluído!');browser1.goto('/lista_carros.html')">
+        <div class="modal" id="imagensUpload" is="dmx-bs4-modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-dark">
+                        <h5 class="modal-title text-light">Envie suas imagens</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+
+                        <input id="file1" name="file1" type="file" class="form-control-file"><input id="imgPrincipalURL" name="imgPrincipal" type="hidden" class="form-control" dmx-bind:value="file1.file.dataUrl">
+                        <input id="imgGaleriaURL" name="imgGaleria" type="hidden" class="form-control" dmx-bind:value="file2.files[0].dataUrl">
+                    </div>
+                    <div class="modal-footer bg-dark">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" dmx-on:click="imagensUpload.hide()">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="esquerda">
             <!-- LADO ESQUERDO -->
             <aside class="left-pane">
-                <figure class="photo-card">
-                    <img src="imgs/car-placeholder.png" alt="Foto do veículo">
-                    <figcaption>Foto do veículo</figcaption>
-                </figure>
+                <div class="photo-card container">
+
+                    <img src="imgs/car-placeholder.png" dmx-bind:src="imgSourcePrincipal.value"><button id="btn1" class="btn btn-sm btn-outline-primary" dmx-on:click="imagensUpload.show()">ENVIAR IMAGENS&nbsp;<i class="fa fa-arrow-up"></i></button>
+                </div>
 
                 <div class="car-title">
                     <strong>CAR NAME (BMW)</strong>
@@ -207,7 +240,7 @@
                             </label>
 
                             <label>KM Rodados
-                                <input type="number" id="km" name="km" min="0" dmx-bind:value="obterCarro.data.query[0].km">
+                                <input type="number" id="km" name="km" dmx-bind:value="obterCarro.data.query[0].km">
                             </label>
                             <label>Cilindrada
                                 <input type="text" id="cilindrada" name="cilindrada" dmx-bind:value="obterCarro.data.query[0].cilindrada">
@@ -237,10 +270,10 @@
                             </label>
 
                             <label>Portas
-                                <input type="number" min="0" id="portas" name="portas" dmx-bind:value="obterCarro.data.query[0].portas">
+                                <input type="number" id="portas" name="portas" dmx-bind:value="obterCarro.data.query[0].portas">
                             </label>
                             <label>Pessoas
-                                <input type="number" min="0" id="pessoas" name="pessoas" dmx-bind:value="obterCarro.data.query[0].pessoas">
+                                <input type="number" id="pessoas" name="pessoas" dmx-bind:value="obterCarro.data.query[0].pessoas">
                             </label>
                             <label>Peso
                                 <input type="text" id="peso" name="peso" dmx-bind:value="obterCarro.data.query[0].peso">
@@ -263,10 +296,10 @@
                             </label>
 
                             <label>Preço de Custo (¥)
-                                <input type="number" min="0" id="custo" name="custo" dmx-bind:value="obterCarro.data.query[0].custo">
+                                <input type="number" id="custo" name="custo" dmx-bind:value="obterCarro.data.query[0].custo">
                             </label>
                             <label>Preço de Venda (¥)
-                                <input type="number" min="0" id="venda" name="venda" dmx-bind:value="obterCarro.data.query[0].venda">
+                                <input type="number" id="venda" name="venda" dmx-bind:value="obterCarro.data.query[0].venda">
                             </label>
                             <label>Cliente
                                 <input type="text" id="cliente" name="cliente" dmx-bind:value="obterCarro.data.query[0].cliente">
@@ -346,148 +379,148 @@
                         <div class="pad two-cols options-grid" id="opcionais">
                             <!-- cada botão tem um checkbox hidden pareado (mesmo valor) -->
                             <div class="opt">
-                                <button type="button" class="opt-btn" data-value="ABS" id="ABS" dmx-hide="obterCarro.data.query[0].opcionais.contains(opcionalABS.value)">ABS</button>
-                                <input type="checkbox" id="opcionalABS" name="opcionais[]" value="1" data-label="ABS" hidden="" dmx-bind:checked="obterCarro.data.query[0].opcionais.contains(value)">
+                                <button type="button" class="opt-btn" data-value="ABS" id="ABS" dmx-class:active="opcionalABS.checked">ABS</button>
+                                <input type="checkbox" id="opcionalABS" name="opcionais[]" value="1" data-label="ABS" hidden="" dmx-bind:checked="opcionaisArray.value.contains(value)">
                             </div>
                             <div class="opt">
-                                <button type="button" class="opt-btn" data-value="Bancos elétricos" id="bancosEletricos">Bancos elétricos</button>
-                                <input type="checkbox" id="opcionalBancosEletricos" name="opcionais[]" value="2" data-label="Bancos elétricos" hidden>
+                                <button type="button" class="opt-btn" data-value="Bancos elétricos" id="bancosEletricos" dmx-class:active="opcionalBancosEletricos.checked">Bancos elétricos</button>
+                                <input type="checkbox" id="opcionalBancosEletricos" name="opcionais[]" value="2" data-label="Bancos elétricos" hidden dmx-bind:checked="opcionaisArray.value.contains(value)">
                             </div>
                             <div class="opt">
-                                <button type="button" class="opt-btn" data-value="ESC" id="ESC">ESC</button>
-                                <input type="checkbox" id="opcionalESC" name="opcionais[]" value="3" data-label="ESC" hidden>
+                                <button type="button" class="opt-btn" data-value="ESC" id="ESC" dmx-class:active="opcionalESC.checked">ESC</button>
+                                <input type="checkbox" id="opcionalESC" name="opcionais[]" value="3" data-label="ESC" hidden dmx-bind:checked="opcionaisArray.value.contains(value)">
                             </div>
                             <div class="opt">
-                                <button type="button" class="opt-btn" data-value="Key-Less" id="keyless">Key-Less</button>
-                                <input type="checkbox" id="opcionalKeyless" name="opcionais[]" value="4" data-label="Key-Less" hidden>
+                                <button type="button" class="opt-btn" data-value="Key-Less" id="keyless" dmx-class:active="opcionalKeyless.checked">Key-Less</button>
+                                <input type="checkbox" id="opcionalKeyless" name="opcionais[]" value="4" data-label="Key-Less" hidden dmx-bind:checked="opcionaisArray.value.contains(value)">
                             </div>
                             <div class="opt">
-                                <button type="button" class="opt-btn" data-value="Porta de correr" id="portaDeCorrer">Porta de correr</button>
-                                <input type="checkbox" id="opcionalPortaDeCorrer" name="opcionais[]" value="5" data-label="Porta de correr" hidden>
+                                <button type="button" class="opt-btn" data-value="Porta de correr" id="portaDeCorrer" dmx-class:active="opcionalPortaDeCorrer.checked">Porta de correr</button>
+                                <input type="checkbox" id="opcionalPortaDeCorrer" name="opcionais[]" value="5" data-label="Porta de correr" hidden dmx-bind:checked="opcionaisArray.value.contains(value)">
                             </div>
                             <div class="opt">
-                                <button type="button" class="opt-btn" data-value="Veículo especial" id="veiculoEspecial">Veículo especial</button>
-                                <input type="checkbox" id="opcionalVeiculoEspecial" name="opcionais[]" value="6" data-label="Veículo especial" hidden>
+                                <button type="button" class="opt-btn" data-value="Veículo especial" id="veiculoEspecial" dmx-class:active="opcionalVeiculoEspecial.checked">Veículo especial</button>
+                                <input type="checkbox" id="opcionalVeiculoEspecial" name="opcionais[]" value="6" data-label="Veículo especial" hidden dmx-bind:checked="opcionaisArray.value.contains(value)">
                             </div>
                             <div class="opt">
-                                <button type="button" class="opt-btn" data-value="Alarme" id="alarme">Alarme</button>
-                                <input type="checkbox" id="opcionalAlarme" name="opcionais[]" value="7" data-label="Alarme" hidden>
+                                <button type="button" class="opt-btn" data-value="Alarme" id="alarme" dmx-class:active="opcionalAlarme.checked">Alarme</button>
+                                <input type="checkbox" id="opcionalAlarme" name="opcionais[]" value="7" data-label="Alarme" hidden dmx-bind:checked="opcionaisArray.value.contains(value)">
                             </div>
                             <div class="opt">
-                                <button type="button" class="opt-btn" data-value="Bancos de couro" id="bancosDeCouro">Bancos de couro</button>
-                                <input type="checkbox" id="opcionalBancosDeCouro" name="opcionais[]" value="8" data-label="Bancos de couro" hidden>
+                                <button type="button" class="opt-btn" data-value="Bancos de couro" id="bancosDeCouro" dmx-class:active="opcionalBancosDeCouro.checked">Bancos de couro</button>
+                                <input type="checkbox" id="opcionalBancosDeCouro" name="opcionais[]" value="8" data-label="Bancos de couro" hidden dmx-bind:checked="opcionaisArray.value.contains(value)">
                             </div>
                             <div class="opt">
-                                <button type="button" class="opt-btn" data-value="ETC" id="ETC">ETC</button>
-                                <input type="checkbox" id="opcionalETC" name="opcionais[]" value="9" data-label="ETC" hidden>
+                                <button type="button" class="opt-btn" data-value="ETC" id="ETC" dmx-class:active="opcionalETC.checked">ETC</button>
+                                <input type="checkbox" id="opcionalETC" name="opcionais[]" value="9" data-label="ETC" hidden dmx-bind:checked="opcionaisArray.value.contains(value)">
                             </div>
                             <div class="opt">
-                                <button type="button" class="opt-btn" data-value="Kit Aero" id="kitAero">Kit Aero</button>
-                                <input type="checkbox" id="opcionalKitAero" name="opcionais[]" value="10" data-label="Kit Aero" hidden>
+                                <button type="button" class="opt-btn" data-value="Kit Aero" id="kitAero" dmx-class:active="opcionalKitAero.checked">Kit Aero</button>
+                                <input type="checkbox" id="opcionalKitAero" name="opcionais[]" value="10" data-label="Kit Aero" hidden dmx-bind:checked="opcionaisArray.value.contains(value)">
                             </div>
                             <div class="opt">
-                                <button type="button" class="opt-btn" data-value="Rebaixado" id="rebaixado">Rebaixado</button>
-                                <input type="checkbox" id="opcionalRebaixado" name="opcionais[]" value="11" data-label="Rebaixado" hidden>
+                                <button type="button" class="opt-btn" data-value="Rebaixado" id="rebaixado" dmx-class:active="opcionalRebaixado.checked">Rebaixado</button>
+                                <input type="checkbox" id="opcionalRebaixado" name="opcionais[]" value="11" data-label="Rebaixado" hidden dmx-bind:checked="opcionaisArray.value.contains(value)">
                             </div>
                             <div class="opt">
-                                <button type="button" class="opt-btn" data-value="Vidros elétricos" id="vidrosEletricos">Vidros elétricos</button>
-                                <input type="checkbox" id="opcionalVidrosEletricos" name="opcionais[]" value="12" data-label="Vidros elétricos" hidden>
+                                <button type="button" class="opt-btn" data-value="Vidros elétricos" id="vidrosEletricos" dmx-class:active="opcionalVidrosEletricos.checked">Vidros elétricos</button>
+                                <input type="checkbox" id="opcionalVidrosEletricos" name="opcionais[]" value="12" data-label="Vidros elétricos" hidden dmx-bind:checked="opcionaisArray.value.contains(value)">
                             </div>
                             <div class="opt">
-                                <button type="button" class="opt-btn" data-value="AirBag" id="airbag">AirBag</button>
-                                <input type="checkbox" id="opcionalAirbag" name="opcionais[]" value="13" data-label="AirBag" hidden>
+                                <button type="button" class="opt-btn" data-value="AirBag" id="airbag" dmx-class:active="opcionalAirbag.checked">AirBag</button>
+                                <input type="checkbox" id="opcionalAirbag" name="opcionais[]" value="13" data-label="AirBag" hidden dmx-bind:checked="opcionaisArray.value.contains(value)">
                             </div>
                             <div class="opt">
-                                <button type="button" class="opt-btn" data-value="Carro Novo" id="carroNovo">Carro Novo</button>
-                                <input type="checkbox" id="opcionalCarroNovo" name="opcionais[]" value="14" data-label="Carro Novo" hidden>
+                                <button type="button" class="opt-btn" data-value="Carro Novo" id="carroNovo" dmx-class:active="opcionalCarroNovo.checked">Carro Novo</button>
+                                <input type="checkbox" id="opcionalCarroNovo" name="opcionais[]" value="14" data-label="Carro Novo" hidden dmx-bind:checked="opcionaisArray.value.contains(value)">
                             </div>
                             <div class="opt">
-                                <button type="button" class="opt-btn" data-value="Teto Solar" id="tetoSolar">Teto Solar</button>
-                                <input type="checkbox" id="opcionalTetoSolar" name="opcionais[]" value="15" data-label="Teto Solar" hidden>
+                                <button type="button" class="opt-btn" data-value="Teto Solar" id="tetoSolar" dmx-class:active="opcionalTetoSolar.checked">Teto Solar</button>
+                                <input type="checkbox" id="opcionalTetoSolar" name="opcionais[]" value="15" data-label="Teto Solar" hidden dmx-bind:checked="opcionaisArray.value.contains(value)">
                             </div>
                             <div class="opt">
-                                <button type="button" class="opt-btn" data-value="Manual do Proprietário" id="manualDoProprietrio">Manual do Proprietário</button>
-                                <input type="checkbox" id="opcionalManualDoProprietrio" name="opcionais[]" value="16" data-label="Manual do Proprietário" hidden>
+                                <button type="button" class="opt-btn" data-value="Manual do Proprietário" id="manualDoProprietrio" dmx-class:active="opcionalManualDoProprietrio.checked">Manual do Proprietário</button>
+                                <input type="checkbox" id="opcionalManualDoProprietrio" name="opcionais[]" value="16" data-label="Manual do Proprietário" hidden dmx-bind:checked="opcionaisArray.value.contains(value)">
                             </div>
                             <div class="opt">
-                                <button type="button" class="opt-btn" data-value="Rodas de alumínio" id="rodasDeAluminio">Rodas de alumínio</button>
-                                <input type="checkbox" id="opcionalRodasDeAluminio" name="opcionais[]" value="17" data-label="Rodas de alumínio" hidden>
+                                <button type="button" class="opt-btn" data-value="Rodas de alumínio" id="rodasDeAluminio" dmx-class:active="opcionalRodasDeAluminio.checked">Rodas de alumínio</button>
+                                <input type="checkbox" id="opcionalRodasDeAluminio" name="opcionais[]" value="17" data-label="Rodas de alumínio" hidden dmx-bind:checked="opcionaisArray.value.contains(value)">
                             </div>
                             <div class="opt">
-                                <button type="button" class="opt-btn" data-value="3 Fileiras de Bancos" id="tresFileirasDeBancos">3 Fileiras de Bancos</button>
-                                <input type="checkbox" id="opcionalTresFileirasDeBancos" name="opcionais[]" value="18" data-label="3 Fileiras de Bancos" hidden>
+                                <button type="button" class="opt-btn" data-value="3 Fileiras de Bancos" id="tresFileirasDeBancos" dmx-class:active="opcionalTresFileirasDeBancos.checked">3 Fileiras de Bancos</button>
+                                <input type="checkbox" id="opcionalTresFileirasDeBancos" name="opcionais[]" value="18" data-label="3 Fileiras de Bancos" hidden dmx-bind:checked="opcionaisArray.value.contains(value)">
                             </div>
                             <div class="opt">
-                                <button type="button" class="opt-btn" data-value="Corredor" id="corredor">Corredor</button>
-                                <input type="checkbox" id="opcionalCorredor" name="opcionais[]" value="19" data-label="Corredor" hidden>
+                                <button type="button" class="opt-btn" data-value="Corredor" id="corredor" dmx-class:active="opcionalCorredor.checked">Corredor</button>
+                                <input type="checkbox" id="opcionalCorredor" name="opcionais[]" value="19" data-label="Corredor" hidden dmx-bind:checked="opcionaisArray.value.contains(value)">
                             </div>
                             <div class="opt">
-                                <button type="button" class="opt-btn" data-value="Faróis Xenom" id="faroisXenom">Faróis Xenom</button>
-                                <input type="checkbox" id="opcionalFaroisXenom" name="opcionais[]" value="20" data-label="Faróis Xenom" hidden>
+                                <button type="button" class="opt-btn" data-value="Faróis Xenom" id="faroisXenom" dmx-class:active="opcionalFaroisXenom.checked">Faróis Xenom</button>
+                                <input type="checkbox" id="opcionalFaroisXenom" name="opcionais[]" value="20" data-label="Faróis Xenom" hidden dmx-bind:checked="opcionaisArray.value.contains(value)">
                             </div>
                             <div class="opt">
-                                <button type="button" class="opt-btn" data-value="Monitor Traseiro" id="monitorTraseiro">Monitor Traseiro</button>
-                                <input type="checkbox" id="opcionalMonitorTraseiro" name="opcionais[]" value="21" data-label="Monitor Traseiro" hidden>
+                                <button type="button" class="opt-btn" data-value="Monitor Traseiro" id="monitorTraseiro" dmx-class:active="opcionalMonitorTraseiro.checked">Monitor Traseiro</button>
+                                <input type="checkbox" id="opcionalMonitorTraseiro" name="opcionais[]" value="21" data-label="Monitor Traseiro" hidden dmx-bind:checked="opcionaisArray.value.contains(value)">
                             </div>
                             <div class="opt">
-                                <button type="button" class="opt-btn" data-value="Trava Automática" id="travaAutomatica">Trava Automática</button>
-                                <input type="checkbox" id="opcionalTravaAutomatica" name="opcionais[]" value="22" data-label="Trava Automática" hidden>
+                                <button type="button" class="opt-btn" data-value="Trava Automática" id="travaAutomatica" dmx-class:active="opcionalTravaAutomatica.checked">Trava Automática</button>
+                                <input type="checkbox" id="opcionalTravaAutomatica" name="opcionais[]" value="22" data-label="Trava Automática" hidden dmx-bind:checked="opcionaisArray.value.contains(value)">
                             </div>
                             <div class="opt">
-                                <button type="button" class="opt-btn" data-value="4WD" id="fourWD">4WD</button>
-                                <input type="checkbox" id="opcionalFourWD" name="opcionais[]" value="23" data-label="4WD" hidden>
+                                <button type="button" class="opt-btn" data-value="4WD" id="fourWD" dmx-class:active="opcionalFourWD.checked">4WD</button>
+                                <input type="checkbox" id="opcionalFourWD" name="opcionais[]" value="23" data-label="4WD" hidden dmx-bind:checked="opcionaisArray.value.contains(value)">
                             </div>
                             <div class="opt">
-                                <button type="button" class="opt-btn" data-value="CD-MD" id="cdmd">CD-MD</button>
-                                <input type="checkbox" id="opcionalCdmd" name="opcionais[]" value="24" data-label="CD-MD" hidden>
+                                <button type="button" class="opt-btn" data-value="CD-MD" id="cdmd" dmx-class:active="opcionalCdmd.checked">CD-MD</button>
+                                <input type="checkbox" id="opcionalCdmd" name="opcionais[]" value="24" data-label="CD-MD" hidden dmx-bind:checked="opcionaisArray.value.contains(value)">
                             </div>
                             <div class="opt">
-                                <button type="button" class="opt-btn" data-value="Histórico de Tenken" id="historicoTenken">Histórico de Tenken</button>
-                                <input type="checkbox" id="opcionalHistoricoTenken" name="opcionais[]" value="25" data-label="Histórico de Tenken" hidden>
+                                <button type="button" class="opt-btn" data-value="Histórico de Tenken" id="historicoTenken" dmx-class:active="opcionalHistoricoTenken.checked">Histórico de Tenken</button>
+                                <input type="checkbox" id="opcionalHistoricoTenken" name="opcionais[]" value="25" data-label="Histórico de Tenken" hidden dmx-bind:checked="opcionaisArray.value.contains(value)">
                             </div>
                             <div class="opt">
-                                <button type="button" class="opt-btn" data-value="Não fumante" id="naoFumante">Não fumante</button>
-                                <input type="checkbox" id="opcionalNaoFumante" name="opcionais[]" value="26" data-label="Não fumante" hidden>
+                                <button type="button" class="opt-btn" data-value="Não fumante" id="naoFumante" dmx-class:active="opcionalNaoFumante.checked">Não fumante</button>
+                                <input type="checkbox" id="opcionalNaoFumante" name="opcionais[]" value="26" data-label="Não fumante" hidden dmx-bind:checked="opcionaisArray.value.contains(value)">
                             </div>
                             <div class="opt">
-                                <button type="button" class="opt-btn" data-value="Turbo" id="turbo">Turbo</button>
-                                <input type="checkbox" id="opcionalTurbo" name="opcionais[]" value="27" data-label="Turbo" hidden>
+                                <button type="button" class="opt-btn" data-value="Turbo" id="turbo" dmx-class:active="opcionalTurbo.checked">Turbo</button>
+                                <input type="checkbox" id="opcionalTurbo" name="opcionais[]" value="27" data-label="Turbo" hidden dmx-bind:checked="opcionaisArray.value.contains(value)">
                             </div>
                             <div class="opt">
-                                <button type="button" class="opt-btn" data-value="Câmera frontal" id="cameraFrontal">Câmera frontal</button>
-                                <input type="checkbox" id="opcionalCameraFrontal" name="opcionais[]" value="28" data-label="Câmera frontal" hidden>
+                                <button type="button" class="opt-btn" data-value="Câmera frontal" id="cameraFrontal" dmx-class:active="opcionalCameraFrontal.checked">Câmera frontal</button>
+                                <input type="checkbox" id="opcionalCameraFrontal" name="opcionais[]" value="28" data-label="Câmera frontal" hidden dmx-bind:checked="opcionaisArray.value.contains(value)">
                             </div>
                             <div class="opt">
-                                <button type="button" class="opt-btn" data-value="Banco Sofá" id="bancoSofa">Banco Sofá</button>
-                                <input type="checkbox" id="opcionalBancoSofa" name="opcionais[]" value="29" data-label="Banco Sofá" hidden>
+                                <button type="button" class="opt-btn" data-value="Banco Sofá" id="bancoSofa" dmx-class:active="opcionalBancoSofa.checked">Banco Sofá</button>
+                                <input type="checkbox" id="opcionalBancoSofa" name="opcionais[]" value="29" data-label="Banco Sofá" hidden dmx-bind:checked="opcionaisArray.value.contains(value)">
                             </div>
                             <div class="opt">
-                                <button type="button" class="opt-btn" data-value="Direção Hidráulica" id="direcaoHidraulica">Direção Hidráulica</button>
-                                <input type="checkbox" id="opcionalDirecaoHidraulica" name="opcionais[]" value="30" data-label="Direção Hidráulica" hidden>
+                                <button type="button" class="opt-btn" data-value="Direção Hidráulica" id="direcaoHidraulica" dmx-class:active="opcionalDirecaoHidraulica.checked">Direção Hidráulica</button>
+                                <input type="checkbox" id="opcionalDirecaoHidraulica" name="opcionais[]" value="30" data-label="Direção Hidráulica" hidden dmx-bind:checked="opcionaisArray.value.contains(value)">
                             </div>
                             <div class="opt">
-                                <button type="button" class="opt-btn" data-value="Importados" id="importados">Importados</button>
-                                <input type="checkbox" id="opcionalImportados" name="opcionais[]" value="31" data-label="Importados" hidden>
+                                <button type="button" class="opt-btn" data-value="Importados" id="importados" dmx-class:active="opcionalImportados.checked">Importados</button>
+                                <input type="checkbox" id="opcionalImportados" name="opcionais[]" value="31" data-label="Importados" hidden dmx-bind:checked="opcionaisArray.value.contains(value)">
                             </div>
                             <div class="opt">
-                                <button type="button" class="opt-btn" data-value="Navi-TV" id="naviTV">Navi-TV</button>
-                                <input type="checkbox" id="opcionalNaviTV" name="opcionais[]" value="32" data-label="Navi-TV" hidden>
+                                <button type="button" class="opt-btn" data-value="Navi-TV" id="naviTV" dmx-class:active="opcionalNaviTV.checked">Navi-TV</button>
+                                <input type="checkbox" id="opcionalNaviTV" name="opcionais[]" value="32" data-label="Navi-TV" hidden dmx-bind:checked="opcionaisArray.value.contains(value)">
                             </div>
                             <div class="opt">
-                                <button type="button" class="opt-btn" data-value="Único Dono" id="unicoDono">Único Dono</button>
-                                <input type="checkbox" id="opcionalUnicoDono" name="opcionais[]" value="33" data-label="Único Dono" hidden>
+                                <button type="button" class="opt-btn" data-value="Único Dono" id="unicoDono" dmx-class:active="opcionalUnicoDono.checked">Único Dono</button>
+                                <input type="checkbox" id="opcionalUnicoDono" name="opcionais[]" value="33" data-label="Único Dono" hidden dmx-bind:checked="opcionaisArray.value.contains(value)">
                             </div>
                             <div class="opt">
-                                <button type="button" class="opt-btn" data-value="Câmera Traseira" id="cameraTraseira">Câmera Traseira</button>
-                                <input type="checkbox" id="opcionalCameraTraseira" name="opcionais[]" value="34" data-label="Câmera Traseira" hidden>
+                                <button type="button" class="opt-btn" data-value="Câmera Traseira" id="cameraTraseira" dmx-class:active="opcionalCameraTraseira.checked">Câmera Traseira</button>
+                                <input type="checkbox" id="opcionalCameraTraseira" name="opcionais[]" value="34" data-label="Câmera Traseira" hidden dmx-bind:checked="opcionaisArray.value.contains(value)">
                             </div>
                             <div class="opt">
-                                <button type="button" class="opt-btn" data-value="Ar Condicionado" id="arCondicionado">Ar Condicionado</button>
-                                <input type="checkbox" id="opcionalArCondicionado" name="opcionais[]" value="35" data-label="Ar Condicionado" hidden>
+                                <button type="button" class="opt-btn" data-value="Ar Condicionado" id="arCondicionado" dmx-class:active="opcionalArCondicionado.checked">Ar Condicionado</button>
+                                <input type="checkbox" id="opcionalArCondicionado" name="opcionais[]" value="35" data-label="Ar Condicionado" hidden dmx-bind:checked="opcionaisArray.value.contains(value)">
                             </div>
                             <div class="opt">
-                                <button type="button" class="opt-btn" data-value="Ar Condicionado Traseiro" id="arCondicionadoTraseiro">Ar Condicionado Traseiro</button>
-                                <input type="checkbox" id="opcionalArCondicionadoTraseiro" name="opcionais[]" value="36" data-label="Ar Condicionado Traseiro" hidden>
+                                <button type="button" class="opt-btn" data-value="Ar Condicionado Traseiro" id="arCondicionadoTraseiro" dmx-class:active="opcionalArCondicionadoTraseiro.checked">Ar Condicionado Traseiro</button>
+                                <input type="checkbox" id="opcionalArCondicionadoTraseiro" name="opcionais[]" value="36" data-label="Ar Condicionado Traseiro" hidden dmx-bind:checked="opcionaisArray.value.contains(value)">
                             </div>
 
                         </div>
@@ -498,112 +531,112 @@
                         <div class="pad two-cols servicos-grid" id="servicos">
                             <!-- Cada bloco: botão visível + checkbox hidden que envia no form -->
                             <div class="servui-option">
-                                <button type="button" class="servui-btn" data-value="Higienização" id="higienizacao">Higienização</button>
-                                <input type="checkbox" id="servicoHigienizacao" name="servicos[]" value="1" data-label="Higienização" hidden>
+                                <button type="button" class="servui-btn" data-value="Higienização" id="higienizacao" dmx-class:active="servicoHigienizacao.checked">Higienização</button>
+                                <input type="checkbox" id="servicoHigienizacao" name="servicos[]" value="1" data-label="Higienização" hidden="" dmx-bind:checked="servicosArray.value.contains(value)">
                             </div>
                             <div class="servui-option">
-                                <button type="button" class="servui-btn" data-value="Polimento" id="polimento">Polimento</button>
-                                <input type="checkbox" id="servicoPolimento" name="servicos[]" value="2" data-label="Polimento" hidden>
+                                <button type="button" class="servui-btn" data-value="Polimento" id="polimento" dmx-class:active="servicoPolimento.checked">Polimento</button>
+                                <input type="checkbox" id="servicoPolimento" name="servicos[]" value="2" data-label="Polimento" hidden dmx-bind:checked="servicosArray.value.contains(value)">
                             </div>
                             <div class="servui-option">
-                                <button type="button" class="servui-btn" data-value="Cristalização" id="cristalizacao">Cristalização</button>
-                                <input type="checkbox" id="servicoCristalizacao" name="servicos[]" value="3" data-label="Cristalização" hidden>
+                                <button type="button" class="servui-btn" data-value="Cristalização" id="cristalizacao" dmx-class:active="servicoCristalizacao.checked">Cristalização</button>
+                                <input type="checkbox" id="servicoCristalizacao" name="servicos[]" value="3" data-label="Cristalização" hidden dmx-bind:checked="servicosArray.value.contains(value)">
                             </div>
                             <div class="servui-option">
-                                <button type="button" class="servui-btn" data-value="Limpeza do ar condicionado" id="limpezaArCondicionado">Limpeza do ar condicionado</button>
-                                <input type="checkbox" id="servicoLimpezaArCondicionado" name="servicos[]" value="4" data-label="Limpeza do ar condicionado" hidden>
+                                <button type="button" class="servui-btn" data-value="Limpeza do ar condicionado" id="limpezaArCondicionado" dmx-class:active="servicoLimpezaArCondicionado.checked">Limpeza do ar condicionado</button>
+                                <input type="checkbox" id="servicoLimpezaArCondicionado" name="servicos[]" value="4" data-label="Limpeza do ar condicionado" hidden dmx-bind:checked="servicosArray.value.contains(value)">
                             </div>
                             <div class="servui-option">
-                                <button type="button" class="servui-btn" data-value="Troca de filtro do ar" id="trocaFiltroAr">Troca de filtro do ar</button>
-                                <input type="checkbox" id="servicoTrocaFiltroAr" name="servicos[]" value="5" data-label="Troca de filtro do ar" hidden>
+                                <button type="button" class="servui-btn" data-value="Troca de filtro do ar" id="trocaFiltroAr" dmx-class:active="servicoTrocaFiltroAr.checked">Troca de filtro do ar</button>
+                                <input type="checkbox" id="servicoTrocaFiltroAr" name="servicos[]" value="5" data-label="Troca de filtro do ar" hidden dmx-bind:checked="servicosArray.value.contains(value)">
                             </div>
                             <div class="servui-option">
-                                <button type="button" class="servui-btn" data-value="Troca de óleo" id="trocaOleo">Troca de óleo</button>
-                                <input type="checkbox" id="servicoTrocaOleo" name="servicos[]" value="6" data-label="Troca de óleo" hidden>
+                                <button type="button" class="servui-btn" data-value="Troca de óleo" id="trocaOleo" dmx-class:active="servicoTrocaOleo.checked">Troca de óleo</button>
+                                <input type="checkbox" id="servicoTrocaOleo" name="servicos[]" value="6" data-label="Troca de óleo" hidden dmx-bind:checked="servicosArray.value.contains(value)">
                             </div>
                             <div class="servui-option">
-                                <button type="button" class="servui-btn" data-value="Troca de filtro de óleo" id="trocaFiltroOleo">Troca de filtro de óleo</button>
-                                <input type="checkbox" id="servicoTrocaFiltroOleo" name="servicos[]" value="7" data-label="Troca de filtro de óleo" hidden>
+                                <button type="button" class="servui-btn" data-value="Troca de filtro de óleo" id="trocaFiltroOleo" dmx-class:active="servicoTrocaFiltroOleo.checked">Troca de filtro de óleo</button>
+                                <input type="checkbox" id="servicoTrocaFiltroOleo" name="servicos[]" value="7" data-label="Troca de filtro de óleo" hidden dmx-bind:checked="servicosArray.value.contains(value)">
                             </div>
                             <div class="servui-option">
-                                <button type="button" class="servui-btn" data-value="Troca de filtro do combustível" id="trocaFiltroCombustivel">Troca de filtro do combustível</button>
-                                <input type="checkbox" id="servicoTrocaFiltroCombustivel" name="servicos[]" value="8" data-label="Troca de filtro do combustível" hidden>
+                                <button type="button" class="servui-btn" data-value="Troca de filtro do combustível" id="trocaFiltroCombustivel" dmx-class:active="servicoTrocaFiltroCombustivel.checked">Troca de filtro do combustível</button>
+                                <input type="checkbox" id="servicoTrocaFiltroCombustivel" name="servicos[]" value="8" data-label="Troca de filtro do combustível" hidden dmx-bind:checked="servicosArray.value.contains(value)">
                             </div>
                             <div class="servui-option">
-                                <button type="button" class="servui-btn" data-value="Alinhamento dos pneus" id="alinhamentoPneus">Alinhamento dos pneus</button>
-                                <input type="checkbox" id="servicoAlinhamentoPneus" name="servicos[]" value="9" data-label="Alinhamento dos pneus" hidden>
+                                <button type="button" class="servui-btn" data-value="Alinhamento dos pneus" id="alinhamentoPneus" dmx-class:active="servicoAlinhamentoPneus.checked">Alinhamento dos pneus</button>
+                                <input type="checkbox" id="servicoAlinhamentoPneus" name="servicos[]" value="9" data-label="Alinhamento dos pneus" hidden dmx-bind:checked="servicosArray.value.contains(value)">
                             </div>
                             <div class="servui-option">
-                                <button type="button" class="servui-btn" data-value="Troca de pneus" id="trocaPneus">Troca de pneus</button>
-                                <input type="checkbox" id="servicoTrocaPneus" name="servicos[]" value="10" data-label="Troca de pneus" hidden>
+                                <button type="button" class="servui-btn" data-value="Troca de pneus" id="trocaPneus" dmx-class:active="servicoTrocaPneus.checked">Troca de pneus</button>
+                                <input type="checkbox" id="servicoTrocaPneus" name="servicos[]" value="10" data-label="Troca de pneus" hidden dmx-bind:checked="servicosArray.value.contains(value)">
                             </div>
                             <div class="servui-option">
-                                <button type="button" class="servui-btn" data-value="Troca da buzina" id="trocaBuzina">Troca da buzina</button>
-                                <input type="checkbox" id="servicoTrocaBuzina" name="servicos[]" value="11" data-label="Troca da buzina" hidden>
+                                <button type="button" class="servui-btn" data-value="Troca da buzina" id="trocaBuzina" dmx-class:active="servicoTrocaBuzina.checked">Troca da buzina</button>
+                                <input type="checkbox" id="servicoTrocaBuzina" name="servicos[]" value="11" data-label="Troca da buzina" hidden dmx-bind:checked="servicosArray.value.contains(value)">
                             </div>
                             <div class="servui-option">
-                                <button type="button" class="servui-btn" data-value="Troca dos cintos de segurança" id="trocaCintos">Troca dos cintos de segurança</button>
-                                <input type="checkbox" id="servicoTrocaCintos" name="servicos[]" value="12" data-label="Troca dos cintos de segurança" hidden>
+                                <button type="button" class="servui-btn" data-value="Troca dos cintos de segurança" id="trocaCintos" dmx-class:active="servicoTrocaCintos.checked">Troca dos cintos de segurança</button>
+                                <input type="checkbox" id="servicoTrocaCintos" name="servicos[]" value="12" data-label="Troca dos cintos de segurança" hidden dmx-bind:checked="servicosArray.value.contains(value)">
                             </div>
                             <div class="servui-option">
-                                <button type="button" class="servui-btn" data-value="Troca de embreagem" id="trocaEmbreagem">Troca de embreagem</button>
-                                <input type="checkbox" id="servicoTrocaEmbreagem" name="servicos[]" value="13" data-label="Troca de embreagem" hidden>
+                                <button type="button" class="servui-btn" data-value="Troca de embreagem" id="trocaEmbreagem" dmx-class:active="servicoTrocaEmbreagem.checked">Troca de embreagem</button>
+                                <input type="checkbox" id="servicoTrocaEmbreagem" name="servicos[]" value="13" data-label="Troca de embreagem" hidden dmx-bind:checked="servicosArray.value.contains(value)">
                             </div>
                             <div class="servui-option">
-                                <button type="button" class="servui-btn" data-value="Troca de fluido da direção hidráulica" id="trocaFluidoDirecao">Troca de fluido da direção hidráulica</button>
-                                <input type="checkbox" id="servicoTrocaFluidoDirecao" name="servicos[]" value="14" data-label="Troca de fluido da direção hidráulica" hidden>
+                                <button type="button" class="servui-btn" data-value="Troca de fluido da direção hidráulica" id="trocaFluidoDirecao" dmx-class:active="servicoTrocaFluidoDirecao.checked">Troca de fluido da direção hidráulica</button>
+                                <input type="checkbox" id="servicoTrocaFluidoDirecao" name="servicos[]" value="14" data-label="Troca de fluido da direção hidráulica" hidden dmx-bind:checked="servicosArray.value.contains(value)">
                             </div>
                             <div class="servui-option">
-                                <button type="button" class="servui-btn" data-value="Troca de fluido de freio" id="trocaFluidoFreio">Troca de fluido de freio</button>
-                                <input type="checkbox" id="servicoTrocaFluidoFreio" name="servicos[]" value="15" data-label="Troca de fluido de freio" hidden>
+                                <button type="button" class="servui-btn" data-value="Troca de fluido de freio" id="trocaFluidoFreio" dmx-class:active="servicoTrocaFluidoFreio.checked">Troca de fluido de freio</button>
+                                <input type="checkbox" id="servicoTrocaFluidoFreio" name="servicos[]" value="15" data-label="Troca de fluido de freio" hidden dmx-bind:checked="servicosArray.value.contains(value)">
                             </div>
                             <div class="servui-option">
-                                <button type="button" class="servui-btn" data-value="Troca de limpadores de parabrisas" id="trocaLimpadores">Troca de limpadores de parabrisa</button>
-                                <input type="checkbox" id="servicoTrocaLimpadores" name="servicos[]" value="16" data-label="Troca de limpadores de parabrisas" hidden>
+                                <button type="button" class="servui-btn" data-value="Troca de limpadores de parabrisas" id="trocaLimpadores" dmx-class:active="servicoTrocaLimpadores.checked">Troca de limpadores de parabrisa</button>
+                                <input type="checkbox" id="servicoTrocaLimpadores" name="servicos[]" value="16" data-label="Troca de limpadores de parabrisas" hidden dmx-bind:checked="servicosArray.value.contains(value)">
                             </div>
                             <div class="servui-option">
-                                <button type="button" class="servui-btn" data-value="Troca de bateria" id="trocaBateria">Troca de bateria</button>
-                                <input type="checkbox" id="servicoTrocaBateria" name="servicos[]" value="17" data-label="Troca de bateria" hidden>
+                                <button type="button" class="servui-btn" data-value="Troca de bateria" id="trocaBateria" dmx-class:active="servicoTrocaBateria.checked">Troca de bateria</button>
+                                <input type="checkbox" id="servicoTrocaBateria" name="servicos[]" value="17" data-label="Troca de bateria" hidden dmx-bind:checked="servicosArray.value.contains(value)">
                             </div>
                             <div class="servui-option">
-                                <button type="button" class="servui-btn" data-value="Troca do sistema de freios" id="trocaSistemaFreios">Troca do sistema de freios</button>
-                                <input type="checkbox" id="servicoTrocaSistemaFreios" name="servicos[]" value="18" data-label="Troca do sistema de freios" hidden>
+                                <button type="button" class="servui-btn" data-value="Troca do sistema de freios" id="trocaSistemaFreios" dmx-class:active="servicoTrocaSistemaFreios.checked">Troca do sistema de freios</button>
+                                <input type="checkbox" id="servicoTrocaSistemaFreios" name="servicos[]" value="18" data-label="Troca do sistema de freios" hidden dmx-bind:checked="servicosArray.value.contains(value)">
                             </div>
                             <div class="servui-option">
-                                <button type="button" class="servui-btn" data-value="Troca do sistema de suspensão" id="trocaSistemaSuspensao">Troca do sistema de suspenção</button>
-                                <input type="checkbox" id="servicoTrocaSistemaSuspensao" name="servicos[]" value="19" data-label="Troca do sistema de suspensão" hidden>
+                                <button type="button" class="servui-btn" data-value="Troca do sistema de suspensão" id="trocaSistemaSuspensao" dmx-class:active="servicoTrocaSistemaSuspensao.checked">Troca do sistema de suspenção</button>
+                                <input type="checkbox" id="servicoTrocaSistemaSuspensao" name="servicos[]" value="19" data-label="Troca do sistema de suspensão" hidden dmx-bind:checked="servicosArray.value.contains(value)">
                             </div>
                             <div class="servui-option">
-                                <button type="button" class="servui-btn" data-value="Troca de velas" id="trocaVelas">Troca de velas</button>
-                                <input type="checkbox" id="servicoTrocaVelas" name="servicos[]" value="20" data-label="Troca de velas" hidden>
+                                <button type="button" class="servui-btn" data-value="Troca de velas" id="trocaVelas" dmx-class:active="servicoTrocaVelas.checked">Troca de velas</button>
+                                <input type="checkbox" id="servicoTrocaVelas" name="servicos[]" value="20" data-label="Troca de velas" hidden dmx-bind:checked="servicosArray.value.contains(value)">
                             </div>
                             <div class="servui-option">
-                                <button type="button" class="servui-btn" data-value="Troca do líquido de arrefecimento" id="trocaArrefecimento">Troca do líquido de arrefecimento</button>
-                                <input type="checkbox" id="servicoTrocaArrefecimento" name="servicos[]" value="21" data-label="Troca do líquido de arrefecimento" hidden>
+                                <button type="button" class="servui-btn" data-value="Troca do líquido de arrefecimento" id="trocaArrefecimento" dmx-class:active="servicoTrocaArrefecimento.checked">Troca do líquido de arrefecimento</button>
+                                <input type="checkbox" id="servicoTrocaArrefecimento" name="servicos[]" value="21" data-label="Troca do líquido de arrefecimento" hidden dmx-bind:checked="servicosArray.value.contains(value)">
                             </div>
                             <div class="servui-option">
-                                <button type="button" class="servui-btn" data-value="Troca de fluido das transmissões" id="trocaFluidoTransmissao">Troca de fluido das transmissões</button>
-                                <input type="checkbox" id="servicoTrocaFluidoTransmissao" name="servicos[]" value="22" data-label="Troca de fluido das transmissões" hidden>
+                                <button type="button" class="servui-btn" data-value="Troca de fluido das transmissões" id="trocaFluidoTransmissao" dmx-class:active="servicoTrocaFluidoTransmissao.checked">Troca de fluido das transmissões</button>
+                                <input type="checkbox" id="servicoTrocaFluidoTransmissao" name="servicos[]" value="22" data-label="Troca de fluido das transmissões" hidden dmx-bind:checked="servicosArray.value.contains(value)">
                             </div>
                             <div class="servui-option">
-                                <button type="button" class="servui-btn" data-value="Troca do filtro de cabine" id="trocaFiltroCabine">Troca do filtro de cabine</button>
-                                <input type="checkbox" id="servicoTrocaFiltroCabine" name="servicos[]" value="23" data-label="Troca do filtro de cabine" hidden>
+                                <button type="button" class="servui-btn" data-value="Troca do filtro de cabine" id="trocaFiltroCabine" dmx-class:active="servicoTrocaFiltroCabine.checked">Troca do filtro de cabine</button>
+                                <input type="checkbox" id="servicoTrocaFiltroCabine" name="servicos[]" value="23" data-label="Troca do filtro de cabine" hidden dmx-bind:checked="servicosArray.value.contains(value)">
                             </div>
                             <div class="servui-option">
-                                <button type="button" class="servui-btn" data-value="Troca de correia poly-v" id="trocaCorreiaPolyv">Troca de correia poly-v</button>
-                                <input type="checkbox" id="servicoTrocaCorreiaPolyv" name="servicos[]" value="24" data-label="Troca de correia poly-v" hidden>
+                                <button type="button" class="servui-btn" data-value="Troca de correia poly-v" id="trocaCorreiaPolyv" dmx-class:active="servicoTrocaCorreiaPolyv.checked">Troca de correia poly-v</button>
+                                <input type="checkbox" id="servicoTrocaCorreiaPolyv" name="servicos[]" value="24" data-label="Troca de correia poly-v" hidden dmx-bind:checked="servicosArray.value.contains(value)">
                             </div>
                             <div class="servui-option">
-                                <button type="button" class="servui-btn" data-value="Troca de correia dentada" id="trocaCorreiaDentada">Troca de correia dentada</button>
-                                <input type="checkbox" id="servicoTrocaCorreiaDentada" name="servicos[]" value="25" data-label="Troca de correia dentada" hidden>
+                                <button type="button" class="servui-btn" data-value="Troca de correia dentada" id="trocaCorreiaDentada" dmx-class:active="servicoTrocaCorreiaDentada.checked">Troca de correia dentada</button>
+                                <input type="checkbox" id="servicoTrocaCorreiaDentada" name="servicos[]" value="25" data-label="Troca de correia dentada" hidden dmx-bind:checked="servicosArray.value.contains(value)">
                             </div>
                             <div class="servui-option">
-                                <button type="button" class="servui-btn" data-value="Correia do compressor do ar condicionado" id="trocaCorreiaCompressor">Correia do compressor do ar condicionado</button>
-                                <input type="checkbox" id="servicoTrocaCorreiaCompressor" name="servicos[]" value="26" data-label="Correia do compressor do ar condicionado" hidden>
+                                <button type="button" class="servui-btn" data-value="Correia do compressor do ar condicionado" id="trocaCorreiaCompressor" dmx-class:active="servicoTrocaCorreiaCompressor.checked">Correia do compressor do ar condicionado</button>
+                                <input type="checkbox" id="servicoTrocaCorreiaCompressor" name="servicos[]" value="26" data-label="Correia do compressor do ar condicionado" hidden dmx-bind:checked="servicosArray.value.contains(value)">
                             </div>
                             <div class="servui-option">
-                                <button type="button" class="servui-btn" data-value="Troca de correia do alternador" id="trocaCorreiaAlternador">Troca de correia do alternador</button>
-                                <input type="checkbox" id="servicoTrocaCorreiaAlternador" name="servicos[]" value="27" data-label="Troca de correia do alternador" hidden>
+                                <button type="button" class="servui-btn" data-value="Troca de correia do alternador" id="trocaCorreiaAlternador" dmx-class:active="servicoTrocaCorreiaAlternador.checked">Troca de correia do alternador</button>
+                                <input type="checkbox" id="servicoTrocaCorreiaAlternador" name="servicos[]" value="27" data-label="Troca de correia do alternador" hidden dmx-bind:checked="servicosArray.value.contains(value)">
                             </div>
                         </div>
                     </div>

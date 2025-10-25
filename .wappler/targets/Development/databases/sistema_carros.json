@@ -906,6 +906,26 @@
               "primary": false,
               "nullable": true
             }
+          },
+          "imgPrincipal": {
+            "meta": [],
+            "outputType": "array",
+            "db": {
+              "type": "text",
+              "maxLength": 65535,
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "imgGaleria": {
+            "meta": [],
+            "outputType": "array",
+            "db": {
+              "type": "text",
+              "primary": false,
+              "nullable": true,
+              "maxLength": 65535
+            }
           }
         }
       }
