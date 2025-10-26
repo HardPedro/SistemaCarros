@@ -239,20 +239,20 @@
         "name": "file1",
         "sub": [
           {
-            "name": "name",
-            "type": "text"
+            "type": "text",
+            "name": "name"
           },
           {
-            "name": "type",
-            "type": "text"
+            "type": "text",
+            "name": "type"
           },
           {
-            "name": "size",
-            "type": "number"
+            "type": "number",
+            "name": "size"
           },
           {
-            "name": "error",
-            "type": "text"
+            "type": "text",
+            "name": "error"
           }
         ],
         "outputType": "file"
@@ -264,20 +264,20 @@
         "name": "file2",
         "sub": [
           {
-            "name": "name",
-            "type": "text"
+            "type": "text",
+            "name": "name"
           },
           {
-            "name": "type",
-            "type": "text"
+            "type": "text",
+            "name": "type"
           },
           {
-            "name": "size",
-            "type": "number"
+            "type": "number",
+            "name": "size"
           },
           {
-            "name": "error",
-            "type": "text"
+            "type": "text",
+            "name": "error"
           }
         ],
         "outputType": "array"
@@ -290,8 +290,13 @@
       {
         "type": "text",
         "fieldName": "imgGaleria",
-        "multiple": true,
         "name": "imgGaleria"
+      },
+      {
+        "type": "text",
+        "fieldName": "avarias[]",
+        "multiple": true,
+        "name": "avarias"
       }
     ]
   },
@@ -534,6 +539,12 @@
                       "column": "imgGaleria",
                       "type": "text",
                       "value": "{{$_POST.imgGaleria}}"
+                    },
+                    {
+                      "table": "cd_carros",
+                      "column": "avarias",
+                      "type": "text",
+                      "value": "{{$_POST.avarias.join(',')}}"
                     }
                   ],
                   "table": "cd_carros",
@@ -556,7 +567,7 @@
                     "valid": true
                   },
                   "returning": "id",
-                  "query": "update `cd_carros` set `marca` = ?, `model` = ?, `cor` = ?, `ano_year` = ?, `chassis` = ?, `AnoJap` = ?, `mes` = ?, `km` = ?, `cilindrada` = ?, `motor` = ?, `n_modelo` = ?, `tracao` = ?, `transmissao` = ?, `combustivel` = ?, `portas` = ?, `pessoas` = ?, `tipo` = ?, `peso` = ?, `carga` = ?, `shaken_jap` = ?, `shaken_ano` = ?, `shaken_mes` = ?, `custo` = ?, `venda` = ?, `fornecedor` = ?, `outros` = ?, `status` = ?, `shaken_day` = ?, `foto` = ?, `yj` = ?, `cliente` = ?, `veiculo` = ?, `placa` = ?, `opcionais` = ?, `servicos` = ?, `imgPrincipal` = ?, `imgGaleria` = ? where `id` = ?",
+                  "query": "update `cd_carros` set `marca` = ?, `model` = ?, `cor` = ?, `ano_year` = ?, `chassis` = ?, `AnoJap` = ?, `mes` = ?, `km` = ?, `cilindrada` = ?, `motor` = ?, `n_modelo` = ?, `tracao` = ?, `transmissao` = ?, `combustivel` = ?, `portas` = ?, `pessoas` = ?, `tipo` = ?, `peso` = ?, `carga` = ?, `shaken_jap` = ?, `shaken_ano` = ?, `shaken_mes` = ?, `custo` = ?, `venda` = ?, `fornecedor` = ?, `outros` = ?, `status` = ?, `shaken_day` = ?, `foto` = ?, `yj` = ?, `cliente` = ?, `veiculo` = ?, `placa` = ?, `opcionais` = ?, `servicos` = ?, `imgPrincipal` = ?, `imgGaleria` = ?, `avarias` = ? where `id` = ?",
                   "params": [
                     {
                       "name": ":P1",
@@ -757,9 +768,15 @@
                       "test": ""
                     },
                     {
+                      "name": ":P34",
+                      "type": "expression",
+                      "value": "{{$_POST.avarias.join(',')}}",
+                      "test": ""
+                    },
+                    {
                       "operator": "equal",
                       "type": "expression",
-                      "name": ":P34",
+                      "name": ":P35",
                       "value": "{{$_POST.id_hidden}}",
                       "test": ""
                     }
@@ -1005,11 +1022,17 @@
                       "column": "imgGaleria",
                       "type": "text",
                       "value": "{{$_POST.imgGaleria}}"
+                    },
+                    {
+                      "table": "cd_carros",
+                      "column": "avarias",
+                      "type": "text",
+                      "value": "{{$_POST.avarias.join(',')}}"
                     }
                   ],
                   "table": "cd_carros",
                   "returning": "id",
-                  "query": "insert into `cd_carros` (`AnoJap`, `ano_year`, `carga`, `chassis`, `cilindrada`, `cliente`, `combustivel`, `cor`, `custo`, `fornecedor`, `foto`, `imgGaleria`, `imgPrincipal`, `km`, `marca`, `mes`, `model`, `motor`, `n_modelo`, `opcionais`, `outros`, `peso`, `pessoas`, `placa`, `portas`, `servicos`, `shaken_ano`, `shaken_day`, `shaken_jap`, `shaken_mes`, `status`, `tipo`, `tracao`, `transmissao`, `veiculo`, `venda`, `yj`) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                  "query": "insert into `cd_carros` (`AnoJap`, `ano_year`, `avarias`, `carga`, `chassis`, `cilindrada`, `cliente`, `combustivel`, `cor`, `custo`, `fornecedor`, `foto`, `imgGaleria`, `imgPrincipal`, `km`, `marca`, `mes`, `model`, `motor`, `n_modelo`, `opcionais`, `outros`, `peso`, `pessoas`, `placa`, `portas`, `servicos`, `shaken_ano`, `shaken_day`, `shaken_jap`, `shaken_mes`, `status`, `tipo`, `tracao`, `transmissao`, `veiculo`, `venda`, `yj`) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                   "params": [
                     {
                       "name": ":P1",
@@ -1207,6 +1230,12 @@
                       "name": ":P33",
                       "type": "expression",
                       "value": "{{$_POST.imgGaleria}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P34",
+                      "type": "expression",
+                      "value": "{{$_POST.avarias.join(',')}}",
                       "test": ""
                     }
                   ]

@@ -156,6 +156,10 @@
             {
               "table": "cd_carros",
               "column": "imgGaleria"
+            },
+            {
+              "table": "cd_carros",
+              "column": "avarias"
             }
           ],
           "params": [
@@ -172,7 +176,7 @@
           },
           "primary": "id",
           "joins": [],
-          "query": "select `marca`, `model`, `cor`, `ano_year`, `chassis`, `AnoJap`, `km`, `mes`, `cilindrada`, `motor`, `n_modelo`, `tracao`, `transmissao`, `combustivel`, `portas`, `pessoas`, `tipo`, `peso`, `carga`, `shaken_jap`, `shaken_ano`, `shaken_mes`, `custo`, `venda`, `fornecedor`, `outros`, `status`, `shaken_day`, `cliente`, `opcionais`, `servicos`, `imgPrincipal`, `imgGaleria` from `cd_carros` where `cd_carros`.`id` = ?",
+          "query": "select `marca`, `model`, `cor`, `ano_year`, `chassis`, `AnoJap`, `km`, `mes`, `cilindrada`, `motor`, `n_modelo`, `tracao`, `transmissao`, `combustivel`, `portas`, `pessoas`, `tipo`, `peso`, `carga`, `shaken_jap`, `shaken_ano`, `shaken_mes`, `custo`, `venda`, `fornecedor`, `outros`, `status`, `shaken_day`, `cliente`, `opcionais`, `servicos`, `imgPrincipal`, `imgGaleria`, `avarias` from `cd_carros` where `cd_carros`.`id` = ?",
           "wheres": {
             "condition": "AND",
             "rules": [
@@ -193,7 +197,8 @@
                     "name": "id"
                   }
                 },
-                "operation": "="
+                "operation": "=",
+                "table": "cd_carros"
               }
             ],
             "conditional": null,
@@ -333,9 +338,13 @@
           "name": "imgPrincipal"
         },
         {
-          "type": "array",
+          "type": "text",
           "sub": [],
           "name": "imgGaleria"
+        },
+        {
+          "type": "text",
+          "name": "avarias"
         }
       ],
       "outputType": "array"

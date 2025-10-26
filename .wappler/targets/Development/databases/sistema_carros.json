@@ -926,6 +926,14 @@
               "nullable": true,
               "maxLength": 65535
             }
+          },
+          "avarias": {
+            "db": {
+              "type": "text",
+              "maxLength": 65535,
+              "primary": false,
+              "nullable": true
+            }
           }
         }
       }

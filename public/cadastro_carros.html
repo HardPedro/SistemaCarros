@@ -33,6 +33,7 @@
     <dmx-value id="imgSourcePrincipal" dmx-bind:value="obterCarro.data.query[0].imgPrincipal"></dmx-value>
     <dmx-value id="servicosArray" dmx-bind:value="obterCarro.data.query[0].servicos.split(',')"></dmx-value>
     <dmx-value id="opcionaisArray" dmx-bind:value="obterCarro.data.query[0].opcionais.split(',')"></dmx-value>
+    <dmx-value id="avariasArray" dmx-bind:value="obterCarro.data.query[0].avarias.split(',')"></dmx-value>
     <div is="dmx-browser" id="browser1"></div>
     <dmx-notifications id="notifies1" align="center"></dmx-notifications>
     <dmx-serverconnect id="obterCarro" url="/api/cadastroCarros/obterCarro" dmx-param:id_carro="query.id"></dmx-serverconnect>
@@ -178,7 +179,7 @@
 
                 <div class="actions">
                     <button class="ghost" dmx-on:click="dadosVeiculo.submit()">＋ NOVO (F1)</button>
-                    <button class="ghost" dmx-on:click="notifies1.success(obterCarro.data.query[0].opcionais)">✎ EDITAR (F2)</button>
+                    <button class="ghost" dmx-on:click="notifies1.success(avariasArray.value)">✎ EDITAR (F2)</button>
                     <button class="ghost" dmx-on:click="dadosVeiculo.submit()">▮ SALVAR (F5)</button>
                     <button class="danger">🗑 DELETAR</button>
                 </div>
@@ -694,21 +695,57 @@
         <div class="direita">
             <!-- DIREITA: diagrama com pontos -->
             <aside class="right-pane">
-                <div class="car-diagram">
+                <div class="car-diagram" id="avariasDiagrama">
                     <img src="/assets/images/diagram-car-top.png" alt="Diagrama do carro">
                     <!-- Ajuste as posições (%) conforme sua arte -->
-                    <button class="dot" data-av="av1" style="--x:50%; --y:15%"></button>
-                    <button class="dot" data-av="av2" style="--x:16%; --y:24%"></button>
-                    <button class="dot" data-av="av3" style="--x:84%; --y:24%"></button>
-                    <button class="dot" data-av="av4" style="--x:16%; --y:40%"></button>
-                    <button class="dot" data-av="av5" style="--x:84%; --y:40%"></button>
-                    <button class="dot" data-av="av6" style="--x:16%; --y:56%"></button>
-                    <button class="dot" data-av="av7" style="--x:84%; --y:56%"></button>
-                    <button class="dot" data-av="av8" style="--x:16%; --y:72%"></button>
-                    <button class="dot" data-av="av9" style="--x:84%; --y:72%"></button>
-                    <button class="dot" data-av="av10" style="--x:50%; --y:33%"></button>
-                    <button class="dot" data-av="av11" style="--x:50%; --y:71%"></button>
-                    <button class="dot" data-av="av12" style="--x:50%; --y:85%"></button>
+                    <div class="dot-wrapper">
+                        <button type="button" class="dot" style="--x:50%; --y:15%" dmx-class:alert="avaria1.checked"></button>
+                        <input type="checkbox" id="avaria1" name="avarias[]" value="1" hidden="" dmx-bind:checked="avariasArray.value.contains(value)" dmx-hide="avariasArray.value.contains(value)">
+                    </div>
+                    <div class="dot-wrapper">
+                        <button type="button" class="dot" style="--x:16%; --y:24%" dmx-class:alert="avaria2.checked"></button>
+                        <input type="checkbox" id="avaria2" name="avarias[]" value="2" hidden="" dmx-bind:checked="avariasArray.value.contains(value)">
+                    </div>
+                    <div class="dot-wrapper">
+                        <button type="button" class="dot" style="--x:84%; --y:24%" dmx-class:alert="avaria3.checked"></button>
+                        <input type="checkbox" id="avaria3" name="avarias[]" value="3" hidden dmx-bind:checked="avariasArray.value.contains(value)">
+                    </div>
+                    <div class="dot-wrapper">
+                        <button type="button" class="dot" style="--x:16%; --y:40%" dmx-class:alert="avaria4.checked"></button>
+                        <input type="checkbox" id="avaria4" name="avarias[]" value="4" hidden dmx-bind:checked="avariasArray.value.contains(value)">
+                    </div>
+                    <div class="dot-wrapper">
+                        <button type="button" class="dot" style="--x:84%; --y:40%" dmx-class:alert="avaria5.checked"></button>
+                        <input type="checkbox" id="avaria5" name="avarias[]" value="5" hidden dmx-bind:checked="avariasArray.value.contains(value)">
+                    </div>
+                    <div class="dot-wrapper">
+                        <button type="button" class="dot" style="--x:16%; --y:56%" dmx-class:alert="avaria6.checked"></button>
+                        <input type="checkbox" id="avaria6" name="avarias[]" value="6" hidden dmx-bind:checked="avariasArray.value.contains(value)">
+                    </div>
+                    <div class="dot-wrapper">
+                        <button type="button" class="dot" style="--x:84%; --y:56%" dmx-class:alert="avaria7.checked"></button>
+                        <input type="checkbox" id="avaria7" name="avarias[]" value="7" hidden dmx-bind:checked="avariasArray.value.contains(value)">
+                    </div>
+                    <div class="dot-wrapper">
+                        <button type="button" class="dot" style="--x:16%; --y:72%" dmx-class:alert="avaria8.checked"></button>
+                        <input type="checkbox" id="avaria8" name="avarias[]" value="8" hidden dmx-bind:checked="avariasArray.value.contains(value)">
+                    </div>
+                    <div class="dot-wrapper">
+                        <button type="button" class="dot" style="--x:84%; --y:72%" dmx-class:alert="avaria9.checked"></button>
+                        <input type="checkbox" id="avaria9" name="avarias[]" value="9" hidden dmx-bind:checked="avariasArray.value.contains(value)">
+                    </div>
+                    <div class="dot-wrapper">
+                        <button type="button" class="dot" style="--x:50%; --y:33%" dmx-class:alert="avaria10.checked"></button>
+                        <input type="checkbox" id="avaria10" name="avarias[]" value="10" hidden dmx-bind:checked="avariasArray.value.contains(value)">
+                    </div>
+                    <div class="dot-wrapper">
+                        <button type="button" class="dot" style="--x:50%; --y:71%" dmx-class:alert="avaria11.checked"></button>
+                        <input type="checkbox" id="avaria11" name="avarias[]" value="11" hidden dmx-bind:checked="avariasArray.value.contains(value)">
+                    </div>
+                    <div class="dot-wrapper">
+                        <button type="button" class="dot" style="--x:50%; --y:85%" dmx-class:alert="avaria12.checked"></button>
+                        <input type="checkbox" id="avaria12" name="avarias[]" value="12" hidden dmx-bind:checked="avariasArray.value.contains(value)">
+                    </div>
                 </div>
             </aside>
 
@@ -874,20 +911,29 @@
         })();
 
         (function initDots(){
-            if (!form) return;
-            document.querySelectorAll('.car-diagram .dot').forEach(dot => {
-                const field = form.querySelector(`#${dot.dataset.av}`);
-                const isAlert = field && field.value === 'Vermelho';
-                dot.classList.toggle('alert', !!isAlert);
-                dot.setAttribute('aria-pressed', isAlert ? 'true' : 'false');
-                dot.addEventListener('click', () => {
-                    const next = !dot.classList.contains('alert');
-                    dot.classList.toggle('alert', next);
-                    dot.setAttribute('aria-pressed', next ? 'true' : 'false');
-                    if (field) field.value = next ? 'Vermelho' : 'Verde';
+            const wrap = document.getElementById('avariasDiagrama');
+            if (!wrap) return;
+            wrap.querySelectorAll('.dot-wrapper').forEach(dotWrapper => {
+                const btn = dotWrapper.querySelector('.dot');
+                const chk = dotWrapper.querySelector('input[type="checkbox"]');
+                if (!btn || !chk) return;
+
+                // Seta o estado inicial de acessibilidade. A classe visual é controlada pelo Wappler (dmx-class:alert)
+                btn.setAttribute('aria-pressed', chk.checked ? 'true' : 'false');
+
+                btn.addEventListener('click', () => {
+                    // Inverte o estado do checkbox
+                    const on = !chk.checked;
+                    chk.checked = on;
+
+                    // Dispara o evento 'change' manualmente para que o Wappler atualize os bindings (dmx-class)
+                    chk.dispatchEvent(new Event('change', { 'bubbles': true }));
+
+                    // Atualiza o atributo de acessibilidade
+                    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
                 });
             });
-        })();
+        })();;
 
         (function placaJaponesa(){
             const plate   = document.getElementById('jpPlate');
