@@ -1,0 +1,645 @@
+{
+  "meta": {
+    "options": {
+      "linkedForm": "dadosVeiculo",
+      "linkedFile": "/public/cadastro_carros.html"
+    },
+    "$_POST": [
+      {
+        "type": "file",
+        "fieldName": "imagemPrincipal",
+        "options": {
+          "rules": {
+            "upload:accept": {
+              "param": "image/*"
+            }
+          }
+        },
+        "name": "imagemPrincipal",
+        "sub": [
+          {
+            "name": "name",
+            "type": "text"
+          },
+          {
+            "name": "type",
+            "type": "text"
+          },
+          {
+            "name": "size",
+            "type": "number"
+          },
+          {
+            "name": "error",
+            "type": "text"
+          }
+        ],
+        "outputType": "file"
+      },
+      {
+        "type": "file",
+        "fieldName": "imagem2",
+        "options": {
+          "rules": {
+            "upload:accept": {
+              "param": "image/*"
+            }
+          }
+        },
+        "name": "imagem2",
+        "sub": [
+          {
+            "name": "name",
+            "type": "text"
+          },
+          {
+            "name": "type",
+            "type": "text"
+          },
+          {
+            "name": "size",
+            "type": "number"
+          },
+          {
+            "name": "error",
+            "type": "text"
+          }
+        ],
+        "outputType": "file"
+      },
+      {
+        "type": "file",
+        "fieldName": "imagem3",
+        "options": {
+          "rules": {
+            "upload:accept": {
+              "param": "image/*"
+            }
+          }
+        },
+        "name": "imagem3",
+        "sub": [
+          {
+            "name": "name",
+            "type": "text"
+          },
+          {
+            "name": "type",
+            "type": "text"
+          },
+          {
+            "name": "size",
+            "type": "number"
+          },
+          {
+            "name": "error",
+            "type": "text"
+          }
+        ],
+        "outputType": "file"
+      },
+      {
+        "type": "file",
+        "fieldName": "imagem4",
+        "options": {
+          "rules": {
+            "upload:accept": {
+              "param": "image/*"
+            }
+          }
+        },
+        "name": "imagem4",
+        "sub": [
+          {
+            "name": "name",
+            "type": "text"
+          },
+          {
+            "name": "type",
+            "type": "text"
+          },
+          {
+            "name": "size",
+            "type": "number"
+          },
+          {
+            "name": "error",
+            "type": "text"
+          }
+        ],
+        "outputType": "file"
+      },
+      {
+        "type": "file",
+        "fieldName": "imagem5",
+        "options": {
+          "rules": {
+            "upload:accept": {
+              "param": "image/*"
+            }
+          }
+        },
+        "name": "imagem5",
+        "sub": [
+          {
+            "name": "name",
+            "type": "text"
+          },
+          {
+            "name": "type",
+            "type": "text"
+          },
+          {
+            "name": "size",
+            "type": "number"
+          },
+          {
+            "name": "error",
+            "type": "text"
+          }
+        ],
+        "outputType": "file"
+      },
+      {
+        "type": "file",
+        "fieldName": "imagem6",
+        "options": {
+          "rules": {
+            "upload:accept": {
+              "param": "image/*"
+            }
+          }
+        },
+        "name": "imagem6",
+        "sub": [
+          {
+            "name": "name",
+            "type": "text"
+          },
+          {
+            "name": "type",
+            "type": "text"
+          },
+          {
+            "name": "size",
+            "type": "number"
+          },
+          {
+            "name": "error",
+            "type": "text"
+          }
+        ],
+        "outputType": "file"
+      },
+      {
+        "type": "file",
+        "fieldName": "imagem7",
+        "options": {
+          "rules": {
+            "upload:accept": {
+              "param": "image/*"
+            }
+          }
+        },
+        "name": "imagem7",
+        "sub": [
+          {
+            "name": "name",
+            "type": "text"
+          },
+          {
+            "name": "type",
+            "type": "text"
+          },
+          {
+            "name": "size",
+            "type": "number"
+          },
+          {
+            "name": "error",
+            "type": "text"
+          }
+        ],
+        "outputType": "file"
+      },
+      {
+        "type": "text",
+        "fieldName": "imgPrincipal",
+        "name": "imgPrincipal"
+      },
+      {
+        "type": "text",
+        "fieldName": "imgGaleria",
+        "name": "imgGaleria"
+      },
+      {
+        "type": "text",
+        "fieldName": "id_hidden",
+        "name": "id_hidden"
+      },
+      {
+        "type": "text",
+        "fieldName": "marca",
+        "name": "marca"
+      },
+      {
+        "type": "text",
+        "fieldName": "model",
+        "name": "model"
+      },
+      {
+        "type": "text",
+        "fieldName": "cor",
+        "name": "cor"
+      },
+      {
+        "type": "text",
+        "fieldName": "ano_fabricacao_ano",
+        "options": {
+          "rules": {
+            "core:required": {
+              "param": "",
+              "message": "Este campo é obrigatório!"
+            }
+          }
+        },
+        "name": "ano_fabricacao_ano"
+      },
+      {
+        "type": "number",
+        "fieldName": "km",
+        "options": {
+          "rules": {
+            "core:number": {}
+          }
+        },
+        "name": "km"
+      },
+      {
+        "type": "text",
+        "fieldName": "cilindrada",
+        "name": "cilindrada"
+      },
+      {
+        "type": "text",
+        "fieldName": "chassis",
+        "name": "chassis"
+      },
+      {
+        "type": "text",
+        "fieldName": "motor",
+        "name": "motor"
+      },
+      {
+        "type": "text",
+        "fieldName": "n_modelo",
+        "name": "n_modelo"
+      },
+      {
+        "type": "text",
+        "fieldName": "tracao",
+        "name": "tracao"
+      },
+      {
+        "type": "text",
+        "fieldName": "transmissao",
+        "name": "transmissao"
+      },
+      {
+        "type": "text",
+        "fieldName": "combustivel",
+        "name": "combustivel"
+      },
+      {
+        "type": "text",
+        "fieldName": "tipo",
+        "name": "tipo"
+      },
+      {
+        "type": "number",
+        "fieldName": "portas",
+        "options": {
+          "rules": {
+            "core:number": {}
+          }
+        },
+        "name": "portas"
+      },
+      {
+        "type": "number",
+        "fieldName": "pessoas",
+        "options": {
+          "rules": {
+            "core:number": {}
+          }
+        },
+        "name": "pessoas"
+      },
+      {
+        "type": "text",
+        "fieldName": "peso",
+        "name": "peso"
+      },
+      {
+        "type": "text",
+        "fieldName": "carga",
+        "name": "carga"
+      },
+      {
+        "type": "text",
+        "fieldName": "fornecedor",
+        "name": "fornecedor"
+      },
+      {
+        "type": "number",
+        "fieldName": "custo",
+        "options": {
+          "rules": {
+            "core:number": {}
+          }
+        },
+        "name": "custo"
+      },
+      {
+        "type": "number",
+        "fieldName": "venda",
+        "options": {
+          "rules": {
+            "core:number": {}
+          }
+        },
+        "name": "venda"
+      },
+      {
+        "type": "text",
+        "fieldName": "cliente",
+        "name": "cliente"
+      },
+      {
+        "type": "number",
+        "fieldName": "shaken_ano",
+        "options": {
+          "rules": {
+            "core:required": {
+              "param": "",
+              "message": "Este campo é obrigatório!"
+            },
+            "core:number": {}
+          }
+        },
+        "name": "shaken_ano"
+      },
+      {
+        "type": "text",
+        "fieldName": "opcionais[]",
+        "multiple": true,
+        "name": "opcionais"
+      },
+      {
+        "type": "text",
+        "fieldName": "servicos[]",
+        "multiple": true,
+        "name": "servicos"
+      },
+      {
+        "type": "text",
+        "fieldName": "placa_tipo",
+        "name": "placa_tipo"
+      },
+      {
+        "type": "text",
+        "fieldName": "placa_regiao",
+        "name": "placa_regiao"
+      },
+      {
+        "type": "number",
+        "fieldName": "placa_classe",
+        "options": {
+          "rules": {
+            "core:number": {}
+          }
+        },
+        "name": "placa_classe"
+      },
+      {
+        "type": "text",
+        "fieldName": "placa_hiragana",
+        "options": {
+          "rules": {
+            "core:maxlength": {
+              "param": "1"
+            }
+          }
+        },
+        "name": "placa_hiragana"
+      },
+      {
+        "type": "number",
+        "fieldName": "placa_numero",
+        "options": {
+          "rules": {
+            "core:number": {},
+            "core:pattern": {
+              "param": "\\d{4}"
+            },
+            "core:maxlength": {
+              "param": "4"
+            }
+          }
+        },
+        "name": "placa_numero"
+      },
+      {
+        "type": "text",
+        "fieldName": "avarias[]",
+        "multiple": true,
+        "name": "avarias"
+      },
+      {
+        "type": "text",
+        "fieldName": "ano_fabricacao_era",
+        "options": {
+          "rules": {
+            "core:required": {
+              "param": "",
+              "message": "Este campo é obrigatório!"
+            }
+          }
+        },
+        "name": "ano_fabricacao_era"
+      },
+      {
+        "type": "text",
+        "fieldName": "ano_fabricacao_mes",
+        "options": {
+          "rules": {
+            "core:required": {
+              "param": "",
+              "message": "Este campo é obrigatório!"
+            }
+          }
+        },
+        "name": "ano_fabricacao_mes"
+      },
+      {
+        "type": "text",
+        "fieldName": "status",
+        "name": "status"
+      },
+      {
+        "type": "text",
+        "fieldName": "shaken_era",
+        "options": {
+          "rules": {
+            "core:required": {
+              "param": "",
+              "message": "Este campo é obrigatório!"
+            }
+          }
+        },
+        "name": "shaken_era"
+      },
+      {
+        "type": "text",
+        "fieldName": "shaken_mes",
+        "options": {
+          "rules": {
+            "core:required": {
+              "param": "",
+              "message": "Este campo é obrigatório!"
+            }
+          }
+        },
+        "name": "shaken_mes"
+      },
+      {
+        "type": "text",
+        "fieldName": "shaken_day",
+        "options": {
+          "rules": {
+            "core:required": {
+              "param": "",
+              "message": "Este campo é obrigatório!"
+            }
+          }
+        },
+        "name": "shaken_day"
+      },
+      {
+        "type": "text",
+        "fieldName": "outros",
+        "name": "outros"
+      }
+    ]
+  },
+  "exec": {
+    "steps": [
+      {
+        "name": "insert",
+        "module": "dbupdater",
+        "action": "insert",
+        "options": {
+          "connection": "sistema_carros",
+          "sql": {
+            "type": "insert",
+            "values": [
+              {
+                "table": "historico_placas",
+                "column": "regiao",
+                "type": "text",
+                "value": "{{$_POST.placa_regiao}}"
+              },
+              {
+                "table": "historico_placas",
+                "column": "classe",
+                "type": "number",
+                "value": "{{$_POST.placa_classe}}"
+              },
+              {
+                "table": "historico_placas",
+                "column": "hiragana",
+                "type": "text",
+                "value": "{{$_POST.placa_hiragana}}"
+              },
+              {
+                "table": "historico_placas",
+                "column": "numero",
+                "type": "number",
+                "value": "{{$_POST.placa_numero}}"
+              },
+              {
+                "table": "historico_placas",
+                "column": "tipo",
+                "type": "text",
+                "value": "{{$_POST.placa_tipo}}"
+              },
+              {
+                "table": "historico_placas",
+                "column": "id",
+                "type": "number",
+                "value": "{{$_POST.id_hidden}}"
+              }
+            ],
+            "table": "historico_placas",
+            "returning": "id",
+            "query": "insert into `historico_placas` (`classe`, `hiragana`, `id`, `numero`, `regiao`, `tipo`) values (?, ?, ?, ?, ?, ?)",
+            "params": [
+              {
+                "name": ":P1",
+                "type": "expression",
+                "value": "{{$_POST.placa_regiao}}",
+                "test": ""
+              },
+              {
+                "name": ":P2",
+                "type": "expression",
+                "value": "{{$_POST.placa_classe}}",
+                "test": ""
+              },
+              {
+                "name": ":P3",
+                "type": "expression",
+                "value": "{{$_POST.placa_hiragana}}",
+                "test": ""
+              },
+              {
+                "name": ":P4",
+                "type": "expression",
+                "value": "{{$_POST.placa_numero}}",
+                "test": ""
+              },
+              {
+                "name": ":P5",
+                "type": "expression",
+                "value": "{{$_POST.placa_tipo}}",
+                "test": ""
+              },
+              {
+                "name": ":P6",
+                "type": "expression",
+                "value": "{{$_POST.id_hidden}}",
+                "test": ""
+              }
+            ]
+          }
+        },
+        "meta": [
+          {
+            "name": "identity",
+            "type": "text"
+          },
+          {
+            "name": "affected",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "name": "",
+        "module": "core",
+        "action": "end",
+        "options": {}
+      }
+    ]
+  }
+}

@@ -16,338 +16,438 @@
     ]
   },
   "exec": {
-    "steps": {
-      "name": "query",
-      "module": "dbconnector",
-      "action": "select",
-      "options": {
-        "connection": "sistema_carros",
-        "sql": {
-          "type": "SELECT",
-          "columns": [
-            {
-              "table": "cd_carros",
-              "column": "marca"
-            },
-            {
-              "table": "cd_carros",
-              "column": "model"
-            },
-            {
-              "table": "cd_carros",
-              "column": "cor"
-            },
-            {
-              "table": "cd_carros",
-              "column": "ano_year"
-            },
-            {
-              "table": "cd_carros",
-              "column": "chassis"
-            },
-            {
-              "table": "cd_carros",
-              "column": "AnoJap"
-            },
-            {
-              "table": "cd_carros",
-              "column": "km"
-            },
-            {
-              "table": "cd_carros",
-              "column": "mes"
-            },
-            {
-              "table": "cd_carros",
-              "column": "cilindrada"
-            },
-            {
-              "table": "cd_carros",
-              "column": "motor"
-            },
-            {
-              "table": "cd_carros",
-              "column": "n_modelo"
-            },
-            {
-              "table": "cd_carros",
-              "column": "tracao"
-            },
-            {
-              "table": "cd_carros",
-              "column": "transmissao"
-            },
-            {
-              "table": "cd_carros",
-              "column": "combustivel"
-            },
-            {
-              "table": "cd_carros",
-              "column": "portas"
-            },
-            {
-              "table": "cd_carros",
-              "column": "pessoas"
-            },
-            {
-              "table": "cd_carros",
-              "column": "tipo"
-            },
-            {
-              "table": "cd_carros",
-              "column": "peso"
-            },
-            {
-              "table": "cd_carros",
-              "column": "carga"
-            },
-            {
-              "table": "cd_carros",
-              "column": "shaken_jap"
-            },
-            {
-              "table": "cd_carros",
-              "column": "shaken_ano"
-            },
-            {
-              "table": "cd_carros",
-              "column": "shaken_mes"
-            },
-            {
-              "table": "cd_carros",
-              "column": "custo"
-            },
-            {
-              "table": "cd_carros",
-              "column": "venda"
-            },
-            {
-              "table": "cd_carros",
-              "column": "fornecedor"
-            },
-            {
-              "table": "cd_carros",
-              "column": "outros"
-            },
-            {
-              "table": "cd_carros",
-              "column": "status"
-            },
-            {
-              "table": "cd_carros",
-              "column": "shaken_day"
-            },
-            {
-              "table": "cd_carros",
-              "column": "cliente"
-            },
-            {
-              "table": "cd_carros",
-              "column": "opcionais"
-            },
-            {
-              "table": "cd_carros",
-              "column": "servicos"
-            },
-            {
-              "table": "cd_carros",
-              "column": "imgPrincipal"
-            },
-            {
-              "table": "cd_carros",
-              "column": "imgGaleria"
-            },
-            {
-              "table": "cd_carros",
-              "column": "avarias"
-            }
-          ],
-          "params": [
-            {
-              "operator": "equal",
-              "type": "expression",
-              "name": ":P1",
-              "value": "{{$_GET.id_carro}}",
-              "test": ""
-            }
-          ],
-          "table": {
-            "name": "cd_carros"
-          },
-          "primary": "id",
-          "joins": [],
-          "query": "select `marca`, `model`, `cor`, `ano_year`, `chassis`, `AnoJap`, `km`, `mes`, `cilindrada`, `motor`, `n_modelo`, `tracao`, `transmissao`, `combustivel`, `portas`, `pessoas`, `tipo`, `peso`, `carga`, `shaken_jap`, `shaken_ano`, `shaken_mes`, `custo`, `venda`, `fornecedor`, `outros`, `status`, `shaken_day`, `cliente`, `opcionais`, `servicos`, `imgPrincipal`, `imgGaleria`, `avarias` from `cd_carros` where `cd_carros`.`id` = ?",
-          "wheres": {
-            "condition": "AND",
-            "rules": [
+    "steps": [
+      {
+        "name": "query",
+        "module": "dbconnector",
+        "action": "select",
+        "options": {
+          "connection": "sistema_carros",
+          "sql": {
+            "type": "SELECT",
+            "columns": [
               {
-                "id": "cd_carros.id",
-                "field": "cd_carros.id",
-                "type": "double",
-                "operator": "equal",
-                "value": "{{$_GET.id_carro}}",
-                "data": {
-                  "table": "cd_carros",
-                  "column": "id",
-                  "type": "number",
-                  "columnObj": {
-                    "type": "increments",
-                    "primary": true,
-                    "nullable": false,
-                    "name": "id"
-                  }
-                },
-                "operation": "=",
-                "table": "cd_carros"
+                "table": "cd_carros",
+                "column": "marca"
+              },
+              {
+                "table": "cd_carros",
+                "column": "model"
+              },
+              {
+                "table": "cd_carros",
+                "column": "cor"
+              },
+              {
+                "table": "cd_carros",
+                "column": "ano_year"
+              },
+              {
+                "table": "cd_carros",
+                "column": "chassis"
+              },
+              {
+                "table": "cd_carros",
+                "column": "AnoJap"
+              },
+              {
+                "table": "cd_carros",
+                "column": "km"
+              },
+              {
+                "table": "cd_carros",
+                "column": "mes"
+              },
+              {
+                "table": "cd_carros",
+                "column": "cilindrada"
+              },
+              {
+                "table": "cd_carros",
+                "column": "motor"
+              },
+              {
+                "table": "cd_carros",
+                "column": "n_modelo"
+              },
+              {
+                "table": "cd_carros",
+                "column": "tracao"
+              },
+              {
+                "table": "cd_carros",
+                "column": "transmissao"
+              },
+              {
+                "table": "cd_carros",
+                "column": "combustivel"
+              },
+              {
+                "table": "cd_carros",
+                "column": "portas"
+              },
+              {
+                "table": "cd_carros",
+                "column": "pessoas"
+              },
+              {
+                "table": "cd_carros",
+                "column": "tipo"
+              },
+              {
+                "table": "cd_carros",
+                "column": "peso"
+              },
+              {
+                "table": "cd_carros",
+                "column": "carga"
+              },
+              {
+                "table": "cd_carros",
+                "column": "shaken_jap"
+              },
+              {
+                "table": "cd_carros",
+                "column": "shaken_ano"
+              },
+              {
+                "table": "cd_carros",
+                "column": "shaken_mes"
+              },
+              {
+                "table": "cd_carros",
+                "column": "custo"
+              },
+              {
+                "table": "cd_carros",
+                "column": "venda"
+              },
+              {
+                "table": "cd_carros",
+                "column": "fornecedor"
+              },
+              {
+                "table": "cd_carros",
+                "column": "outros"
+              },
+              {
+                "table": "cd_carros",
+                "column": "status"
+              },
+              {
+                "table": "cd_carros",
+                "column": "shaken_day"
+              },
+              {
+                "table": "cd_carros",
+                "column": "cliente"
+              },
+              {
+                "table": "cd_carros",
+                "column": "opcionais"
+              },
+              {
+                "table": "cd_carros",
+                "column": "servicos"
+              },
+              {
+                "table": "cd_carros",
+                "column": "imgPrincipal"
+              },
+              {
+                "table": "cd_carros",
+                "column": "imgGaleria"
+              },
+              {
+                "table": "cd_carros",
+                "column": "avarias"
               }
             ],
-            "conditional": null,
-            "valid": true
+            "params": [
+              {
+                "operator": "equal",
+                "type": "expression",
+                "name": ":P1",
+                "value": "{{$_GET.id_carro}}",
+                "test": ""
+              }
+            ],
+            "table": {
+              "name": "cd_carros"
+            },
+            "primary": "id",
+            "joins": [],
+            "query": "select `marca`, `model`, `cor`, `ano_year`, `chassis`, `AnoJap`, `km`, `mes`, `cilindrada`, `motor`, `n_modelo`, `tracao`, `transmissao`, `combustivel`, `portas`, `pessoas`, `tipo`, `peso`, `carga`, `shaken_jap`, `shaken_ano`, `shaken_mes`, `custo`, `venda`, `fornecedor`, `outros`, `status`, `shaken_day`, `cliente`, `opcionais`, `servicos`, `imgPrincipal`, `imgGaleria`, `avarias` from `cd_carros` where `cd_carros`.`id` = ?",
+            "wheres": {
+              "condition": "AND",
+              "rules": [
+                {
+                  "id": "cd_carros.id",
+                  "field": "cd_carros.id",
+                  "type": "double",
+                  "operator": "equal",
+                  "value": "{{$_GET.id_carro}}",
+                  "data": {
+                    "table": "cd_carros",
+                    "column": "id",
+                    "type": "number",
+                    "columnObj": {
+                      "type": "increments",
+                      "primary": true,
+                      "nullable": false,
+                      "name": "id"
+                    }
+                  },
+                  "operation": "=",
+                  "table": "cd_carros"
+                }
+              ],
+              "conditional": null,
+              "valid": true
+            }
           }
-        }
+        },
+        "output": true,
+        "meta": [
+          {
+            "type": "text",
+            "name": "marca"
+          },
+          {
+            "type": "text",
+            "name": "model"
+          },
+          {
+            "type": "text",
+            "name": "cor"
+          },
+          {
+            "type": "number",
+            "name": "ano_year"
+          },
+          {
+            "type": "text",
+            "name": "chassis"
+          },
+          {
+            "type": "text",
+            "name": "AnoJap"
+          },
+          {
+            "type": "number",
+            "name": "km"
+          },
+          {
+            "type": "number",
+            "name": "mes"
+          },
+          {
+            "type": "text",
+            "name": "cilindrada"
+          },
+          {
+            "type": "text",
+            "name": "motor"
+          },
+          {
+            "type": "text",
+            "name": "n_modelo"
+          },
+          {
+            "type": "text",
+            "name": "tracao"
+          },
+          {
+            "type": "text",
+            "name": "transmissao"
+          },
+          {
+            "type": "text",
+            "name": "combustivel"
+          },
+          {
+            "type": "text",
+            "name": "portas"
+          },
+          {
+            "type": "text",
+            "name": "pessoas"
+          },
+          {
+            "type": "text",
+            "name": "tipo"
+          },
+          {
+            "type": "text",
+            "name": "peso"
+          },
+          {
+            "type": "text",
+            "name": "carga"
+          },
+          {
+            "type": "text",
+            "name": "shaken_jap"
+          },
+          {
+            "type": "number",
+            "name": "shaken_ano"
+          },
+          {
+            "type": "text",
+            "name": "shaken_mes"
+          },
+          {
+            "type": "number",
+            "name": "custo"
+          },
+          {
+            "type": "number",
+            "name": "venda"
+          },
+          {
+            "type": "text",
+            "name": "fornecedor"
+          },
+          {
+            "type": "text",
+            "name": "outros"
+          },
+          {
+            "type": "text",
+            "name": "status"
+          },
+          {
+            "type": "text",
+            "name": "shaken_day"
+          },
+          {
+            "type": "text",
+            "name": "cliente"
+          },
+          {
+            "type": "text",
+            "name": "opcionais"
+          },
+          {
+            "type": "text",
+            "name": "servicos"
+          },
+          {
+            "type": "text",
+            "sub": [],
+            "name": "imgPrincipal"
+          },
+          {
+            "type": "text",
+            "sub": [],
+            "name": "imgGaleria"
+          },
+          {
+            "type": "text",
+            "name": "avarias"
+          }
+        ],
+        "outputType": "array"
       },
-      "output": true,
-      "meta": [
-        {
-          "type": "text",
-          "name": "marca"
+      {
+        "name": "query1",
+        "module": "dbconnector",
+        "action": "select",
+        "options": {
+          "connection": "sistema_carros",
+          "sql": {
+            "type": "SELECT",
+            "columns": [
+              {
+                "table": "historico_placas",
+                "column": "regiao"
+              },
+              {
+                "table": "historico_placas",
+                "column": "classe"
+              },
+              {
+                "table": "historico_placas",
+                "column": "hiragana"
+              },
+              {
+                "table": "historico_placas",
+                "column": "numero"
+              },
+              {
+                "table": "historico_placas",
+                "column": "tipo"
+              }
+            ],
+            "params": [
+              {
+                "operator": "equal",
+                "type": "expression",
+                "name": ":P1",
+                "value": "{{$_GET.id_carro}}",
+                "test": ""
+              }
+            ],
+            "table": {
+              "name": "historico_placas"
+            },
+            "primary": "id",
+            "joins": [],
+            "wheres": {
+              "condition": "AND",
+              "rules": [
+                {
+                  "id": "historico_placas.id",
+                  "field": "historico_placas.id",
+                  "type": "double",
+                  "operator": "equal",
+                  "value": "{{$_GET.id_carro}}",
+                  "data": {
+                    "table": "historico_placas",
+                    "column": "id",
+                    "type": "number",
+                    "columnObj": {
+                      "type": "increments",
+                      "primary": true,
+                      "nullable": false,
+                      "name": "id"
+                    }
+                  },
+                  "operation": "="
+                }
+              ],
+              "conditional": null,
+              "valid": true
+            },
+            "query": "select `regiao`, `classe`, `hiragana`, `numero`, `tipo` from `historico_placas` where `historico_placas`.`id` = ?"
+          }
         },
-        {
-          "type": "text",
-          "name": "model"
-        },
-        {
-          "type": "text",
-          "name": "cor"
-        },
-        {
-          "type": "number",
-          "name": "ano_year"
-        },
-        {
-          "type": "text",
-          "name": "chassis"
-        },
-        {
-          "type": "text",
-          "name": "AnoJap"
-        },
-        {
-          "type": "number",
-          "name": "km"
-        },
-        {
-          "type": "number",
-          "name": "mes"
-        },
-        {
-          "type": "text",
-          "name": "cilindrada"
-        },
-        {
-          "type": "text",
-          "name": "motor"
-        },
-        {
-          "type": "text",
-          "name": "n_modelo"
-        },
-        {
-          "type": "text",
-          "name": "tracao"
-        },
-        {
-          "type": "text",
-          "name": "transmissao"
-        },
-        {
-          "type": "text",
-          "name": "combustivel"
-        },
-        {
-          "type": "text",
-          "name": "portas"
-        },
-        {
-          "type": "text",
-          "name": "pessoas"
-        },
-        {
-          "type": "text",
-          "name": "tipo"
-        },
-        {
-          "type": "text",
-          "name": "peso"
-        },
-        {
-          "type": "text",
-          "name": "carga"
-        },
-        {
-          "type": "text",
-          "name": "shaken_jap"
-        },
-        {
-          "type": "number",
-          "name": "shaken_ano"
-        },
-        {
-          "type": "text",
-          "name": "shaken_mes"
-        },
-        {
-          "type": "number",
-          "name": "custo"
-        },
-        {
-          "type": "number",
-          "name": "venda"
-        },
-        {
-          "type": "text",
-          "name": "fornecedor"
-        },
-        {
-          "type": "text",
-          "name": "outros"
-        },
-        {
-          "type": "text",
-          "name": "status"
-        },
-        {
-          "type": "text",
-          "name": "shaken_day"
-        },
-        {
-          "type": "text",
-          "name": "cliente"
-        },
-        {
-          "type": "text",
-          "name": "opcionais"
-        },
-        {
-          "type": "text",
-          "name": "servicos"
-        },
-        {
-          "type": "text",
-          "sub": [],
-          "name": "imgPrincipal"
-        },
-        {
-          "type": "text",
-          "sub": [],
-          "name": "imgGaleria"
-        },
-        {
-          "type": "text",
-          "name": "avarias"
-        }
-      ],
-      "outputType": "array"
-    }
+        "output": true,
+        "meta": [
+          {
+            "type": "text",
+            "name": "regiao"
+          },
+          {
+            "type": "number",
+            "name": "classe"
+          },
+          {
+            "type": "text",
+            "name": "hiragana"
+          },
+          {
+            "type": "number",
+            "name": "numero"
+          },
+          {
+            "type": "text",
+            "name": "tipo"
+          }
+        ],
+        "outputType": "array"
+      }
+    ]
   }
 }

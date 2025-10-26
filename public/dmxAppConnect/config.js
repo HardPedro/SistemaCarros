@@ -153,6 +153,10 @@ dmx.config({
     "masonry1": {
       "meta": null,
       "outputType": "array"
+    },
+    "placatipoatual": {
+      "meta": null,
+      "outputType": "text"
     }
   }
 });

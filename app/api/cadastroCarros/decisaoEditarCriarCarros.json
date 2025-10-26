@@ -28,6 +28,14 @@
       {
         "type": "number",
         "fieldName": "ano_fabricacao_ano",
+        "options": {
+          "rules": {
+            "core:required": {
+              "param": "",
+              "message": "Este campo é obrigatório!"
+            }
+          }
+        },
         "name": "ano_fabricacao_ano"
       },
       {
@@ -143,6 +151,15 @@
       {
         "type": "text",
         "fieldName": "shaken_ano",
+        "options": {
+          "rules": {
+            "core:required": {
+              "param": "",
+              "message": "Este campo é obrigatório!"
+            },
+            "core:number": {}
+          }
+        },
         "name": "shaken_ano"
       },
       {
@@ -197,11 +214,27 @@
       {
         "type": "text",
         "fieldName": "ano_fabricacao_era",
+        "options": {
+          "rules": {
+            "core:required": {
+              "param": "",
+              "message": "Este campo é obrigatório!"
+            }
+          }
+        },
         "name": "ano_fabricacao_era"
       },
       {
         "type": "text",
         "fieldName": "ano_fabricacao_mes",
+        "options": {
+          "rules": {
+            "core:required": {
+              "param": "",
+              "message": "Este campo é obrigatório!"
+            }
+          }
+        },
         "name": "ano_fabricacao_mes"
       },
       {
@@ -212,16 +245,40 @@
       {
         "type": "text",
         "fieldName": "shaken_era",
+        "options": {
+          "rules": {
+            "core:required": {
+              "param": "",
+              "message": "Este campo é obrigatório!"
+            }
+          }
+        },
         "name": "shaken_era"
       },
       {
         "type": "text",
         "fieldName": "shaken_mes",
+        "options": {
+          "rules": {
+            "core:required": {
+              "param": "",
+              "message": "Este campo é obrigatório!"
+            }
+          }
+        },
         "name": "shaken_mes"
       },
       {
         "type": "text",
         "fieldName": "shaken_day",
+        "options": {
+          "rules": {
+            "core:required": {
+              "param": "",
+              "message": "Este campo é obrigatório!"
+            }
+          }
+        },
         "name": "shaken_day"
       },
       {
@@ -297,6 +354,227 @@
         "fieldName": "avarias[]",
         "multiple": true,
         "name": "avarias"
+      },
+      {
+        "type": "file",
+        "fieldName": "imagemPrincipal",
+        "options": {
+          "rules": {
+            "upload:accept": {
+              "param": "image/*"
+            }
+          }
+        },
+        "name": "imagemPrincipal",
+        "sub": [
+          {
+            "type": "text",
+            "name": "name"
+          },
+          {
+            "type": "text",
+            "name": "type"
+          },
+          {
+            "type": "number",
+            "name": "size"
+          },
+          {
+            "type": "text",
+            "name": "error"
+          }
+        ],
+        "outputType": "file"
+      },
+      {
+        "type": "file",
+        "fieldName": "imagem2",
+        "options": {
+          "rules": {
+            "upload:accept": {
+              "param": "image/*"
+            }
+          }
+        },
+        "name": "imagem2",
+        "sub": [
+          {
+            "type": "text",
+            "name": "name"
+          },
+          {
+            "type": "text",
+            "name": "type"
+          },
+          {
+            "type": "number",
+            "name": "size"
+          },
+          {
+            "type": "text",
+            "name": "error"
+          }
+        ],
+        "outputType": "file"
+      },
+      {
+        "type": "file",
+        "fieldName": "imagem3",
+        "options": {
+          "rules": {
+            "upload:accept": {
+              "param": "image/*"
+            }
+          }
+        },
+        "name": "imagem3",
+        "sub": [
+          {
+            "type": "text",
+            "name": "name"
+          },
+          {
+            "type": "text",
+            "name": "type"
+          },
+          {
+            "type": "number",
+            "name": "size"
+          },
+          {
+            "type": "text",
+            "name": "error"
+          }
+        ],
+        "outputType": "file"
+      },
+      {
+        "type": "file",
+        "fieldName": "imagem4",
+        "options": {
+          "rules": {
+            "upload:accept": {
+              "param": "image/*"
+            }
+          }
+        },
+        "name": "imagem4",
+        "sub": [
+          {
+            "type": "text",
+            "name": "name"
+          },
+          {
+            "type": "text",
+            "name": "type"
+          },
+          {
+            "type": "number",
+            "name": "size"
+          },
+          {
+            "type": "text",
+            "name": "error"
+          }
+        ],
+        "outputType": "file"
+      },
+      {
+        "type": "file",
+        "fieldName": "imagem5",
+        "options": {
+          "rules": {
+            "upload:accept": {
+              "param": "image/*"
+            }
+          }
+        },
+        "name": "imagem5",
+        "sub": [
+          {
+            "type": "text",
+            "name": "name"
+          },
+          {
+            "type": "text",
+            "name": "type"
+          },
+          {
+            "type": "number",
+            "name": "size"
+          },
+          {
+            "type": "text",
+            "name": "error"
+          }
+        ],
+        "outputType": "file"
+      },
+      {
+        "type": "file",
+        "fieldName": "imagem6",
+        "options": {
+          "rules": {
+            "upload:accept": {
+              "param": "image/*"
+            }
+          }
+        },
+        "name": "imagem6",
+        "sub": [
+          {
+            "type": "text",
+            "name": "name"
+          },
+          {
+            "type": "text",
+            "name": "type"
+          },
+          {
+            "type": "number",
+            "name": "size"
+          },
+          {
+            "type": "text",
+            "name": "error"
+          }
+        ],
+        "outputType": "file"
+      },
+      {
+        "type": "file",
+        "fieldName": "imagem7",
+        "options": {
+          "rules": {
+            "upload:accept": {
+              "param": "image/*"
+            }
+          }
+        },
+        "name": "imagem7",
+        "sub": [
+          {
+            "type": "text",
+            "name": "name"
+          },
+          {
+            "type": "text",
+            "name": "type"
+          },
+          {
+            "type": "number",
+            "name": "size"
+          },
+          {
+            "type": "text",
+            "name": "error"
+          }
+        ],
+        "outputType": "file"
+      },
+      {
+        "type": "text",
+        "name": "placa_tipo"
       }
     ]
   },
@@ -309,487 +587,598 @@
         "options": {
           "if": "{{$_POST.id_hidden}}",
           "then": {
-            "steps": {
-              "name": "update",
-              "module": "dbupdater",
-              "action": "update",
-              "options": {
-                "connection": "sistema_carros",
-                "sql": {
-                  "type": "update",
-                  "values": [
-                    {
-                      "table": "cd_carros",
-                      "column": "marca",
-                      "type": "text",
-                      "value": "{{$_POST.marca}}"
-                    },
-                    {
-                      "table": "cd_carros",
-                      "column": "model",
-                      "type": "text",
-                      "value": "{{$_POST.model}}"
-                    },
-                    {
-                      "table": "cd_carros",
-                      "column": "cor",
-                      "type": "text",
-                      "value": "{{$_POST.cor}}"
-                    },
-                    {
-                      "table": "cd_carros",
-                      "column": "ano_year",
-                      "type": "number",
-                      "value": "{{$_POST.ano_fabricacao_ano}}"
-                    },
-                    {
-                      "table": "cd_carros",
-                      "column": "chassis",
-                      "type": "text",
-                      "value": "{{$_POST.chassis}}"
-                    },
-                    {
-                      "table": "cd_carros",
-                      "column": "AnoJap",
-                      "type": "number",
-                      "value": "{{$_POST.ano_fabricacao_era}}"
-                    },
-                    {
-                      "table": "cd_carros",
-                      "column": "mes",
-                      "type": "number",
-                      "value": "{{$_POST.ano_fabricacao_mes}}"
-                    },
-                    {
-                      "table": "cd_carros",
-                      "column": "km",
-                      "type": "number",
-                      "value": "{{$_POST.km}}"
-                    },
-                    {
-                      "table": "cd_carros",
-                      "column": "cilindrada",
-                      "type": "text",
-                      "value": "{{$_POST.cilindrada}}"
-                    },
-                    {
-                      "table": "cd_carros",
-                      "column": "motor",
-                      "type": "text",
-                      "value": "{{$_POST.motor}}"
-                    },
-                    {
-                      "table": "cd_carros",
-                      "column": "n_modelo",
-                      "type": "text",
-                      "value": "{{$_POST.n_modelo}}"
-                    },
-                    {
-                      "table": "cd_carros",
-                      "column": "tracao",
-                      "type": "text",
-                      "value": "{{$_POST.tracao}}"
-                    },
-                    {
-                      "table": "cd_carros",
-                      "column": "transmissao",
-                      "type": "text",
-                      "value": "{{$_POST.transmissao}}"
-                    },
-                    {
-                      "table": "cd_carros",
-                      "column": "combustivel",
-                      "type": "text",
-                      "value": "{{$_POST.combustivel}}"
-                    },
-                    {
-                      "table": "cd_carros",
-                      "column": "portas",
-                      "type": "text",
-                      "value": "{{$_POST.portas }}"
-                    },
-                    {
-                      "table": "cd_carros",
-                      "column": "pessoas",
-                      "type": "text",
-                      "value": "{{$_POST.pessoas}}"
-                    },
-                    {
-                      "table": "cd_carros",
-                      "column": "tipo",
-                      "type": "text",
-                      "value": "{{$_POST.tipo}}"
-                    },
-                    {
-                      "table": "cd_carros",
-                      "column": "peso",
-                      "type": "text",
-                      "value": "{{$_POST.peso}}"
-                    },
-                    {
-                      "table": "cd_carros",
-                      "column": "carga",
-                      "type": "text",
-                      "value": "{{$_POST.carga}}"
-                    },
-                    {
-                      "table": "cd_carros",
-                      "column": "shaken_jap",
-                      "type": "text",
-                      "value": "{{$_POST.shaken_era}}"
-                    },
-                    {
-                      "table": "cd_carros",
-                      "column": "shaken_ano",
-                      "type": "number",
-                      "value": "{{$_POST.shaken_ano}}"
-                    },
-                    {
-                      "table": "cd_carros",
-                      "column": "shaken_mes",
-                      "type": "text",
-                      "value": "{{$_POST.shaken_mes}}"
-                    },
-                    {
-                      "table": "cd_carros",
-                      "column": "custo",
-                      "type": "number",
-                      "value": "{{$_POST.custo}}"
-                    },
-                    {
-                      "table": "cd_carros",
-                      "column": "venda",
-                      "type": "number",
-                      "value": "{{$_POST.venda}}"
-                    },
-                    {
-                      "table": "cd_carros",
-                      "column": "fornecedor",
-                      "type": "text",
-                      "value": "{{$_POST.fornecedor}}"
-                    },
-                    {
-                      "table": "cd_carros",
-                      "column": "outros",
-                      "type": "text",
-                      "value": "{{$_POST.outros}}"
-                    },
-                    {
-                      "table": "cd_carros",
-                      "column": "status",
-                      "type": "text",
-                      "value": "{{$_POST.status}}"
-                    },
-                    {
-                      "table": "cd_carros",
-                      "column": "shaken_day",
-                      "type": "text",
-                      "value": "{{$_POST.shaken_day}}"
-                    },
-                    {
-                      "table": "cd_carros",
-                      "column": "foto",
-                      "type": "file",
-                      "value": "0"
-                    },
-                    {
-                      "table": "cd_carros",
-                      "column": "yj",
-                      "type": "text",
-                      "value": "0"
-                    },
-                    {
-                      "table": "cd_carros",
-                      "column": "cliente",
-                      "type": "text",
-                      "value": "{{$_POST.cliente}}"
-                    },
-                    {
-                      "table": "cd_carros",
-                      "column": "veiculo",
-                      "type": "text",
-                      "value": "0"
-                    },
-                    {
-                      "table": "cd_carros",
-                      "column": "placa",
-                      "type": "text",
-                      "value": "0"
-                    },
-                    {
-                      "table": "cd_carros",
-                      "column": "opcionais",
-                      "type": "text",
-                      "value": "{{$_POST.opcionais.join(',')}}"
-                    },
-                    {
-                      "table": "cd_carros",
-                      "column": "servicos",
-                      "type": "text",
-                      "value": "{{$_POST.servicos.join(',')}}"
-                    },
-                    {
-                      "table": "cd_carros",
-                      "column": "imgPrincipal",
-                      "type": "text",
-                      "value": "{{$_POST.imgPrincipal}}"
-                    },
-                    {
-                      "table": "cd_carros",
-                      "column": "imgGaleria",
-                      "type": "text",
-                      "value": "{{$_POST.imgGaleria}}"
-                    },
-                    {
-                      "table": "cd_carros",
-                      "column": "avarias",
-                      "type": "text",
-                      "value": "{{$_POST.avarias.join(',')}}"
-                    }
-                  ],
-                  "table": "cd_carros",
-                  "wheres": {
-                    "condition": "AND",
-                    "rules": [
+            "steps": [
+              {
+                "name": "update",
+                "module": "dbupdater",
+                "action": "update",
+                "options": {
+                  "connection": "sistema_carros",
+                  "sql": {
+                    "type": "update",
+                    "values": [
                       {
-                        "id": "id",
-                        "field": "id",
-                        "type": "double",
-                        "operator": "equal",
-                        "value": "{{$_POST.id_hidden}}",
-                        "data": {
-                          "column": "id"
-                        },
-                        "operation": "="
+                        "table": "cd_carros",
+                        "column": "marca",
+                        "type": "text",
+                        "value": "{{$_POST.marca}}"
+                      },
+                      {
+                        "table": "cd_carros",
+                        "column": "model",
+                        "type": "text",
+                        "value": "{{$_POST.model}}"
+                      },
+                      {
+                        "table": "cd_carros",
+                        "column": "cor",
+                        "type": "text",
+                        "value": "{{$_POST.cor}}"
+                      },
+                      {
+                        "table": "cd_carros",
+                        "column": "ano_year",
+                        "type": "number",
+                        "value": "{{$_POST.ano_fabricacao_ano}}"
+                      },
+                      {
+                        "table": "cd_carros",
+                        "column": "chassis",
+                        "type": "text",
+                        "value": "{{$_POST.chassis}}"
+                      },
+                      {
+                        "table": "cd_carros",
+                        "column": "AnoJap",
+                        "type": "number",
+                        "value": "{{$_POST.ano_fabricacao_era}}"
+                      },
+                      {
+                        "table": "cd_carros",
+                        "column": "mes",
+                        "type": "number",
+                        "value": "{{$_POST.ano_fabricacao_mes}}"
+                      },
+                      {
+                        "table": "cd_carros",
+                        "column": "km",
+                        "type": "number",
+                        "value": "{{$_POST.km}}"
+                      },
+                      {
+                        "table": "cd_carros",
+                        "column": "cilindrada",
+                        "type": "text",
+                        "value": "{{$_POST.cilindrada}}"
+                      },
+                      {
+                        "table": "cd_carros",
+                        "column": "motor",
+                        "type": "text",
+                        "value": "{{$_POST.motor}}"
+                      },
+                      {
+                        "table": "cd_carros",
+                        "column": "n_modelo",
+                        "type": "text",
+                        "value": "{{$_POST.n_modelo}}"
+                      },
+                      {
+                        "table": "cd_carros",
+                        "column": "tracao",
+                        "type": "text",
+                        "value": "{{$_POST.tracao}}"
+                      },
+                      {
+                        "table": "cd_carros",
+                        "column": "transmissao",
+                        "type": "text",
+                        "value": "{{$_POST.transmissao}}"
+                      },
+                      {
+                        "table": "cd_carros",
+                        "column": "combustivel",
+                        "type": "text",
+                        "value": "{{$_POST.combustivel}}"
+                      },
+                      {
+                        "table": "cd_carros",
+                        "column": "portas",
+                        "type": "text",
+                        "value": "{{$_POST.portas }}"
+                      },
+                      {
+                        "table": "cd_carros",
+                        "column": "pessoas",
+                        "type": "text",
+                        "value": "{{$_POST.pessoas}}"
+                      },
+                      {
+                        "table": "cd_carros",
+                        "column": "tipo",
+                        "type": "text",
+                        "value": "{{$_POST.tipo}}"
+                      },
+                      {
+                        "table": "cd_carros",
+                        "column": "peso",
+                        "type": "text",
+                        "value": "{{$_POST.peso}}"
+                      },
+                      {
+                        "table": "cd_carros",
+                        "column": "carga",
+                        "type": "text",
+                        "value": "{{$_POST.carga}}"
+                      },
+                      {
+                        "table": "cd_carros",
+                        "column": "shaken_jap",
+                        "type": "text",
+                        "value": "{{$_POST.shaken_era}}"
+                      },
+                      {
+                        "table": "cd_carros",
+                        "column": "shaken_ano",
+                        "type": "number",
+                        "value": "{{$_POST.shaken_ano}}"
+                      },
+                      {
+                        "table": "cd_carros",
+                        "column": "shaken_mes",
+                        "type": "text",
+                        "value": "{{$_POST.shaken_mes}}"
+                      },
+                      {
+                        "table": "cd_carros",
+                        "column": "custo",
+                        "type": "number",
+                        "value": "{{$_POST.custo}}"
+                      },
+                      {
+                        "table": "cd_carros",
+                        "column": "venda",
+                        "type": "number",
+                        "value": "{{$_POST.venda}}"
+                      },
+                      {
+                        "table": "cd_carros",
+                        "column": "fornecedor",
+                        "type": "text",
+                        "value": "{{$_POST.fornecedor}}"
+                      },
+                      {
+                        "table": "cd_carros",
+                        "column": "outros",
+                        "type": "text",
+                        "value": "{{$_POST.outros}}"
+                      },
+                      {
+                        "table": "cd_carros",
+                        "column": "status",
+                        "type": "text",
+                        "value": "{{$_POST.status}}"
+                      },
+                      {
+                        "table": "cd_carros",
+                        "column": "shaken_day",
+                        "type": "text",
+                        "value": "{{$_POST.shaken_day}}"
+                      },
+                      {
+                        "table": "cd_carros",
+                        "column": "foto",
+                        "type": "file",
+                        "value": "0"
+                      },
+                      {
+                        "table": "cd_carros",
+                        "column": "yj",
+                        "type": "text",
+                        "value": "0"
+                      },
+                      {
+                        "table": "cd_carros",
+                        "column": "cliente",
+                        "type": "text",
+                        "value": "{{$_POST.cliente}}"
+                      },
+                      {
+                        "table": "cd_carros",
+                        "column": "veiculo",
+                        "type": "text",
+                        "value": "0"
+                      },
+                      {
+                        "table": "cd_carros",
+                        "column": "placa",
+                        "type": "text",
+                        "value": "0"
+                      },
+                      {
+                        "table": "cd_carros",
+                        "column": "opcionais",
+                        "type": "text",
+                        "value": "{{$_POST.opcionais.join(',')}}"
+                      },
+                      {
+                        "table": "cd_carros",
+                        "column": "servicos",
+                        "type": "text",
+                        "value": "{{$_POST.servicos.join(',')}}"
+                      },
+                      {
+                        "table": "cd_carros",
+                        "column": "imgPrincipal",
+                        "type": "text",
+                        "value": "{{$_POST.imgPrincipal}}"
+                      },
+                      {
+                        "table": "cd_carros",
+                        "column": "imgGaleria",
+                        "type": "text",
+                        "value": "{{$_POST.imgGaleria}}"
+                      },
+                      {
+                        "table": "cd_carros",
+                        "column": "avarias",
+                        "type": "text",
+                        "value": "{{$_POST.avarias.join(',')}}"
                       }
                     ],
-                    "conditional": null,
-                    "valid": true
-                  },
-                  "returning": "id",
-                  "query": "update `cd_carros` set `marca` = ?, `model` = ?, `cor` = ?, `ano_year` = ?, `chassis` = ?, `AnoJap` = ?, `mes` = ?, `km` = ?, `cilindrada` = ?, `motor` = ?, `n_modelo` = ?, `tracao` = ?, `transmissao` = ?, `combustivel` = ?, `portas` = ?, `pessoas` = ?, `tipo` = ?, `peso` = ?, `carga` = ?, `shaken_jap` = ?, `shaken_ano` = ?, `shaken_mes` = ?, `custo` = ?, `venda` = ?, `fornecedor` = ?, `outros` = ?, `status` = ?, `shaken_day` = ?, `foto` = ?, `yj` = ?, `cliente` = ?, `veiculo` = ?, `placa` = ?, `opcionais` = ?, `servicos` = ?, `imgPrincipal` = ?, `imgGaleria` = ?, `avarias` = ? where `id` = ?",
-                  "params": [
-                    {
-                      "name": ":P1",
-                      "type": "expression",
-                      "value": "{{$_POST.marca}}",
-                      "test": ""
+                    "table": "cd_carros",
+                    "wheres": {
+                      "condition": "AND",
+                      "rules": [
+                        {
+                          "id": "id",
+                          "field": "id",
+                          "type": "double",
+                          "operator": "equal",
+                          "value": "{{$_POST.id_hidden}}",
+                          "data": {
+                            "column": "id"
+                          },
+                          "operation": "="
+                        }
+                      ],
+                      "conditional": null,
+                      "valid": true
                     },
-                    {
-                      "name": ":P2",
-                      "type": "expression",
-                      "value": "{{$_POST.model}}",
-                      "test": ""
-                    },
-                    {
-                      "name": ":P3",
-                      "type": "expression",
-                      "value": "{{$_POST.cor}}",
-                      "test": ""
-                    },
-                    {
-                      "name": ":P4",
-                      "type": "expression",
-                      "value": "{{$_POST.ano_fabricacao_ano}}",
-                      "test": ""
-                    },
-                    {
-                      "name": ":P5",
-                      "type": "expression",
-                      "value": "{{$_POST.chassis}}",
-                      "test": ""
-                    },
-                    {
-                      "name": ":P6",
-                      "type": "expression",
-                      "value": "{{$_POST.ano_fabricacao_era}}",
-                      "test": ""
-                    },
-                    {
-                      "name": ":P7",
-                      "type": "expression",
-                      "value": "{{$_POST.ano_fabricacao_mes}}",
-                      "test": ""
-                    },
-                    {
-                      "name": ":P8",
-                      "type": "expression",
-                      "value": "{{$_POST.km}}",
-                      "test": ""
-                    },
-                    {
-                      "name": ":P9",
-                      "type": "expression",
-                      "value": "{{$_POST.cilindrada}}",
-                      "test": ""
-                    },
-                    {
-                      "name": ":P10",
-                      "type": "expression",
-                      "value": "{{$_POST.motor}}",
-                      "test": ""
-                    },
-                    {
-                      "name": ":P11",
-                      "type": "expression",
-                      "value": "{{$_POST.n_modelo}}",
-                      "test": ""
-                    },
-                    {
-                      "name": ":P12",
-                      "type": "expression",
-                      "value": "{{$_POST.tracao}}",
-                      "test": ""
-                    },
-                    {
-                      "name": ":P13",
-                      "type": "expression",
-                      "value": "{{$_POST.transmissao}}",
-                      "test": ""
-                    },
-                    {
-                      "name": ":P14",
-                      "type": "expression",
-                      "value": "{{$_POST.combustivel}}",
-                      "test": ""
-                    },
-                    {
-                      "name": ":P15",
-                      "type": "expression",
-                      "value": "{{$_POST.portas }}",
-                      "test": ""
-                    },
-                    {
-                      "name": ":P16",
-                      "type": "expression",
-                      "value": "{{$_POST.pessoas}}",
-                      "test": ""
-                    },
-                    {
-                      "name": ":P17",
-                      "type": "expression",
-                      "value": "{{$_POST.tipo}}",
-                      "test": ""
-                    },
-                    {
-                      "name": ":P18",
-                      "type": "expression",
-                      "value": "{{$_POST.peso}}",
-                      "test": ""
-                    },
-                    {
-                      "name": ":P19",
-                      "type": "expression",
-                      "value": "{{$_POST.carga}}",
-                      "test": ""
-                    },
-                    {
-                      "name": ":P20",
-                      "type": "expression",
-                      "value": "{{$_POST.shaken_era}}",
-                      "test": ""
-                    },
-                    {
-                      "name": ":P21",
-                      "type": "expression",
-                      "value": "{{$_POST.shaken_ano}}",
-                      "test": ""
-                    },
-                    {
-                      "name": ":P22",
-                      "type": "expression",
-                      "value": "{{$_POST.shaken_mes}}",
-                      "test": ""
-                    },
-                    {
-                      "name": ":P23",
-                      "type": "expression",
-                      "value": "{{$_POST.custo}}",
-                      "test": ""
-                    },
-                    {
-                      "name": ":P24",
-                      "type": "expression",
-                      "value": "{{$_POST.venda}}",
-                      "test": ""
-                    },
-                    {
-                      "name": ":P25",
-                      "type": "expression",
-                      "value": "{{$_POST.fornecedor}}",
-                      "test": ""
-                    },
-                    {
-                      "name": ":P26",
-                      "type": "expression",
-                      "value": "{{$_POST.outros}}",
-                      "test": ""
-                    },
-                    {
-                      "name": ":P27",
-                      "type": "expression",
-                      "value": "{{$_POST.status}}",
-                      "test": ""
-                    },
-                    {
-                      "name": ":P28",
-                      "type": "expression",
-                      "value": "{{$_POST.shaken_day}}",
-                      "test": ""
-                    },
-                    {
-                      "name": ":P29",
-                      "type": "expression",
-                      "value": "{{$_POST.cliente}}",
-                      "test": ""
-                    },
-                    {
-                      "name": ":P30",
-                      "type": "expression",
-                      "value": "{{$_POST.opcionais.join(',')}}",
-                      "test": ""
-                    },
-                    {
-                      "name": ":P31",
-                      "type": "expression",
-                      "value": "{{$_POST.servicos.join(',')}}",
-                      "test": ""
-                    },
-                    {
-                      "name": ":P32",
-                      "type": "expression",
-                      "value": "{{$_POST.imgPrincipal}}",
-                      "test": ""
-                    },
-                    {
-                      "name": ":P33",
-                      "type": "expression",
-                      "value": "{{$_POST.imgGaleria}}",
-                      "test": ""
-                    },
-                    {
-                      "name": ":P34",
-                      "type": "expression",
-                      "value": "{{$_POST.avarias.join(',')}}",
-                      "test": ""
-                    },
-                    {
-                      "operator": "equal",
-                      "type": "expression",
-                      "name": ":P35",
-                      "value": "{{$_POST.id_hidden}}",
-                      "test": ""
-                    }
-                  ]
-                }
+                    "returning": "id",
+                    "query": "update `cd_carros` set `marca` = ?, `model` = ?, `cor` = ?, `ano_year` = ?, `chassis` = ?, `AnoJap` = ?, `mes` = ?, `km` = ?, `cilindrada` = ?, `motor` = ?, `n_modelo` = ?, `tracao` = ?, `transmissao` = ?, `combustivel` = ?, `portas` = ?, `pessoas` = ?, `tipo` = ?, `peso` = ?, `carga` = ?, `shaken_jap` = ?, `shaken_ano` = ?, `shaken_mes` = ?, `custo` = ?, `venda` = ?, `fornecedor` = ?, `outros` = ?, `status` = ?, `shaken_day` = ?, `foto` = ?, `yj` = ?, `cliente` = ?, `veiculo` = ?, `placa` = ?, `opcionais` = ?, `servicos` = ?, `imgPrincipal` = ?, `imgGaleria` = ?, `avarias` = ? where `id` = ?",
+                    "params": [
+                      {
+                        "name": ":P1",
+                        "type": "expression",
+                        "value": "{{$_POST.marca}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P2",
+                        "type": "expression",
+                        "value": "{{$_POST.model}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P3",
+                        "type": "expression",
+                        "value": "{{$_POST.cor}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P4",
+                        "type": "expression",
+                        "value": "{{$_POST.ano_fabricacao_ano}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P5",
+                        "type": "expression",
+                        "value": "{{$_POST.chassis}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P6",
+                        "type": "expression",
+                        "value": "{{$_POST.ano_fabricacao_era}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P7",
+                        "type": "expression",
+                        "value": "{{$_POST.ano_fabricacao_mes}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P8",
+                        "type": "expression",
+                        "value": "{{$_POST.km}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P9",
+                        "type": "expression",
+                        "value": "{{$_POST.cilindrada}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P10",
+                        "type": "expression",
+                        "value": "{{$_POST.motor}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P11",
+                        "type": "expression",
+                        "value": "{{$_POST.n_modelo}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P12",
+                        "type": "expression",
+                        "value": "{{$_POST.tracao}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P13",
+                        "type": "expression",
+                        "value": "{{$_POST.transmissao}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P14",
+                        "type": "expression",
+                        "value": "{{$_POST.combustivel}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P15",
+                        "type": "expression",
+                        "value": "{{$_POST.portas }}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P16",
+                        "type": "expression",
+                        "value": "{{$_POST.pessoas}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P17",
+                        "type": "expression",
+                        "value": "{{$_POST.tipo}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P18",
+                        "type": "expression",
+                        "value": "{{$_POST.peso}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P19",
+                        "type": "expression",
+                        "value": "{{$_POST.carga}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P20",
+                        "type": "expression",
+                        "value": "{{$_POST.shaken_era}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P21",
+                        "type": "expression",
+                        "value": "{{$_POST.shaken_ano}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P22",
+                        "type": "expression",
+                        "value": "{{$_POST.shaken_mes}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P23",
+                        "type": "expression",
+                        "value": "{{$_POST.custo}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P24",
+                        "type": "expression",
+                        "value": "{{$_POST.venda}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P25",
+                        "type": "expression",
+                        "value": "{{$_POST.fornecedor}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P26",
+                        "type": "expression",
+                        "value": "{{$_POST.outros}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P27",
+                        "type": "expression",
+                        "value": "{{$_POST.status}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P28",
+                        "type": "expression",
+                        "value": "{{$_POST.shaken_day}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P29",
+                        "type": "expression",
+                        "value": "{{$_POST.cliente}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P30",
+                        "type": "expression",
+                        "value": "{{$_POST.opcionais.join(',')}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P31",
+                        "type": "expression",
+                        "value": "{{$_POST.servicos.join(',')}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P32",
+                        "type": "expression",
+                        "value": "{{$_POST.imgPrincipal}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P33",
+                        "type": "expression",
+                        "value": "{{$_POST.imgGaleria}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P34",
+                        "type": "expression",
+                        "value": "{{$_POST.avarias.join(',')}}",
+                        "test": ""
+                      },
+                      {
+                        "operator": "equal",
+                        "type": "expression",
+                        "name": ":P35",
+                        "value": "{{$_POST.id_hidden}}",
+                        "test": ""
+                      }
+                    ]
+                  }
+                },
+                "meta": [
+                  {
+                    "name": "affected",
+                    "type": "number"
+                  }
+                ]
               },
-              "meta": [
-                {
-                  "name": "affected",
-                  "type": "number"
-                }
-              ]
-            }
+              {
+                "name": "update1",
+                "module": "dbupdater",
+                "action": "update",
+                "options": {
+                  "connection": "sistema_carros",
+                  "sql": {
+                    "type": "update",
+                    "values": [
+                      {
+                        "table": "historico_placas",
+                        "column": "regiao",
+                        "type": "text",
+                        "value": "{{$_POST.placa_regiao}}"
+                      },
+                      {
+                        "table": "historico_placas",
+                        "column": "classe",
+                        "type": "number",
+                        "value": "{{$_POST.placa_classe}}"
+                      },
+                      {
+                        "table": "historico_placas",
+                        "column": "hiragana",
+                        "type": "text",
+                        "value": "{{$_POST.placa_hiragana}}"
+                      },
+                      {
+                        "table": "historico_placas",
+                        "column": "numero",
+                        "type": "number",
+                        "value": "{{$_POST.placa_numero}}"
+                      },
+                      {
+                        "table": "historico_placas",
+                        "column": "tipo",
+                        "type": "text",
+                        "value": "{{$_POST.placa_tipo}}"
+                      }
+                    ],
+                    "table": "historico_placas",
+                    "wheres": {
+                      "condition": "AND",
+                      "rules": [
+                        {
+                          "id": "id",
+                          "field": "id",
+                          "type": "double",
+                          "operator": "equal",
+                          "value": "{{$_POST.id_hidden}}",
+                          "data": {
+                            "column": "id"
+                          },
+                          "operation": "="
+                        }
+                      ],
+                      "conditional": null,
+                      "valid": true
+                    },
+                    "returning": "id",
+                    "query": "update `historico_placas` set `regiao` = ?, `classe` = ?, `hiragana` = ?, `numero` = ?, `tipo` = ? where `id` = ?",
+                    "params": [
+                      {
+                        "name": ":P1",
+                        "type": "expression",
+                        "value": "{{$_POST.placa_regiao}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P2",
+                        "type": "expression",
+                        "value": "{{$_POST.placa_classe}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P3",
+                        "type": "expression",
+                        "value": "{{$_POST.placa_hiragana}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P4",
+                        "type": "expression",
+                        "value": "{{$_POST.placa_numero}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P5",
+                        "type": "expression",
+                        "value": "{{$_POST.placa_tipo}}",
+                        "test": ""
+                      },
+                      {
+                        "operator": "equal",
+                        "type": "expression",
+                        "name": ":P6",
+                        "value": "{{$_POST.id_hidden}}",
+                        "test": ""
+                      }
+                    ]
+                  }
+                },
+                "meta": [
+                  {
+                    "name": "affected",
+                    "type": "number"
+                  }
+                ]
+              }
+            ]
           },
           "else": {
             "steps": {
@@ -1028,11 +1417,35 @@
                       "column": "avarias",
                       "type": "text",
                       "value": "{{$_POST.avarias.join(',')}}"
+                    },
+                    {
+                      "table": "cd_carros",
+                      "column": "placa_regiao",
+                      "type": "text",
+                      "value": "{{$_POST.placa_regiao}}"
+                    },
+                    {
+                      "table": "cd_carros",
+                      "column": "placa_classe",
+                      "type": "number",
+                      "value": "{{$_POST.placa_classe}}"
+                    },
+                    {
+                      "table": "cd_carros",
+                      "column": "placa_hiragana",
+                      "type": "text",
+                      "value": "{{$_POST.placa_hiragana}}"
+                    },
+                    {
+                      "table": "cd_carros",
+                      "column": "placa_numero",
+                      "type": "number",
+                      "value": "{{$_POST.placa_numero}}"
                     }
                   ],
                   "table": "cd_carros",
                   "returning": "id",
-                  "query": "insert into `cd_carros` (`AnoJap`, `ano_year`, `avarias`, `carga`, `chassis`, `cilindrada`, `cliente`, `combustivel`, `cor`, `custo`, `fornecedor`, `foto`, `imgGaleria`, `imgPrincipal`, `km`, `marca`, `mes`, `model`, `motor`, `n_modelo`, `opcionais`, `outros`, `peso`, `pessoas`, `placa`, `portas`, `servicos`, `shaken_ano`, `shaken_day`, `shaken_jap`, `shaken_mes`, `status`, `tipo`, `tracao`, `transmissao`, `veiculo`, `venda`, `yj`) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                  "query": "insert into `cd_carros` (`AnoJap`, `ano_year`, `avarias`, `carga`, `chassis`, `cilindrada`, `cliente`, `combustivel`, `cor`, `custo`, `fornecedor`, `foto`, `imgGaleria`, `imgPrincipal`, `km`, `marca`, `mes`, `model`, `motor`, `n_modelo`, `opcionais`, `outros`, `peso`, `pessoas`, `placa`, `placa_classe`, `placa_hiragana`, `placa_numero`, `placa_regiao`, `portas`, `servicos`, `shaken_ano`, `shaken_day`, `shaken_jap`, `shaken_mes`, `status`, `tipo`, `tracao`, `transmissao`, `veiculo`, `venda`, `yj`) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                   "params": [
                     {
                       "name": ":P1",
@@ -1236,6 +1649,30 @@
                       "name": ":P34",
                       "type": "expression",
                       "value": "{{$_POST.avarias.join(',')}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P35",
+                      "type": "expression",
+                      "value": "{{$_POST.placa_regiao}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P36",
+                      "type": "expression",
+                      "value": "{{$_POST.placa_classe}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P37",
+                      "type": "expression",
+                      "value": "{{$_POST.placa_hiragana}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P38",
+                      "type": "expression",
+                      "value": "{{$_POST.placa_numero}}",
                       "test": ""
                     }
                   ]

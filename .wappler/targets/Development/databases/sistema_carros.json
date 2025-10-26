@@ -105,19 +105,19 @@
           "system_versioned": false
         }
       },
-      "resto": {
-        "db": {
-          "engine": "InnoDB",
-          "schema": "sistema_carros",
-          "collation": "utf8mb4_general_ci",
-          "system_versioned": false
-        }
-      },
       "shitadori": {
         "db": {
           "engine": "InnoDB",
           "schema": "sistema_carros",
           "collation": "utf8mb4_0900_ai_ci",
+          "system_versioned": false
+        }
+      },
+      "resto": {
+        "db": {
+          "engine": "InnoDB",
+          "schema": "sistema_carros",
+          "collation": "utf8mb4_general_ci",
           "system_versioned": false
         }
       },
@@ -618,6 +618,61 @@
           }
         }
       },
+      "historico_placas": {
+        "columns": {
+          "id": {
+            "db": {
+              "type": "increments",
+              "primary": true,
+              "nullable": false
+            }
+          },
+          "regiao": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "classe": {
+            "db": {
+              "type": "integer",
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "hiragana": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "numero": {
+            "db": {
+              "type": "integer",
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "tipo": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "nullable": true
+            }
+          }
+        },
+        "db": {
+          "engine": "InnoDB",
+          "schema": "sistema_carros",
+          "collation": "utf8mb4_0900_ai_ci",
+          "system_versioned": false
+        }
+      },
       "cd_carros": {
         "db": {
           "engine": "InnoDB",
@@ -638,7 +693,7 @@
               "type": "string",
               "maxLength": 100,
               "primary": false,
-              "nullable": false
+              "nullable": true
             }
           },
           "model": {
@@ -646,7 +701,7 @@
               "type": "string",
               "maxLength": 100,
               "primary": false,
-              "nullable": false
+              "nullable": true
             }
           },
           "cor": {
@@ -654,14 +709,14 @@
               "type": "string",
               "maxLength": 20,
               "primary": false,
-              "nullable": false
+              "nullable": true
             }
           },
           "ano_year": {
             "db": {
               "type": "integer",
               "primary": false,
-              "nullable": false
+              "nullable": true
             }
           },
           "chassis": {
@@ -669,7 +724,7 @@
               "type": "string",
               "maxLength": 70,
               "primary": false,
-              "nullable": false
+              "nullable": true
             }
           },
           "AnoJap": {
@@ -684,14 +739,14 @@
             "db": {
               "type": "integer",
               "primary": false,
-              "nullable": false
+              "nullable": true
             }
           },
           "km": {
             "db": {
               "type": "integer",
               "primary": false,
-              "nullable": false
+              "nullable": true
             }
           },
           "cilindrada": {
@@ -699,7 +754,7 @@
               "type": "string",
               "maxLength": 70,
               "primary": false,
-              "nullable": false
+              "nullable": true
             }
           },
           "motor": {
@@ -707,7 +762,7 @@
               "type": "string",
               "maxLength": 70,
               "primary": false,
-              "nullable": false
+              "nullable": true
             }
           },
           "n_modelo": {
@@ -715,7 +770,7 @@
               "type": "string",
               "maxLength": 70,
               "primary": false,
-              "nullable": false
+              "nullable": true
             }
           },
           "tracao": {
@@ -723,7 +778,7 @@
               "type": "string",
               "maxLength": 70,
               "primary": false,
-              "nullable": false
+              "nullable": true
             }
           },
           "transmissao": {
@@ -731,7 +786,7 @@
               "type": "string",
               "maxLength": 70,
               "primary": false,
-              "nullable": false
+              "nullable": true
             }
           },
           "combustivel": {
@@ -739,7 +794,7 @@
               "type": "string",
               "maxLength": 70,
               "primary": false,
-              "nullable": false
+              "nullable": true
             }
           },
           "portas": {
@@ -747,7 +802,7 @@
               "type": "string",
               "maxLength": 70,
               "primary": false,
-              "nullable": false
+              "nullable": true
             }
           },
           "pessoas": {
@@ -755,7 +810,7 @@
               "type": "string",
               "maxLength": 70,
               "primary": false,
-              "nullable": false
+              "nullable": true
             }
           },
           "tipo": {
@@ -763,7 +818,7 @@
               "type": "string",
               "maxLength": 70,
               "primary": false,
-              "nullable": false
+              "nullable": true
             }
           },
           "peso": {
@@ -771,7 +826,7 @@
               "type": "string",
               "maxLength": 70,
               "primary": false,
-              "nullable": false
+              "nullable": true
             }
           },
           "carga": {
@@ -779,7 +834,7 @@
               "type": "string",
               "maxLength": 70,
               "primary": false,
-              "nullable": false
+              "nullable": true
             }
           },
           "shaken_jap": {
@@ -787,14 +842,14 @@
               "type": "string",
               "maxLength": 70,
               "primary": false,
-              "nullable": false
+              "nullable": true
             }
           },
           "shaken_ano": {
             "db": {
               "type": "integer",
               "primary": false,
-              "nullable": false
+              "nullable": true
             }
           },
           "shaken_mes": {
@@ -802,21 +857,21 @@
               "type": "string",
               "maxLength": 3,
               "primary": false,
-              "nullable": false
+              "nullable": true
             }
           },
           "custo": {
             "db": {
               "type": "integer",
               "primary": false,
-              "nullable": false
+              "nullable": true
             }
           },
           "venda": {
             "db": {
               "type": "integer",
               "primary": false,
-              "nullable": false
+              "nullable": true
             }
           },
           "fornecedor": {
@@ -824,7 +879,7 @@
               "type": "string",
               "maxLength": 100,
               "primary": false,
-              "nullable": false
+              "nullable": true
             }
           },
           "outros": {
@@ -832,7 +887,7 @@
               "type": "string",
               "maxLength": 500,
               "primary": false,
-              "nullable": false
+              "nullable": true
             }
           },
           "status": {
@@ -840,7 +895,7 @@
               "type": "string",
               "maxLength": 15,
               "primary": false,
-              "nullable": false
+              "nullable": true
             }
           },
           "shaken_day": {
@@ -848,7 +903,7 @@
               "type": "string",
               "maxLength": 3,
               "primary": false,
-              "nullable": false
+              "nullable": true
             }
           },
           "foto": {
@@ -856,7 +911,7 @@
               "type": "binary",
               "maxLength": 4294967295,
               "primary": false,
-              "nullable": false
+              "nullable": true
             }
           },
           "yj": {
@@ -864,7 +919,7 @@
               "type": "string",
               "maxLength": 20,
               "primary": false,
-              "nullable": false
+              "nullable": true
             }
           },
           "cliente": {
@@ -872,7 +927,7 @@
               "type": "string",
               "maxLength": 60,
               "primary": false,
-              "nullable": false
+              "nullable": true
             }
           },
           "veiculo": {
@@ -880,7 +935,7 @@
               "type": "string",
               "maxLength": 100,
               "primary": false,
-              "nullable": false
+              "nullable": true
             }
           },
           "placa": {
@@ -888,7 +943,7 @@
               "type": "string",
               "maxLength": 7,
               "primary": false,
-              "nullable": false
+              "nullable": true
             }
           },
           "opcionais": {
@@ -931,6 +986,36 @@
             "db": {
               "type": "text",
               "maxLength": 65535,
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "placa_regiao": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "placa_classe": {
+            "db": {
+              "type": "integer",
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "placa_hiragana": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "nullable": true
+            }
+          },
+          "placa_numero": {
+            "db": {
+              "type": "integer",
               "primary": false,
               "nullable": true
             }

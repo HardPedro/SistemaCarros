@@ -83,6 +83,7 @@
             width: 100%;
         }
     </style>
+    <link rel="stylesheet" href="/dmxAppConnect/dmxBootstrap4TableGenerator/dmxBootstrap4TableGenerator.css" />
 </head>
 
 <body is="dmx-app" id="cadastro_carros">
@@ -93,6 +94,7 @@
     <div is="dmx-browser" id="browser1"></div>
     <dmx-notifications id="notifies1" align="center"></dmx-notifications>
     <dmx-serverconnect id="obterCarro" url="/api/cadastroCarros/obterCarro" dmx-param:id_carro="query.id"></dmx-serverconnect>
+    <dmx-serverconnect id="placaHistoricoAdd" url="/api/cadastroCarros/historicoPlaca" dmx-param:id_carro="query.id" dmx-on:success="notifies1.success('Placa adicionada ao histórico!');obterCarro.load({})"></dmx-serverconnect>
     <dmx-query-manager id="query1"></dmx-query-manager>
 
     <style>
@@ -209,7 +211,7 @@
                             <div class="main-image-container">
                                 <label for="imagem1">Imagem Principal</label>
                                 <img id="imgPreview1" src="https://via.placeholder.com/400x300" class="main-image-preview">
-                                <input id="imagem1" name="imagem1" type="file" class="form-control-file" onchange="previewImage(this, 'imgPreview1')" accept="image/*">
+                                <input id="imagem1" name="imagemPrincipal" type="file" class="form-control-file" onchange="previewImage(this, 'imgPreview1')" accept="image/*">
                             </div>
                             <div class="thumbnail-container">
                                 <div class="thumbnail">
@@ -272,7 +274,7 @@
 
                 <div class="actions">
                     <button class="ghost" dmx-on:click="dadosVeiculo.submit()">＋ NOVO (F1)</button>
-                    <button class="ghost" dmx-on:click="notifies1.success(avariasArray.value)">✎ EDITAR (F2)</button>
+                    <button class="ghost" dmx-on:click="notifies1.success(placatipoatual.value)">✎ EDITAR (F2)</button>
                     <button class="ghost" dmx-on:click="dadosVeiculo.submit()">▮ SALVAR (F5)</button>
                     <button class="danger">🗑 DELETAR</button>
                 </div>
@@ -739,7 +741,7 @@
                     <div class="tab-panel" id="tab-historico" role="tabpanel" aria-hidden="true">
                         <div class="jp-plate-wrap">
                             <!-- Botão visual da placa: clique alterna branca/amarela -->
-                            <button type="button" class="jp-plate" id="jpPlate" aria-pressed="false" title="Clique para alternar: Futsuusha ↔ Keijidōsha">
+                            <button type="button" class="jp-plate" id="jpPlate" aria-pressed="false" title="Clique para alternar: Futsuusha ↔ Keijidōsha" dmx-on:click="run({condition:{outputType:'boolean',if:`(placatipoatual.value != \'amarela\')`,then:{steps:{run:{outputType:'text',action:`placatipoatual.setValue(\'amarela\')`}}},else:{steps:{run:{outputType:'text',action:`placatipoatual.setValue(\'branca\')`}}}}})">
                                 <span class="plate-region" id="outRegion">東京</span>
                                 <span class="plate-class" id="outClass">300</span>
                                 <span class="plate-mark" id="outMark">あ</span>
@@ -750,33 +752,51 @@
                             <!-- Controles -->
                             <div class="jp-plate-controls">
                                 <div class="row">
+                                    <dmx-value id="placatipoatual" dmx-bind:value="obterCarro.data.query1[0].tipo"></dmx-value>
+                                    <input id="textplacatipo" name="placa_tipo" type="hidden" class="form-control" dmx-bind:value="placatipoatual.value">
                                     <label>Região
                                         <input id="inRegion" name="placa_regiao" type="text" placeholder="ex.: 東京">
                                     </label>
                                     <label>Classe
-                                        <input id="inClass" name="placa_classe" type="text" placeholder="ex.: 300">
+                                        <input id="inClass" name="placa_classe" type="number" placeholder="ex.: 300">
                                     </label>
                                     <label>Hiragana
                                         <input id="inMark" name="placa_hiragana" type="text" placeholder="ex.: あ" maxlength="1">
                                     </label>
                                     <label>Número
-                                        <input id="inNumber" name="placa_numero" type="text" placeholder="ex.: 1234" pattern="\d{4}" maxlength="4">
+                                        <input id="inNumber" name="placa_numero" type="number" placeholder="ex.: 1234" pattern="\d{4}" maxlength="4">
                                     </label>
                                 </div>
 
                                 <div class="actions">
                                     <button type="button" class="item2" id="btnApply">Aplicar na placa</button>
-                                    <button type="button" class="item2" id="btnAddHistory">Adicionar ao histórico</button>
+                                    <button type="button" class="item2" id="btnAddHistory" dmx-on:click="placaHistoricoAdd.load({})">Adicionar ao histórico</button>
                                 </div>
                             </div>
 
 
                             <!-- Histórico -->
-                            <div class="jp-plate-history">
-                                <div class="head">
-                                    <strong>Histórico de placas</strong>
-                                </div>
-                                <ul id="plateHistory" class="list"></ul>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Regiao</th>
+                                            <th>Classe</th>
+                                            <th>Hiragana</th>
+                                            <th>Numero</th>
+                                            <th>Tipo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody is="dmx-repeat" dmx-generator="bs4table" dmx-bind:repeat="obterCarro.data.query1" id="tableRepeat2">
+                                        <tr>
+                                            <td dmx-text="regiao"></td>
+                                            <td dmx-text="classe"></td>
+                                            <td dmx-text="hiragana"></td>
+                                            <td dmx-text="numero"></td>
+                                            <td dmx-text="tipo"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
