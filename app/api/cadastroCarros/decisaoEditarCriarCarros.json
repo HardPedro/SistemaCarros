@@ -26,7 +26,7 @@
         "name": "cor"
       },
       {
-        "type": "text",
+        "type": "number",
         "fieldName": "ano_fabricacao_ano",
         "name": "ano_fabricacao_ano"
       },
