@@ -93,8 +93,7 @@
     <dmx-value id="avariasArray" dmx-bind:value="obterCarro.data.query[0].avarias.split(',')"></dmx-value>
     <div is="dmx-browser" id="browser1"></div>
     <dmx-notifications id="notifies1" align="center"></dmx-notifications>
-    <dmx-serverconnect id="obterCarro" url="/api/cadastroCarros/obterCarro" dmx-param:id_carro="query.id"></dmx-serverconnect>
-    <dmx-serverconnect id="placaHistoricoAdd" url="/api/cadastroCarros/historicoPlaca" dmx-param:id_carro="query.id" dmx-on:success="notifies1.success('Placa adicionada ao histórico!');obterCarro.load({})"></dmx-serverconnect>
+    <dmx-serverconnect id="obterCarro" url="/api/cadastroCarros/obterCarro" dmx-param:id_carro="query.id" dmx-on:success="run([{condition:{outputType:'boolean',if:`obterCarro.data.query1[0].tipo`,then:{steps:{run:{outputType:'text',action:`dadosVeiculo.placatipoatual.setValue(obterCarro.data.query1[0].tipo)`}}},else:{steps:{run:{outputType:'text',action:`dadosVeiculo.placatipoatual.setValue(\'branca\')`}}}}},{comment:{msg:'fim'}}])"></dmx-serverconnect>
     <dmx-query-manager id="query1"></dmx-query-manager>
 
     <style>
@@ -752,7 +751,7 @@
                             <!-- Controles -->
                             <div class="jp-plate-controls">
                                 <div class="row">
-                                    <dmx-value id="placatipoatual" dmx-bind:value="obterCarro.data.query1[0].tipo"></dmx-value>
+                                    <dmx-value id="placatipoatual"></dmx-value>
                                     <input id="textplacatipo" name="placa_tipo" type="hidden" class="form-control" dmx-bind:value="placatipoatual.value">
                                     <label>Região
                                         <input id="inRegion" name="placa_regiao" type="text" placeholder="ex.: 東京">
@@ -770,7 +769,7 @@
 
                                 <div class="actions">
                                     <button type="button" class="item2" id="btnApply">Aplicar na placa</button>
-                                    <button type="button" class="item2" id="btnAddHistory" dmx-on:click="placaHistoricoAdd.load({})">Adicionar ao histórico</button>
+                                    <button type="button" class="item2" id="btnAddHistory" dmx-on:click="run([{condition:{outputType:'boolean',if:`placatipoatual.value.isEmpty()`,then:{steps:{run:{outputType:'text',action:`placatipoatual.setValue(\'branca\')`}}}}},{run:{outputType:'text',action:`formHistoricoPlaca.submit()`}}])">Adicionar ao histórico</button>
                                 </div>
                             </div>
 
@@ -864,6 +863,14 @@
 
         </div>
 
+    </form>
+    <form id="formHistoricoPlaca" is="dmx-serverconnect-form" method="post" action="/api/cadastroCarros/historicoPlaca" dmx-on:success="notifies1.success('deu bom');obterCarro.load({})">
+        <input id="text6" name="placa_id" type="hidden" class="form-control" dmx-bind:value="query.id">
+        <input id="text5" name="placa_numero" type="hidden" class="form-control" dmx-bind:value="dadosVeiculo.inNumber.value">
+        <input id="text4" name="placa_hiragana" type="hidden" class="form-control" dmx-bind:value="dadosVeiculo.inMark.value">
+        <input id="text3" name="placa_classe" type="hidden" class="form-control" dmx-bind:value="dadosVeiculo.inClass.value">
+        <input id="text2" name="placa_regiao" type="hidden" class="form-control" dmx-bind:value="dadosVeiculo.inRegion.value">
+        <input id="text1" name="placa_tipo" type="hidden" class="form-control" dmx-bind:value="dadosVeiculo.textplacatipo.value">
     </form>
 
     <!-- JS: tabs + dots -->

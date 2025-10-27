@@ -398,20 +398,21 @@
               "condition": "AND",
               "rules": [
                 {
-                  "id": "historico_placas.id",
-                  "field": "historico_placas.id",
+                  "id": "historico_placas.id_carro",
+                  "field": "historico_placas.id_carro",
                   "type": "double",
                   "operator": "equal",
                   "value": "{{$_GET.id_carro}}",
                   "data": {
                     "table": "historico_placas",
-                    "column": "id",
+                    "column": "id_carro",
                     "type": "number",
                     "columnObj": {
-                      "type": "increments",
-                      "primary": true,
-                      "nullable": false,
-                      "name": "id"
+                      "type": "integer",
+                      "maxLength": 255,
+                      "primary": false,
+                      "nullable": true,
+                      "name": "id_carro"
                     }
                   },
                   "operation": "="
@@ -420,7 +421,7 @@
               "conditional": null,
               "valid": true
             },
-            "query": "select `regiao`, `classe`, `hiragana`, `numero`, `tipo` from `historico_placas` where `historico_placas`.`id` = ?"
+            "query": "select `regiao`, `classe`, `hiragana`, `numero`, `tipo` from `historico_placas` where `historico_placas`.`id_carro` = ?"
           }
         },
         "output": true,
