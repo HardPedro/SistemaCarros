@@ -750,9 +750,9 @@
 
                             <!-- Controles -->
                             <div class="jp-plate-controls">
+                                <dmx-value id="placatipoatual"></dmx-value>
+                                <input id="textplacatipo" name="placa_tipo" type="hidden" class="form-control" dmx-bind:value="placatipoatual.value">
                                 <div class="row">
-                                    <dmx-value id="placatipoatual"></dmx-value>
-                                    <input id="textplacatipo" name="placa_tipo" type="hidden" class="form-control" dmx-bind:value="placatipoatual.value">
                                     <label>Região
                                         <input id="inRegion" name="placa_regiao" type="text" placeholder="ex.: 東京">
                                     </label>
