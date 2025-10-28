@@ -564,6 +564,20 @@ button.item2 {
 }
 .jp-plate-history .list li + li{ margin-top: 4px; }
 
+.jp-plate-wrap .table-responsive{
+  width: 100%;
+  max-width: 100%;
+  max-height: clamp(200px, 32vh, 320px);
+  overflow-x: auto;
+  overflow-y: auto;
+  border-radius: 12px;
+  border: 2px solid #cfd2d5;
+  background: rgba(255,255,255,.04);
+}
+.jp-plate-wrap .table{
+  margin-bottom: 0;
+  color: #fff;
+}
 
 /* ===== Direita: diagrama ===== */
 .right-pane{

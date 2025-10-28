@@ -1075,6 +1075,20 @@
             const list     = document.getElementById('plateHistory');
             const placaHidden = document.getElementById('placa');
 
+            const ensureDefault = (el, key, property = 'textContent') => {
+                if (!el) return '';
+                const datasetKey = `default${key}`;
+                if (!el.dataset[datasetKey]) {
+                    el.dataset[datasetKey] = property === 'innerHTML' ? el.innerHTML : el.textContent;
+                }
+                return el.dataset[datasetKey];
+            };
+
+            ensureDefault(outRegion, 'Region');
+            ensureDefault(outClass, 'Class');
+            ensureDefault(outMark, 'Mark');
+            ensureDefault(outNumber, 'Number', 'innerHTML');
+
             const syncPlacatype = () => {
                 if (!placaHidden) return;
                 placaHidden.value = plate.classList.contains('is-kei') ? 'Amarela' : 'Branca';
@@ -1089,22 +1103,43 @@
                 syncPlacatype();
             });
 
-            btnApply?.addEventListener('click', () => {
-                const region = (inRegion?.value || outRegion.textContent).trim();
-                const klass  = (inClass?.value  || outClass.textContent).trim();
-                const mark   = (inMark?.value   || outMark.textContent).trim();
-                const num    = (inNumber?.value || outNumber.textContent.replace('-', '')).trim();
-
-                let numFmt = outNumber.innerHTML;
-                if (/^\\d{4}$/.test(num)) {
-                    numFmt = `<span>${num.slice(0,2)}</span>-<span>${num.slice(2)}</span>`;
+            const renderNumber = (value) => {
+                if (!value) return '';
+                const digits = value.replace(/\D/g, '').slice(0, 4);
+                if (!digits.length) return '';
+                if (digits.length === 4) {
+                    return `<span>${digits.slice(0, 2)}</span>-<span>${digits.slice(2)}</span>`;
                 }
+                return digits;
+            };
 
-                outRegion.textContent = region || '東京';
-                outClass.textContent  = klass  || '300';
-                outMark.textContent   = mark   || 'あ';
-                outNumber.innerHTML   = numFmt;
+            const renderPlate = () => {
+                const reg = inRegion?.value?.trim();
+                const klass = inClass?.value?.trim();
+                const mark = inMark?.value?.trim();
+                const numRaw = inNumber?.value?.trim();
+
+                outRegion.textContent = reg || ensureDefault(outRegion, 'Region') || '東京';
+                outClass.textContent = klass || ensureDefault(outClass, 'Class') || '300';
+                outMark.textContent = (mark && mark[0]) || ensureDefault(outMark, 'Mark') || 'あ';
+
+                const formatted = renderNumber(numRaw);
+                if (formatted) {
+                    outNumber.innerHTML = formatted;
+                } else {
+                    outNumber.innerHTML = ensureDefault(outNumber, 'Number', 'innerHTML') || `<span>12</span>-<span>34</span>`;
+                }
+            };
+
+            btnApply?.addEventListener('click', () => {
+                renderPlate();
                 plate.animate([{filter:'brightness(1.2)'},{filter:'brightness(1)'}], {duration:180, easing:'ease-out'});
+            });
+
+            [inRegion, inClass, inMark, inNumber].forEach(el => {
+                if (!el) return;
+                el.addEventListener('input', renderPlate);
+                el.addEventListener('change', renderPlate);
             });
 
             btnAdd?.addEventListener('click', () => {
@@ -1115,6 +1150,8 @@
                 list?.prepend(li);
                 li.animate([{opacity:0, transform:'translateY(-4px)'},{opacity:1, transform:'translateY(0)'}], {duration:160, easing:'ease-out'});
             });
+
+            renderPlate();
         })();
 
         updateFeatures();
